@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FieldManagement"
+        xmlns:views="clr-namespace:FieldManagement.Views"
         mc:Ignorable="d"
         Title="Field Management"
         Height="720"
@@ -138,7 +139,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="88"/>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="320"/>
         </Grid.ColumnDefinitions>
 
         <!-- 왼쪽 사이드바 -->
@@ -167,7 +167,8 @@
                 <!-- 상단 메뉴 -->
                 <StackPanel Margin="0,10,0,0">
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
-                                  IsChecked="True">
+                                  Tag="Home"
+                                  Checked="MenuRadio_Checked">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
@@ -182,7 +183,9 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Checked="MenuRadio_Checked"
+                                 Tag="Input">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
@@ -197,7 +200,9 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Checked="MenuRadio_Checked">
+                                 <!-- Tag="Data" -->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
@@ -212,7 +217,9 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Checked="MenuRadio_Checked">
+                                 <!-- Tag="Logs" -->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
@@ -227,7 +234,9 @@
                         </StackPanel>
                     </RadioButton>
                     
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Checked="MenuRadio_Checked">
+                                 <!--Tag="Settings"-->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
@@ -245,117 +254,8 @@
             </DockPanel>
         </Border>
 
-        <!-- 가운데 메인 -->
-        <Grid Grid.Column="1"
-              Margin="14">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!-- 상단 헤더 -->
-            <Border Grid.Row="0"
-                    Margin="0,0,0,12"
-                    Padding="16,12"
-                    Background="#111827"
-                    CornerRadius="12"
-                    BorderBrush="#1F2937"
-                    BorderThickness="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel>
-                        <TextBlock Text="Notification status board"
-                                   Foreground="White"
-                                   FontSize="20"
-                                   FontWeight="SemiBold"/>
-                        <TextBlock Text="알림 현황판"
-                                   Foreground="#94A3B8"
-                                   FontSize="12"
-                                   Margin="0,4,0,0"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1"
-                                Orientation="Horizontal"
-                                VerticalAlignment="Center">
-                        <Button Content="편집"
-                                Margin="0,0,8,0"
-                                Padding="14,8"
-                                Background="#2563EB"
-                                Foreground="White"
-                                BorderBrush="#2563EB"/>
-                        <Button Content="저장"
-                                Padding="14,8"
-                                Background="#374151"
-                                Foreground="White"
-                                BorderBrush="#374151"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-
-            <!-- 도면 영역 -->
-            <Border Grid.Row="1"
-                    Background="#0B1220"
-                    CornerRadius="14"
-                    BorderBrush="#1F2937"
-                    BorderThickness="1"
-                    Padding="10">
-                <Grid>
-                    <Image x:Name="FloorPlanImage"
-                           Source="Images/room1.webp"
-                           Stretch="Uniform"/>
-
-                    <Canvas x:Name="OverlayCanvas"
-                            Background="Transparent"/>
-                </Grid>
-            </Border>
-        </Grid>
-
-        <!-- 오른쪽 로그 -->
-        <Border Grid.Column="2"
-                Margin="0,14,14,14"
-                Padding="14"
-                Background="#0F172A"
-                BorderBrush="#1F2937"
-                BorderThickness="1"
-                CornerRadius="14">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0"
-                           Text="호출 이력"
-                           Foreground="White"
-                           FontSize="18"
-                           FontWeight="SemiBold"/>
-
-                <TextBlock Grid.Row="1"
-                           Text="실시간 호출 로그"
-                           Foreground="#94A3B8"
-                           FontSize="12"
-                           Margin="0,4,0,12"/>
-
-                <ListBox Grid.Row="2"
-                         Style="{StaticResource LogListBoxStyle}"
-                         ItemContainerStyle="{StaticResource LogListBoxItemStyle}"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListBoxItem>2026-06-01 11:23:00 [1번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 11:55:00 [10번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 12:23:00 [2번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 13:03:00 [5번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 15:23:00 [4번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 16:02:00 [7번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 16:40:00 [3번] 호출</ListBoxItem>
-                    <ListBoxItem>2026-06-01 17:18:00 [9번] 호출</ListBoxItem>
-                </ListBox>
-            </Grid>
-        </Border>
+        <ContentControl x:Name="MainContent"
+                        Grid.Column="1"
+                        Margin="14"/>
     </Grid>
 </Window>
