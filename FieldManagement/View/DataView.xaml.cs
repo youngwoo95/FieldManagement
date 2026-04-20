@@ -1,47 +1,52 @@
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using FieldManagement.Models;
 using FieldManagement.Themes;
+using FieldManagement.ViewModels;
 using Microsoft.Web.WebView2.Core;
 
 namespace FieldManagement.View;
 
 public partial class DataView : UserControl
 {
-    private readonly string _samplePdfPath;
     private bool _pdfViewerInitialized;
 
     public DataView()
     {
         InitializeComponent();
-        _samplePdfPath = ResolvePdfPath();
-        WorkOrderGrid.ItemsSource = new[]
-        {
-            new WorkOrderRow
-            {
-                WorkOrderNo = "WO-20260420-001",
-                MachineName = "MA-0001",
-                CustomerName = "장성운",
-                Status = "진행중",
-                WorkDate = "2026-04-20"
-            }
-        };
+        DataContext = new DataViewModel();
+        Loaded += DataView_Loaded;
     }
 
-    private async void WorkOrderGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void DataView_Loaded(object sender, RoutedEventArgs e)
     {
-        if (WorkOrderGrid.SelectedItem == null)
+        if (DataContext is DataViewModel vm)
+        {
+            vm.PropertyChanged -= ViewModel_PropertyChanged;
+            vm.PropertyChanged += ViewModel_PropertyChanged;
+        }
+    }
+    
+   private async void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (sender is not DataViewModel vm)
             return;
 
-        OpenPdfPanel();
-        await LoadPdfPreviewAsync(_samplePdfPath);
-    }
+        if (e.PropertyName == nameof(DataViewModel.IsPdfPanelOpen))
+        {
+            if (vm.IsPdfPanelOpen)
+                OpenPdfPanel();
+            else
+                ClosePdfPanel();
+        }
 
-    private void ClosePdfPanel_Click(object sender, RoutedEventArgs e)
-    {
-        ClosePdfPanel();
-        WorkOrderGrid.UnselectAll();
+        if (e.PropertyName == nameof(DataViewModel.SelectedPdfPath) && !string.IsNullOrWhiteSpace(vm.SelectedPdfPath))
+        {
+            await LoadPdfPreviewAsync(vm.SelectedPdfPath);
+        }
     }
 
     private void OpenPdfPanel()
@@ -114,33 +119,5 @@ public partial class DataView : UserControl
         PdfViewer.Visibility = Visibility.Collapsed;
         PdfFallbackText.Text = message;
         PdfFallbackText.Visibility = Visibility.Visible;
-    }
-
-    private static string ResolvePdfPath()
-    {
-        var candidates = new[]
-        {
-            Path.Combine(AppContext.BaseDirectory, "Pdfs", "Notion.pdf"),
-            Path.Combine(Directory.GetCurrentDirectory(), "Pdfs", "Notion.pdf"),
-            Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Pdfs", "Notion.pdf")
-        };
-
-        foreach (var candidate in candidates)
-        {
-            var fullPath = Path.GetFullPath(candidate);
-            if (File.Exists(fullPath))
-                return fullPath;
-        }
-
-        return Path.GetFullPath(candidates[0]);
-    }
-
-    private sealed class WorkOrderRow
-    {
-        public string WorkOrderNo { get; init; } = string.Empty;
-        public string MachineName { get; init; } = string.Empty;
-        public string CustomerName { get; init; } = string.Empty;
-        public string Status { get; init; } = string.Empty;
-        public string WorkDate { get; init; } = string.Empty;
     }
 }

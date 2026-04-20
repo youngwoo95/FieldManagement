@@ -233,20 +233,23 @@
                             Padding="14,8"
                             Background="{DynamicResource PrimaryActionBrush}"
                             Foreground="{DynamicResource PrimaryActionTextBrush}"
-                            BorderBrush="{DynamicResource PrimaryActionBrush}"/>
+                            BorderBrush="{DynamicResource PrimaryActionBrush}"
+                            Command="{Binding SearchCommand}"/>
                     <Button Content="초기화"
                             Margin="8,0,0,0"
                             Padding="14,8"
                             Background="{DynamicResource SecondaryActionBrush}"
                             Foreground="{DynamicResource SecondaryActionTextBrush}"
-                            BorderBrush="{DynamicResource SecondaryActionBrush}"/>
+                            BorderBrush="{DynamicResource SecondaryActionBrush}"
+                            Command="{Binding ResetCommand}"/>
                     
                     <Button Content="등록"
                             Margin="8,0,0,0"
                             Padding="14,8"
                             Background="{DynamicResource PrimarySaveBrush}"
                             Foreground="{DynamicResource PrimaryActionTextBrush}"
-                            BorderBrush="{DynamicResource PrimarySaveBrush}"/>
+                            BorderBrush="{DynamicResource PrimarySaveBrush}"
+                            Command="{Binding AddCommand}"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -269,8 +272,8 @@
                           HeadersVisibility="Column"
                           CanUserAddRows="False"
                           IsReadOnly="True"
-                          SelectionMode="Single"
-                          SelectionChanged="WorkOrderGrid_SelectionChanged"
+                          ItemsSource="{Binding WorkOrders}"
+                          SelectedItem="{Binding SelectedWorkOrder, Mode=TwoWay}"
                           Background="{DynamicResource ViewHeaderBackgroundBrush}"
                           Foreground="{DynamicResource ViewBodyTextBrush}"
                           BorderThickness="0"
@@ -366,7 +369,7 @@
                                 Background="{DynamicResource SecondaryActionBrush}"
                                 Foreground="{DynamicResource SecondaryActionTextBrush}"
                                 BorderBrush="{DynamicResource ViewPanelBorderBrush}"
-                                Click="ClosePdfPanel_Click"/>
+                                Command="{Binding ClosePdfPanelCommand}"/>
                     </Grid>
 
                     <Grid Grid.Row="1">

@@ -287,13 +287,11 @@
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <ComboBox
-                            Style="{StaticResource RoundedComboBox}"
-                            Margin="0,0,8,0">
-                            <ComboBoxItem IsSelected="True">선택해주세요</ComboBoxItem>
-                            <ComboBoxItem>1층</ComboBoxItem>
-                            <ComboBoxItem>2층</ComboBoxItem>
-                        </ComboBox>
+                        <ComboBox Style="{StaticResource RoundedComboBox}"
+                                  ItemsSource="{Binding Floors}"
+                                  SelectedItem="{Binding SelectedFloor, Mode=TwoWay}"
+                                  Margin="0,0,8,0"/>
+                        
                         <Button Content="편집"
                                 Margin="0,0,8,0"
                                 Padding="14,8"
@@ -302,6 +300,7 @@
                                 BorderBrush="{DynamicResource PrimaryActionBrush}"
                                 Click="EditButton_Click"/>
                         <Button Content="저장"
+                                Command="{Binding SaveCommand}"
                                 Padding="14,8"
                                 Background="{DynamicResource SecondaryActionBrush}"
                                 Foreground="{DynamicResource SecondaryActionTextBrush}"
@@ -355,20 +354,12 @@
                            Margin="0,4,0,12"/>
 
                 <ListBox Grid.Row="2"
+                         ItemsSource="{Binding Logs}"
                          Foreground="{DynamicResource ViewBodyTextBrush}"
                          Background="Transparent"
                          BorderThickness="0"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListBoxItem>2026-06-01 11:23:00 [1번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 11:55:00 [10번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 12:23:00 [2번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 13:03:00 [5번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 15:23:00 [4번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 16:02:00 [7번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 16:40:00 [3번] 생산완료</ListBoxItem>
-                    <ListBoxItem>2026-06-01 17:18:00 [9번] 생산완료</ListBoxItem>
-                </ListBox>
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
             </Grid>
         </Border>
     </Grid>
