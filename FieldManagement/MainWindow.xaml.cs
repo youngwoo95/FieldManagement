@@ -1,13 +1,7 @@
-﻿using System.Text;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FieldManagement.Views;
 
 namespace FieldManagement;
@@ -17,9 +11,15 @@ namespace FieldManagement;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private static readonly Uri DarkThemeUri = new("Themes/DarkTheme.xaml", UriKind.Relative);
+    private static readonly Uri LightThemeUri = new("Themes/LightTheme.xaml", UriKind.Relative);
+
+    private bool _isDarkTheme;
+
     public MainWindow()
     {
         InitializeComponent();
+        _isDarkTheme = IsDarkThemeActive();
         MainContent.Content = new MainBoardView();
     }
     
@@ -32,8 +32,12 @@ public partial class MainWindow : Window
 
         UserControl view = menu switch
         {
-            "Home" => new MainBoardView(),
-            "Input" => new InputView()
+            "Home" => new MainBoardView(), /* MainBoardView.xaml */
+            "Input" => new InputView(), /* InputView.xaml */
+            "Logs" => new LogView(), /* LogView.xaml */
+            "Data" => new DataView(), /* DataView.xaml */
+            "Settings" => new SettingsView(), /* SettingsView.xaml */
+            _ => new MainBoardView()
         };
 
         MainContent.Content = view;
@@ -41,6 +45,36 @@ public partial class MainWindow : Window
 
     private void ThemeButton_Click(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("테마 버튼 클릭");
+        ApplyTheme(!_isDarkTheme);
+    }
+
+    private bool IsDarkThemeActive()
+    {
+        var appResources = Application.Current.Resources;
+        return appResources.MergedDictionaries.Any(d =>
+            d.Source is not null &&
+            d.Source.OriginalString.Contains("DarkTheme.xaml", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private void ApplyTheme(bool useDarkTheme)
+    {
+        var appResources = Application.Current.Resources;
+        var existingThemeDictionaries = appResources.MergedDictionaries
+            .Where(d => d.Source is not null &&
+                        (d.Source.OriginalString.Contains("DarkTheme.xaml", StringComparison.OrdinalIgnoreCase) ||
+                         d.Source.OriginalString.Contains("LightTheme.xaml", StringComparison.OrdinalIgnoreCase)))
+            .ToList();
+
+        foreach (var dictionary in existingThemeDictionaries)
+        {
+            appResources.MergedDictionaries.Remove(dictionary);
+        }
+
+        appResources.MergedDictionaries.Add(new ResourceDictionary
+        {
+            Source = useDarkTheme ? DarkThemeUri : LightThemeUri
+        });
+
+        _isDarkTheme = useDarkTheme;
     }
 }

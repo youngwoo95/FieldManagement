@@ -12,7 +12,7 @@
         MinHeight="600"
         MinWidth="1000"
         WindowStartupLocation="CenterScreen"
-        Background="#0F172A">
+        Background="{DynamicResource WindowBackgroundBrush}">
     
     <Window.Resources>
        <!-- 사이드바 토글 버튼 스타일 -->
@@ -20,7 +20,7 @@
            <Setter Property="Width" Value="72"/>
            <Setter Property="Height" Value="72"/>
            <Setter Property="Margin" Value="8,6"/>
-           <Setter Property="Foreground" Value="#E5E7EB"/>
+           <Setter Property="Foreground" Value="{DynamicResource SidebarForegroundBrush}"/>
            <Setter Property="Background" Value="Transparent"/>
            <Setter Property="BorderBrush" Value="Transparent"/>
            <Setter Property="Cursor" Value="Hand"/>
@@ -47,12 +47,12 @@
 
                        <ControlTemplate.Triggers>
                            <Trigger Property="IsMouseOver" Value="True">
-                               <Setter TargetName="ButtonBody" Property="Background" Value="#2A2540"/>
+                               <Setter TargetName="ButtonBody" Property="Background" Value="{DynamicResource SidebarHoverBrush}"/>
                            </Trigger>
 
                            <Trigger Property="IsChecked" Value="True">
-                               <Setter TargetName="Indicator" Property="Background" Value="#3BA3FF"/>
-                               <Setter TargetName="ButtonBody" Property="Background" Value="#241F38"/>
+                               <Setter TargetName="Indicator" Property="Background" Value="{DynamicResource SidebarIndicatorBrush}"/>
+                               <Setter TargetName="ButtonBody" Property="Background" Value="{DynamicResource SidebarSelectedBrush}"/>
                            </Trigger>
                        </ControlTemplate.Triggers>
                    </ControlTemplate>
@@ -65,7 +65,7 @@
             <Setter Property="Width" Value="72"/>
             <Setter Property="Height" Value="72"/>
             <Setter Property="Margin" Value="8,6"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Foreground" Value="{DynamicResource SidebarForegroundBrush}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -81,10 +81,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ButtonBody" Property="Background" Value="#2A2540"/>
+                                <Setter TargetName="ButtonBody" Property="Background" Value="{DynamicResource SidebarHoverBrush}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonBody" Property="Background" Value="#342E50"/>
+                                <Setter TargetName="ButtonBody" Property="Background" Value="{DynamicResource SidebarPressedBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -96,16 +96,16 @@
         <Style x:Key="LogListBoxStyle" TargetType="ListBox">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Foreground" Value="{DynamicResource SidebarForegroundBrush}"/>
             <Setter Property="Padding" Value="0"/>
         </Style>
 
         <Style x:Key="LogListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="Padding" Value="10,8"/>
             <Setter Property="Margin" Value="0,0,0,6"/>
-            <Setter Property="Background" Value="#111827"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
-            <Setter Property="BorderBrush" Value="#1F2937"/>
+            <Setter Property="Background" Value="{DynamicResource LogItemBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SidebarForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource LogItemBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
@@ -121,11 +121,11 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#1F2937"/>
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource LogItemHoverBrush}"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#243047"/>
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#3BA3FF"/>
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource LogItemSelectedBrush}"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource LogItemSelectedBorderBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -143,21 +143,22 @@
 
         <!-- 왼쪽 사이드바 -->
         <Border Grid.Column="0"
-                Background="#171427">
+                Background="{DynamicResource SidebarBackgroundBrush}">
             <DockPanel LastChildFill="True">
 
                 <!-- 하단 -->
                 <StackPanel DockPanel.Dock="Bottom"
                             Margin="0,0,0,10">
-                    <Button Style="{StaticResource SidebarBottomButtonStyle}">
+                    <Button Style="{StaticResource SidebarBottomButtonStyle}"
+                            Click="ThemeButton_Click">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text="◐"
                                        FontSize="22"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Theme"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>
@@ -173,11 +174,11 @@
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="#60A5FA"
+                                       Foreground="{DynamicResource SidebarAccentBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Home"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>
@@ -190,62 +191,62 @@
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Input"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Tag="Data"
                                  Checked="MenuRadio_Checked">
-                                 <!-- Tag="Data" -->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Data"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Tag="Logs" 
                                  Checked="MenuRadio_Checked">
-                                 <!-- Tag="Logs" -->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Logs"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton>
                     
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 Tag="Settings"
                                  Checked="MenuRadio_Checked">
-                                 <!--Tag="Settings"-->
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Setting"
                                        FontSize="11"
-                                       Foreground="#E5E7EB"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
                                        HorizontalAlignment="Center"/>
                         </StackPanel>

@@ -1,9 +1,8 @@
-<UserControl x:Class="FieldManagement.Views.LogView"
+<UserControl x:Class="FieldManagement.DataView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="Transparent">
-
     <Grid>
-        <TextBlock Text="Log" Foreground="{DynamicResource ViewBodyTextBrush}"/>
+        <TextBlock Foreground="{DynamicResource ViewBodyTextBrush}">Data</TextBlock>
     </Grid>
 </UserControl>

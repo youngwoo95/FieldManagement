@@ -1,12 +1,279 @@
 <UserControl x:Class="FieldManagement.InputView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:FieldManagement"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             Background="Transparent">
+    
+    <UserControl.Resources>
+        <ControlTemplate x:Key="RoundedComboBoxToggleButton" TargetType="ToggleButton">
+            <Border x:Name="ToggleBorder"
+                    CornerRadius="8"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="32" />
+                    </Grid.ColumnDefinitions>
+
+                    <ContentPresenter Grid.Column="0"
+                                      Margin="12,0,8,0"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      RecognizesAccessKey="True" />
+
+                    <Path x:Name="Arrow"
+                          Grid.Column="1"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Data="M 0 0 L 4 4 L 8 0"
+                          Stroke="{DynamicResource ComboBoxArrowBrush}"
+                          StrokeThickness="2"
+                          SnapsToDevicePixels="True" />
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxHoverBackgroundBrush}" />
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxHoverBorderBrush}" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxOpenBackgroundBrush}" />
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxOpenBorderBrush}" />
+                    <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource ComboBoxOpenArrowBrush}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxDisabledBackgroundBrush}" />
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxDisabledBorderBrush}" />
+                    <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource ComboBoxDisabledArrowBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="RoundedComboBoxItem" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemForegroundBrush}" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="ItemBorder"
+                                Margin="4,2"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="6"
+                                Background="Transparent">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource ComboBoxItemHoverBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource ComboBoxItemSelectedBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemDisabledForegroundBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RoundedComboBox" TargetType="ComboBox">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="MaxDropDownHeight" Value="280" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource RoundedComboBoxItem}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          Template="{StaticResource RoundedComboBoxToggleButton}">
+                                <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"/>
+                            </ToggleButton>
+
+                            <Popup x:Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Fade">
+                                <Border x:Name="DropDownBorder"
+                                        Margin="0,6,0,0"
+                                        MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Background="{DynamicResource ComboBoxBackgroundBrush}"
+                                        BorderBrush="{DynamicResource ComboBoxPopupBorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8">
+                                    <ScrollViewer Margin="0,2"
+                                                  SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="{DynamicResource ComboBoxFocusBorderBrush}" />
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="40" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemDisabledForegroundBrush}" />
+                                <Setter TargetName="ToggleButton" Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="14"/>
+            <ColumnDefinition Width="320"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 왼쪽 메인 영역 -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 상단 헤더 -->
+            <Border Grid.Row="0"
+                    Margin="0,0,0,12"
+                    Padding="16,12"
+                    Background="{DynamicResource ViewHeaderBackgroundBrush}"
+                    CornerRadius="12"
+                    BorderBrush="{DynamicResource ViewHeaderBorderBrush}"
+                    BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Notification status board"
+                                   Foreground="{DynamicResource ViewTitleTextBrush}"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="알림 현황판"
+                                   Foreground="{DynamicResource ViewSubtitleTextBrush}"
+                                   FontSize="12"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <ComboBox
+                            Style="{StaticResource RoundedComboBox}"
+                            Margin="0,0,8,0">
+                            <ComboBoxItem IsSelected="True">선택해주세요</ComboBoxItem>
+                            <ComboBoxItem>1</ComboBoxItem>
+                            <ComboBoxItem>2</ComboBoxItem>
+                        </ComboBox>
+                        <Button Content="편집"
+                                Margin="0,0,8,0"
+                                Padding="14,8"
+                                Background="{DynamicResource PrimaryActionBrush}"
+                                Foreground="{DynamicResource PrimaryActionTextBrush}"
+                                BorderBrush="{DynamicResource PrimaryActionBrush}"
+                                Click="EditButton_Click"/>
+                        <Button Content="저장"
+                                Padding="14,8"
+                                Background="{DynamicResource SecondaryActionBrush}"
+                                Foreground="{DynamicResource SecondaryActionTextBrush}"
+                                BorderBrush="{DynamicResource SecondaryActionBrush}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- 도면 영역 -->
+            <Border Grid.Row="1"
+                    Background="{DynamicResource ViewCanvasBackgroundBrush}"
+                    CornerRadius="14"
+                    BorderBrush="{DynamicResource ViewHeaderBorderBrush}"
+                    BorderThickness="1"
+                    Padding="10">
+                <Grid>
+                    <Image x:Name="FloorPlanImage"
+                           Source="/Images/room1.webp"
+                           Stretch="Uniform"/>
+
+                    <Canvas x:Name="OverlayCanvas"
+                            Background="Transparent"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- 오른쪽 로그 영역 -->
+        <Border Grid.Column="2"
+                Padding="14"
+                Background="{DynamicResource ViewRightPaneBackgroundBrush}"
+                BorderBrush="{DynamicResource ViewHeaderBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="14">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="호출 이력"
+                           Foreground="{DynamicResource ViewTitleTextBrush}"
+                           FontSize="18"
+                           FontWeight="SemiBold"/>
+
+                <TextBlock Grid.Row="1"
+                           Text="실시간 호출 로그"
+                           Foreground="{DynamicResource ViewSubtitleTextBrush}"
+                           FontSize="12"
+                           Margin="0,4,0,12"/>
+
+                <ListBox Grid.Row="2"
+                         Foreground="{DynamicResource ViewBodyTextBrush}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBoxItem>2026-06-01 11:23:00 [1번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 11:55:00 [10번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 12:23:00 [2번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 13:03:00 [5번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 15:23:00 [4번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 16:02:00 [7번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 16:40:00 [3번] 호출</ListBoxItem>
+                    <ListBoxItem>2026-06-01 17:18:00 [9번] 호출</ListBoxItem>
+                </ListBox>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
