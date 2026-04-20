@@ -34,7 +34,7 @@ public partial class MainWindow : Window
         {
             "Home" => new MainBoardView(), /* MainBoardView.xaml */
             "Input" => new InputView(), /* InputView.xaml */
-            "Logs" => new LogView(), /* LogView.xaml */
+            "Workers" => new WorkerView(), /* LogView.xaml */
             "Data" => new DataView(), /* DataView.xaml */
             "Settings" => new SettingsView(), /* SettingsView.xaml */
             _ => new MainBoardView()

@@ -219,7 +219,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
-                                 Tag="Logs" 
+                                 Tag="Workers" 
                                  Checked="MenuRadio_Checked">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
@@ -227,7 +227,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Logs"
+                            <TextBlock Text="Workers"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"

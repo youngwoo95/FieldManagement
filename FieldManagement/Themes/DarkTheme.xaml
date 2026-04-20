@@ -25,6 +25,7 @@
     <SolidColorBrush x:Key="ViewMutedTextBrush" Color="#9CA3AF" />
     <SolidColorBrush x:Key="ViewTertiaryTextBrush" Color="#D1D5DB" />
 
+    <SolidColorBrush x:Key="PrimarySaveBrush" Color="#eb4034" />
     <SolidColorBrush x:Key="PrimaryActionBrush" Color="#2563EB" />
     <SolidColorBrush x:Key="PrimaryActionTextBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="SecondaryActionBrush" Color="#374151" />
