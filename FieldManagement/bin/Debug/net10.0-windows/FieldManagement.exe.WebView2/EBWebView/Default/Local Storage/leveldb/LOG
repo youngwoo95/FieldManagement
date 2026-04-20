@@ -1,3 +1,2 @@
-2026/04/20-15:57:31.827 7bd8 Reusing MANIFEST D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2026/04/20-15:57:31.846 7bd8 Recovering log #3
-2026/04/20-15:57:31.851 7bd8 Reusing old log D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000003.log 
+2026/04/20-16:11:42.791 7af0 Creating DB D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Local Storage\leveldb since it was missing.
+2026/04/20-16:11:43.594 7af0 Reusing MANIFEST D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
