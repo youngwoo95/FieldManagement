@@ -176,5 +176,17 @@
         
         <TextBlock Text="수주관리가 들어가면 될듯" Foreground="White"></TextBlock>
         
+        <!--
+        설비조회
+        
+        수주 조회
+        
+        현재수량
+        
+        작업시작일
+        작업종료일
+        -->
+        
+        
     </Grid>
 </UserControl>

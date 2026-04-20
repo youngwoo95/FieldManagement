@@ -4,5 +4,10 @@
              Background="Transparent">
     <Grid>
         <TextBlock Foreground="{DynamicResource ViewBodyTextBrush}">설비 관리 항목이 들어가면 될듯</TextBlock>
+        <!-- 
+        설비명
+        제조사
+        용도
+        -->
     </Grid>
 </UserControl>
