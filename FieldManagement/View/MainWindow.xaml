@@ -32,8 +32,8 @@
             <views:DataView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-            <views:SettingsView />
+        <DataTemplate DataType="{x:Type vm:FacilityViewModel}">
+            <views:FacilityView />
         </DataTemplate>
         
         <!-- 사이드바 토글 버튼 스타일 -->
@@ -253,14 +253,14 @@
                     </RadioButton>
                     
                     <RadioButton Style="{StaticResource SidebarRadioStyle}"
-                                 IsChecked="{Binding IsSettingsSelected, Mode=TwoWay}">
+                                 IsChecked="{Binding IsFacilitySelected, Mode=TwoWay}">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Setting"
+                            <TextBlock Text="Facility"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"

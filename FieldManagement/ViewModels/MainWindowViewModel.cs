@@ -34,7 +34,7 @@ public class MainWindowViewModel : BaseViewModel
             OnPropertyChanged(nameof(IsInputSelected));
             OnPropertyChanged(nameof(IsWorkersSelected));
             OnPropertyChanged(nameof(IsDataSelected));
-            OnPropertyChanged(nameof(IsSettingsSelected));
+            OnPropertyChanged(nameof(IsFacilitySelected));
 
             ChangeView(value);
         }
@@ -94,13 +94,13 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
-    public bool IsSettingsSelected
+    public bool IsFacilitySelected
     {
-        get => SelectedMenu == MenuType.Settings;
+        get => SelectedMenu == MenuType.Facility;
         set
         {
             if (value)
-                SelectedMenu = MenuType.Settings;
+                SelectedMenu = MenuType.Facility;
         }
     }
 
@@ -131,7 +131,7 @@ public class MainWindowViewModel : BaseViewModel
             MenuType.Input => new InputViewModel(),
             MenuType.Workers => new WorkerViewModel(),
             MenuType.Data => new DataViewModel(),
-            MenuType.Settings => new SettingsViewModel(),
+            MenuType.Facility => new FacilityViewModel(),
             _ => new MainBoardViewModel()
         };
     }
