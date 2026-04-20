@@ -8,7 +8,7 @@ namespace FieldManagement.ViewModels;
 
 public class DataViewModel : BaseViewModel
 {
-      private ObservableCollection<WorkOrderRow> _workOrders = new();
+    private ObservableCollection<WorkOrderRow> _workOrders = new();
     public ObservableCollection<WorkOrderRow> WorkOrders
     {
         get => _workOrders;

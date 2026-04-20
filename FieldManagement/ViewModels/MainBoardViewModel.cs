@@ -21,7 +21,7 @@ public class MainBoardViewModel : BaseViewModel
 
     public MainBoardViewModel()
     {
-         double[] y = { 10, 20, 1, 30, 15,2,3 };
+        double[] y = { 10, 20, 1, 30, 15,2,3 };
         double[] trend = BuildLinearTrendLine(y);
 
         Series = new ISeries[]

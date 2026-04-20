@@ -35,6 +35,10 @@
         <DataTemplate DataType="{x:Type vm:FacilityViewModel}">
             <views:FacilityView />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
+            <views:CustomerView />
+        </DataTemplate>
         
         <!-- 사이드바 토글 버튼 스타일 -->
        <Style x:Key="SidebarRadioStyle" TargetType="RadioButton">
@@ -261,6 +265,22 @@
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="Facility"
+                                       FontSize="11"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
+                                       Margin="0,4,0,0"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}"
+                                 IsChecked="{Binding IsCustomerSelected, Mode=TwoWay}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="&#xE77B;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="24"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="Customer"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"

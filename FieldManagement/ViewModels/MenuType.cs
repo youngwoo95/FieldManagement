@@ -6,5 +6,6 @@ public enum MenuType
     Input,
     Workers,
     Data,
-    Facility
+    Facility,
+    Customer
 }

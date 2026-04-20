@@ -35,7 +35,7 @@ public class MainWindowViewModel : BaseViewModel
             OnPropertyChanged(nameof(IsWorkersSelected));
             OnPropertyChanged(nameof(IsDataSelected));
             OnPropertyChanged(nameof(IsFacilitySelected));
-
+            OnPropertyChanged(nameof(IsCustomerSelected));
             ChangeView(value);
         }
     }
@@ -104,6 +104,16 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
+    public bool IsCustomerSelected
+    {
+        get => SelectedMenu == MenuType.Customer;
+        set
+        {
+            if(value)
+                SelectedMenu = MenuType.Customer;
+        }
+    }
+
     public ICommand ToggleThemeCommand { get; }
 
     public MainWindowViewModel()
@@ -132,6 +142,7 @@ public class MainWindowViewModel : BaseViewModel
             MenuType.Workers => new WorkerViewModel(),
             MenuType.Data => new DataViewModel(),
             MenuType.Facility => new FacilityViewModel(),
+            MenuType.Customer => new CustomerViewModel(),
             _ => new MainBoardViewModel()
         };
     }
