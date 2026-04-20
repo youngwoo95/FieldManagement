@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Wws5zpJZQvM=",
+  "dgSpecHash": "ahrwhX/eKcE=",
   "success": true,
   "projectFilePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\kyw\\.nuget\\packages\\livechartscore\\2.1.0-dev-292\\livechartscore.2.1.0-dev-292.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\livechartscore.skiasharpview\\2.1.0-dev-292\\livechartscore.skiasharpview.2.1.0-dev-292.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\livechartscore.skiasharpview.wpf\\2.1.0-dev-292\\livechartscore.skiasharpview.wpf.2.1.0-dev-292.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\microsoft.web.webview2\\1.0.2957.106\\microsoft.web.webview2.1.0.2957.106.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\opentk\\3.3.1\\opentk.3.3.1.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\opentk.glwpfcontrol\\3.3.0\\opentk.glwpfcontrol.3.3.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\skiasharp\\3.119.0\\skiasharp.3.119.0.nupkg.sha512",

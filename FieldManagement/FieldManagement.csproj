@@ -10,17 +10,26 @@
 
     <ItemGroup>
       <None Remove="Images\room1.webp" />
-      <Content Include="Images\room1.webp">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.1.0-dev-292" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2957.106" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="ViewModels\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\room1.jpg" />
+      <Resource Include="Images\room1.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Remove="Pdfs\Notion.pdf" />
+      <Content Include="Pdfs\Notion.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -1,18 +1,18 @@
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using FieldManagement.Models;
 using FieldManagement.Windows;
 
 namespace FieldManagement;
 
-
-
 public partial class InputView : UserControl
 {
     private readonly Dictionary<int, MarkerPosition> _positions = new();
-    
+    private bool _markersInitialized;
+
     private bool _isDragging;
     private Point _dragStartPoint;
     private Button? _dragTarget;
@@ -20,25 +20,33 @@ public partial class InputView : UserControl
     public InputView()
     {
         InitializeComponent();
-        
-        Loaded += (_, _) =>
-        {
-            AddDraggableButton(1,120, 80, "1번");
-            AddDraggableButton(2,260, 150, "2번");
-            AddDraggableButton(3,420, 220, "3번");
-        };
+        Loaded += OnLoaded;
     }
 
-     private void AddDraggableButton(int id,double x, double y, string text)
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (_markersInitialized)
+            return;
+
+        _markersInitialized = true;
+
+        AddDraggableButton(1, 120, 80, "1");
+        AddDraggableButton(2, 260, 150, "2");
+        AddDraggableButton(3, 420, 220, "3");
+    }
+
+    private void AddDraggableButton(int id, double x, double y, string text)
     {
         var button = new Button
         {
             Content = text,
-            Tag = id,
-            Width = 70,
-            Height = 36,
-            Style = (Style)FindResource("OverlayButtonStyle")
+            Tag = id
         };
+
+        if (TryFindResource("OverlayLampButtonStyle") is Style lampStyle)
+        {
+            button.Style = lampStyle;
+        }
 
         Canvas.SetLeft(button, x);
         Canvas.SetTop(button, y);
@@ -85,7 +93,6 @@ public partial class InputView : UserControl
         _dragStartPoint = currentPoint;
     }
 
-    
     private void Draggable_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (_dragTarget is not null)
@@ -107,18 +114,18 @@ public partial class InputView : UserControl
             };
 
             Console.WriteLine(_positions[id].ToString());
-            // 여기서 파일/DB 저장
-            //SavePositions();
         }
 
         _isDragging = false;
         _dragTarget = null;
     }
-    
+
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        var popup = new EditWindows();
-        popup.Owner = Window.GetWindow(this); // 현재 UserControl이 들어있는 부모 Window 찾기
-        popup.ShowDialog(); // 모달 팝업
+        var popup = new EditWindows
+        {
+            Owner = Window.GetWindow(this)
+        };
+        popup.ShowDialog();
     }
 }

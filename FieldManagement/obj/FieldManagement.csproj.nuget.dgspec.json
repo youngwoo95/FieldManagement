@@ -54,6 +54,10 @@
             "LiveChartsCore.SkiaSharpView.WPF": {
               "target": "Package",
               "version": "[2.1.0-dev-292, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.2957.106, )"
             }
           },
           "imports": [

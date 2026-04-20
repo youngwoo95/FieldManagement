@@ -138,7 +138,7 @@ public partial class MainBoardView : UserControl
                 MinLimit = 0,
                 LabelsPaint = new SolidColorPaint(new SKColor(229, 231, 235)), // 밝은 글자
                 SeparatorsPaint = new SolidColorPaint(new SKColor(75, 85, 99), 1), // 구분선
-                TextSize = 12
+                TextSize = 12,
             },
             
         };
