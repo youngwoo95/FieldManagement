@@ -10,9 +10,11 @@ public class InputViewModel : BaseViewModel
 {
     private const string DefaultFloorText = "선택해주세요";
     private readonly FloorManagementService _floorManagementService = FloorManagementService.Instance;
+    private readonly IFloorEditDialogService _floorEditDialogService;
 
     public ObservableCollection<MarkerPosition> Markers { get; } = new();
     public ObservableCollection<string> Logs { get; } = new();
+    public ObservableCollection<string> Floors { get; } = new();
 
     private string? _selectedFloor;
     public string? SelectedFloor
@@ -28,13 +30,13 @@ public class InputViewModel : BaseViewModel
         }
     }
 
-    public ObservableCollection<string> Floors { get; } = new();
-
     public ICommand SaveCommand { get; }
     public ICommand EditCommand { get; }
 
-    public InputViewModel()
+    public InputViewModel(IFloorEditDialogService floorEditDialogService)
     {
+        _floorEditDialogService = floorEditDialogService;
+
         SaveCommand = new RelayCommand(_ => Save());
         EditCommand = new RelayCommand(_ => OpenEdit());
 
@@ -86,7 +88,10 @@ public class InputViewModel : BaseViewModel
 
     private void OpenEdit()
     {
-        // 팝업 여는 건 View에서 처리하거나,
-        // 나중에 DialogService로 분리 가능
+        var selectedFloorName = _floorEditDialogService.ShowFloorEditor(SelectedFloor);
+        if (string.IsNullOrWhiteSpace(selectedFloorName))
+            return;
+
+        RefreshFloors(selectedFloorName);
     }
 }

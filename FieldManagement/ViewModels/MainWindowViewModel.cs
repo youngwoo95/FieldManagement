@@ -1,12 +1,15 @@
 using System.Windows.Input;
 using FieldManagement.Commands;
 using FieldManagement.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FieldManagement.ViewModels;
 
 public class MainWindowViewModel : BaseViewModel
 {
-  private readonly ThemeService _themeService;
+    private readonly ThemeService _themeService;
+    private readonly IServiceProvider _serviceProvider;
+    public ICommand ToggleThemeCommand { get; }
 
     private BaseViewModel? _currentViewModel;
     public BaseViewModel? CurrentViewModel
@@ -114,11 +117,11 @@ public class MainWindowViewModel : BaseViewModel
         }
     }
 
-    public ICommand ToggleThemeCommand { get; }
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(ThemeService themeService, IServiceProvider serviceProvider)
     {
-        _themeService = new ThemeService();
+        _themeService = themeService;
+        _serviceProvider = serviceProvider;
 
         _isDarkTheme = _themeService.IsDarkThemeActive();
         ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
@@ -137,13 +140,13 @@ public class MainWindowViewModel : BaseViewModel
     {
         CurrentViewModel = menu switch
         {
-            MenuType.Home => new MainBoardViewModel(),
-            MenuType.Input => new InputViewModel(),
-            MenuType.Workers => new OrderViewModel(),
-            MenuType.Data => new WorkStatusViewModel(),
-            MenuType.Facility => new FacilityViewModel(),
-            MenuType.Customer => new CustomerViewModel(),
-            _ => new MainBoardViewModel()
+            MenuType.Home => _serviceProvider.GetRequiredService<MainBoardViewModel>(),
+            MenuType.Input => _serviceProvider.GetRequiredService<InputViewModel>(),
+            MenuType.Workers => _serviceProvider.GetRequiredService<OrderViewModel>(),
+            MenuType.Data => _serviceProvider.GetRequiredService<WorkStatusViewModel>(),
+            MenuType.Facility => _serviceProvider.GetRequiredService<FacilityViewModel>(),
+            MenuType.Customer => _serviceProvider.GetRequiredService<CustomerViewModel>(),
+            _ => _serviceProvider.GetRequiredService<MainBoardViewModel>()
         };
     }
 }

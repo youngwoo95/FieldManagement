@@ -4,6 +4,7 @@
 <UserControl x:Class="FieldManagement.View.FacilityView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behaviors="clr-namespace:FieldManagement.Behaviors"
              Background="Transparent">
     
     <UserControl.Resources>
@@ -47,11 +48,15 @@
 
                 <!-- 설비명 -->
                 <TextBlock Grid.Column="0" Text="설비명" Margin="0,0,8,0" VerticalAlignment="Center" Foreground="{DynamicResource ViewBodyTextBrush}"/>
-                <TextBox Grid.Column="1" Style="{StaticResource RoundedTextBox}"/>
+                <TextBox Grid.Column="1"
+                         Style="{StaticResource RoundedTextBox}"
+                         Text="{Binding NameKeyword, UpdateSourceTrigger=PropertyChanged}"/>
                 
                 <!-- 제조사 -->
                 <TextBlock Grid.Column="3" Text="제조사" Margin="0,0,8,0" VerticalAlignment="Center" Foreground="{DynamicResource ViewBodyTextBrush}"/>
-                <TextBox Grid.Column="4" Style="{StaticResource RoundedTextBox}"/>
+                <TextBox Grid.Column="4"
+                         Style="{StaticResource RoundedTextBox}"
+                         Text="{Binding MakerKeyword, UpdateSourceTrigger=PropertyChanged}"/>
                 
                 <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="조회"
@@ -95,6 +100,7 @@
                       CanUserAddRows="False"
                       IsReadOnly="False"
                       ItemsSource="{Binding FacilityItem}"
+                      behaviors:DataGridSelectionBehavior.ClearSelectionOnCheckBoxClick="True"
                       Background="{DynamicResource ViewHeaderBackgroundBrush}"
                       Foreground="{DynamicResource ViewBodyTextBrush}"
                       BorderThickness="0"
@@ -164,7 +170,6 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              Click="CustomerCheckBox_Click"
                                               Style="{StaticResource LargeCheckBoxStyle}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

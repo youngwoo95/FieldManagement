@@ -1,15 +1,19 @@
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using FieldManagement.Commands;
 using FieldManagement.Models;
+using FieldManagement.Services;
 
 namespace FieldManagement.ViewModels;
 
 public class OrderViewModel : BaseViewModel
 {
-    private ObservableCollection<OrderModel> _orderItems = new();
+    private static readonly Uri BlankPdfUri = new("about:blank");
+    private readonly IOrderDialogService _orderDialogService;
 
+    private ObservableCollection<OrderModel> _orderItems = new();
     public ObservableCollection<OrderModel> OrderItems
     {
         get => _orderItems;
@@ -21,7 +25,6 @@ public class OrderViewModel : BaseViewModel
     }
 
     private OrderModel? _selectedOrder;
-
     public OrderModel? SelectedOrder
     {
         get => _selectedOrder;
@@ -30,14 +33,14 @@ public class OrderViewModel : BaseViewModel
             _selectedOrder = value;
             OnPropertyChanged();
 
-            if (value is not null)
-            {
-                SelectedPdfPath = ResolvePdfPath();
-                IsPdfPanelOpen = true;
-            }
+            if (value is null)
+                return;
+
+            SelectedPdfPath = ResolvePdfPath();
+            IsPdfPanelOpen = true;
         }
     }
-    
+
     private string? _selectedPdfPath;
     public string? SelectedPdfPath
     {
@@ -45,6 +48,40 @@ public class OrderViewModel : BaseViewModel
         set
         {
             _selectedPdfPath = value;
+            OnPropertyChanged();
+            UpdatePdfPreviewState(value);
+        }
+    }
+
+    private Uri _selectedPdfUri = BlankPdfUri;
+    public Uri SelectedPdfUri
+    {
+        get => _selectedPdfUri;
+        private set
+        {
+            _selectedPdfUri = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isPdfFallbackVisible;
+    public bool IsPdfFallbackVisible
+    {
+        get => _isPdfFallbackVisible;
+        private set
+        {
+            _isPdfFallbackVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private string _pdfFallbackMessage = "PDF preview is unavailable.";
+    public string PdfFallbackMessage
+    {
+        get => _pdfFallbackMessage;
+        private set
+        {
+            _pdfFallbackMessage = value;
             OnPropertyChanged();
         }
     }
@@ -57,16 +94,21 @@ public class OrderViewModel : BaseViewModel
         {
             _isPdfPanelOpen = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(PdfPanelWidth));
         }
     }
+
+    public double PdfPanelWidth => IsPdfPanelOpen ? 500 : 0;
 
     public ICommand ClosePdfPanelCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand ResetCommand { get; }
     public ICommand AddCommand { get; }
 
-    public OrderViewModel()
+    public OrderViewModel(IOrderDialogService orderDialogService)
     {
+        _orderDialogService = orderDialogService;
+
         ClosePdfPanelCommand = new RelayCommand(_ => ClosePdfPanel());
         SearchCommand = new RelayCommand(_ => Search());
         ResetCommand = new RelayCommand(_ => Reset());
@@ -79,19 +121,19 @@ public class OrderViewModel : BaseViewModel
     {
         OrderItems = new ObservableCollection<OrderModel>
         {
-            new OrderModel
+            new()
             {
-                Customer = "삼성 SDS",
+                Customer = "Samsung SDS",
                 OrderQty = 30,
                 StartDt = "2026-03-31",
                 EndDt = "2027-01-21"
             }
         };
     }
-    
+
     private void Search()
     {
-        // 나중에 조회 조건 기반 검색 로직
+        // TODO: apply filter by customer/start/end date.
     }
 
     private void Reset()
@@ -103,13 +145,43 @@ public class OrderViewModel : BaseViewModel
 
     private void Add()
     {
-        // 나중에 등록 로직
+        var created = _orderDialogService.ShowAddOrderDialog();
+        if (created is null)
+            return;
+
+        OrderItems.Insert(0, created);
+        SelectedOrder = created;
     }
 
     private void ClosePdfPanel()
     {
         IsPdfPanelOpen = false;
         SelectedOrder = null;
+        SelectedPdfPath = null;
+    }
+
+    private void UpdatePdfPreviewState(string? pdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(pdfPath))
+        {
+            SelectedPdfUri = BlankPdfUri;
+            IsPdfFallbackVisible = true;
+            PdfFallbackMessage = "Select an order to preview PDF.";
+            return;
+        }
+
+        var fullPath = Path.GetFullPath(pdfPath);
+        if (!File.Exists(fullPath))
+        {
+            SelectedPdfUri = BlankPdfUri;
+            IsPdfFallbackVisible = true;
+            PdfFallbackMessage = $"PDF file not found.{Environment.NewLine}{fullPath}";
+            return;
+        }
+
+        SelectedPdfUri = new Uri(fullPath, UriKind.Absolute);
+        IsPdfFallbackVisible = false;
+        PdfFallbackMessage = string.Empty;
     }
 
     private static string ResolvePdfPath()
@@ -130,4 +202,4 @@ public class OrderViewModel : BaseViewModel
 
         return Path.GetFullPath(candidates[0]);
     }
-}   
+}

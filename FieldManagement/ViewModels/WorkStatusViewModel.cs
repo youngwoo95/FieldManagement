@@ -1,13 +1,18 @@
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using FieldManagement.Commands;
 using FieldManagement.Models;
+using FieldManagement.Services;
 
 namespace FieldManagement.ViewModels;
 
 public class WorkStatusViewModel : BaseViewModel
 {
+    private static readonly Uri BlankPdfUri = new("about:blank");
+    private readonly IWorkStatusDialogService _workStatusDialogService;
+
     private ObservableCollection<WorkerModel> _workOrders = new();
     public ObservableCollection<WorkerModel> WorkOrders
     {
@@ -28,11 +33,11 @@ public class WorkStatusViewModel : BaseViewModel
             _selectedWorkOrder = value;
             OnPropertyChanged();
 
-            if (value is not null)
-            {
-                SelectedPdfPath = ResolvePdfPath();
-                IsPdfPanelOpen = true;
-            }
+            if (value is null)
+                return;
+
+            SelectedPdfPath = ResolvePdfPath();
+            IsPdfPanelOpen = true;
         }
     }
 
@@ -43,6 +48,29 @@ public class WorkStatusViewModel : BaseViewModel
         set
         {
             _selectedPdfPath = value;
+            OnPropertyChanged();
+            UpdatePdfPreviewState(value);
+        }
+    }
+
+    private Uri _selectedPdfUri = BlankPdfUri;
+    public Uri SelectedPdfUri
+    {
+        get => _selectedPdfUri;
+        private set
+        {
+            _selectedPdfUri = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isPdfFallbackVisible;
+    public bool IsPdfFallbackVisible
+    {
+        get => _isPdfFallbackVisible;
+        private set
+        {
+            _isPdfFallbackVisible = value;
             OnPropertyChanged();
         }
     }
@@ -55,16 +83,21 @@ public class WorkStatusViewModel : BaseViewModel
         {
             _isPdfPanelOpen = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(PdfPanelWidth));
         }
     }
+
+    public double PdfPanelWidth => IsPdfPanelOpen ? 500 : 0;
 
     public ICommand ClosePdfPanelCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand ResetCommand { get; }
     public ICommand AddCommand { get; }
 
-    public WorkStatusViewModel()
+    public WorkStatusViewModel(IWorkStatusDialogService workStatusDialogService)
     {
+        _workStatusDialogService = workStatusDialogService;
+
         ClosePdfPanelCommand = new RelayCommand(_ => ClosePdfPanel());
         SearchCommand = new RelayCommand(_ => Search());
         ResetCommand = new RelayCommand(_ => Reset());
@@ -77,12 +110,12 @@ public class WorkStatusViewModel : BaseViewModel
     {
         WorkOrders = new ObservableCollection<WorkerModel>
         {
-            new WorkerModel
+            new()
             {
                 WorkOrderNo = "WO-20260420-001",
                 MachineName = "MA-0001",
-                CustomerName = "장성운",
-                Status = "진행중",
+                CustomerName = "Samsung SDI",
+                Status = "In Progress",
                 WorkDate = "2026-04-20"
             }
         };
@@ -90,7 +123,7 @@ public class WorkStatusViewModel : BaseViewModel
 
     private void Search()
     {
-        // 나중에 조회 조건 기반 검색 로직
+        // TODO: apply filter by machine/customer/date/status.
     }
 
     private void Reset()
@@ -102,13 +135,40 @@ public class WorkStatusViewModel : BaseViewModel
 
     private void Add()
     {
-        // 나중에 등록 로직
+        var created = _workStatusDialogService.ShowAddWorkStatusDialog();
+        if (created is null)
+            return;
+
+        WorkOrders.Insert(0, created);
+        SelectedWorkOrder = created;
     }
 
     private void ClosePdfPanel()
     {
         IsPdfPanelOpen = false;
         SelectedWorkOrder = null;
+        SelectedPdfPath = null;
+    }
+
+    private void UpdatePdfPreviewState(string? pdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(pdfPath))
+        {
+            SelectedPdfUri = BlankPdfUri;
+            IsPdfFallbackVisible = true;
+            return;
+        }
+
+        var fullPath = Path.GetFullPath(pdfPath);
+        if (!File.Exists(fullPath))
+        {
+            SelectedPdfUri = BlankPdfUri;
+            IsPdfFallbackVisible = true;
+            return;
+        }
+
+        SelectedPdfUri = new Uri(fullPath, UriKind.Absolute);
+        IsPdfFallbackVisible = false;
     }
 
     private static string ResolvePdfPath()
