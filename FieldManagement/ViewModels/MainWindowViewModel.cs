@@ -139,7 +139,7 @@ public class MainWindowViewModel : BaseViewModel
         {
             MenuType.Home => new MainBoardViewModel(),
             MenuType.Input => new InputViewModel(),
-            MenuType.Workers => new WorkerViewModel(),
+            MenuType.Workers => new OrderViewModel(),
             MenuType.Data => new DataViewModel(),
             MenuType.Facility => new FacilityViewModel(),
             MenuType.Customer => new CustomerViewModel(),

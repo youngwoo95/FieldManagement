@@ -8,8 +8,8 @@ namespace FieldManagement.ViewModels;
 
 public class DataViewModel : BaseViewModel
 {
-    private ObservableCollection<WorkOrderRow> _workOrders = new();
-    public ObservableCollection<WorkOrderRow> WorkOrders
+    private ObservableCollection<WorkerModel> _workOrders = new();
+    public ObservableCollection<WorkerModel> WorkOrders
     {
         get => _workOrders;
         set
@@ -19,8 +19,8 @@ public class DataViewModel : BaseViewModel
         }
     }
 
-    private WorkOrderRow? _selectedWorkOrder;
-    public WorkOrderRow? SelectedWorkOrder
+    private WorkerModel? _selectedWorkOrder;
+    public WorkerModel? SelectedWorkOrder
     {
         get => _selectedWorkOrder;
         set
@@ -75,9 +75,9 @@ public class DataViewModel : BaseViewModel
 
     private void LoadSampleData()
     {
-        WorkOrders = new ObservableCollection<WorkOrderRow>
+        WorkOrders = new ObservableCollection<WorkerModel>
         {
-            new WorkOrderRow
+            new WorkerModel
             {
                 WorkOrderNo = "WO-20260420-001",
                 MachineName = "MA-0001",

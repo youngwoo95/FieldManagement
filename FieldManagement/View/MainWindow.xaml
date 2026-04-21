@@ -24,8 +24,8 @@
             <views:InputView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vm:WorkerViewModel}">
-            <views:WorkerView />
+        <DataTemplate DataType="{x:Type vm:OrderViewModel}">
+            <views:OrderView />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm:DataViewModel}">
@@ -181,7 +181,7 @@
                                        FontSize="22"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Theme"
+                            <TextBlock Text="테마"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -200,7 +200,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarAccentBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Home"
+                            <TextBlock Text="대시보드"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -216,7 +216,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Input"
+                            <TextBlock Text="설비현황판"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -232,7 +232,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Data"
+                            <TextBlock Text="작업관리"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -248,7 +248,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Workers"
+                            <TextBlock Text="수주관리"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -264,7 +264,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Facility"
+                            <TextBlock Text="설비관리"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"
@@ -280,7 +280,7 @@
                                        FontSize="24"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
-                            <TextBlock Text="Customer"
+                            <TextBlock Text="고객사"
                                        FontSize="11"
                                        Foreground="{DynamicResource SidebarForegroundBrush}"
                                        Margin="0,4,0,0"

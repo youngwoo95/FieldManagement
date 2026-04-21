@@ -13,7 +13,7 @@ public class MainBoardViewModel : BaseViewModel
     public ISeries[] Series { get; set; }
     
     public ISeries[] PieSeries2 { get; set; }
-    public ObservableCollection<NoticeItem> Notices { get; set; } = new();
+    public ObservableCollection<NoticeModel> Notices { get; set; } = new();
     
     public ISeries[] StackedSeries { get; set; }
     public Axis[] XAxes { get; set; }
@@ -78,7 +78,7 @@ public class MainBoardViewModel : BaseViewModel
             }
         };
 
-        Notices = new ObservableCollection<NoticeItem>
+        Notices = new ObservableCollection<NoticeModel>
         {
             new() { No = 1, Title = "System Check", Description = "Daily health check completed.", CreateUser = "Admin", CreateDt = "2026-04-20 10:00:00" },
             new() { No = 2, Title = "Sensor Alert", Description = "Zone B temperature exceeded threshold.", CreateUser = "System", CreateDt = "2026-04-20 11:25:00" },

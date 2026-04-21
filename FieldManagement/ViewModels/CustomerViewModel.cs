@@ -5,10 +5,10 @@ namespace FieldManagement.ViewModels;
 
 public class CustomerViewModel : BaseViewModel
 {
-    private ObservableCollection<Customers> _customers = new();
+    private ObservableCollection<CustomerModel> _customers = new();
     
     
-    public ObservableCollection<Customers> Customers
+    public ObservableCollection<CustomerModel> Customers
     {
         get => _customers;
         set
@@ -25,14 +25,14 @@ public class CustomerViewModel : BaseViewModel
     
     private void LoadCustomers()
     {
-        Customers = new ObservableCollection<Customers>
+        Customers = new ObservableCollection<CustomerModel>
         {
-            new Customers
+            new CustomerModel
             {
                 IsChecked = true,
                 Name = "삼성 SDS"
             },
-            new Customers
+            new CustomerModel
             {
                 IsChecked = true,
                 Name = "현대자동차"

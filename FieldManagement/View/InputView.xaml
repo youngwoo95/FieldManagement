@@ -274,11 +274,11 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel>
-                        <TextBlock Text="Notification status board"
+                        <TextBlock Text="Machine Operation Status"
                                    Foreground="{DynamicResource ViewTitleTextBrush}"
                                    FontSize="20"
                                    FontWeight="SemiBold"/>
-                        <TextBlock Text="알림 현황판"
+                        <TextBlock Text="설비 작동현황"
                                    Foreground="{DynamicResource ViewSubtitleTextBrush}"
                                    FontSize="12"
                                    Margin="0,4,0,0"/>

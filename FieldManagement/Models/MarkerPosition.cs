@@ -1,5 +1,8 @@
 namespace FieldManagement.Models;
 
+/// <summary>
+/// 장비 위치정보
+/// </summary>
 public class MarkerPosition
 {
     public int Id { get; set; }
