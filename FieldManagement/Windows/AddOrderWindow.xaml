@@ -1,0 +1,116 @@
+<Window x:Class="FieldManagement.Windows.AddOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="오더 등록"
+        Width="520"
+        Height="360"
+        MinWidth="520"
+        MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource WindowBackgroundBrush}">
+    <Window.Resources>
+        <Style x:Key="InputLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextBrush}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Padding="16,12"
+                CornerRadius="12"
+                Background="{DynamicResource ViewHeaderBackgroundBrush}"
+                BorderBrush="{DynamicResource ViewHeaderBorderBrush}"
+                BorderThickness="1">
+            <TextBlock Text="Order Registration"
+                       Foreground="{DynamicResource ViewTitleTextBrush}"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </Border>
+
+        <Border Grid.Row="2"
+                Padding="16"
+                CornerRadius="12"
+                Background="{DynamicResource ViewPanelBackgroundBrush}"
+                BorderBrush="{DynamicResource ViewPanelBorderBrush}"
+                BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="고객명 *" Style="{StaticResource InputLabelStyle}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerTextBox" Style="{StaticResource RoundedTextBox}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="요청수량 *" Style="{StaticResource InputLabelStyle}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="OrderQtyTextBox" Style="{StaticResource RoundedTextBox}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="시작일자" Style="{StaticResource InputLabelStyle}"/>
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker" Style="{StaticResource RoundedDatePicker}" />
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="종료일자" Style="{StaticResource InputLabelStyle}"/>
+                <DatePicker Grid.Row="6" Grid.Column="1" x:Name="EndDatePicker" Style="{StaticResource RoundedDatePicker}" />
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="저장"
+                    Width="110"
+                    Height="38"
+                    Margin="0,0,8,0"
+                    Background="{DynamicResource PrimarySaveBrush}"
+                    Foreground="{DynamicResource PrimaryActionTextBrush}"
+                    BorderBrush="{DynamicResource PrimarySaveBrush}"
+                    Click="SaveButton_Click"/>
+            <Button Content="취소"
+                    Width="110"
+                    Height="38"
+                    Background="{DynamicResource SecondaryActionBrush}"
+                    Foreground="{DynamicResource SecondaryActionTextBrush}"
+                    BorderBrush="{DynamicResource SecondaryActionBrush}"
+                    Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
