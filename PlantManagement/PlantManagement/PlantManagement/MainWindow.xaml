@@ -127,11 +127,36 @@
                     <!-- 설비 현황판 -->
                     <RadioButton Style="{StaticResource SidebarRadioStyle}">
                         <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Text="">
-                                
-                            </TextBlock>
+                            <TextBlock Text=""
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="24"
+                                       Foreground="{DynamicResource SidebarForegroundColor}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="설비현황판"
+                                       FontSize="11"
+                                       Foreground="{DynamicResource SidebarForegroundColor}"
+                                       Margin="0,4,0,0"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton>
+                    
+                    <!-- 작업관리 -->
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text=""
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="24"
+                                       Foreground="{DynamicResource SidebarForegroundColor}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="작업관리"
+                                       FontSize="11"
+                                       Foreground="{DynamicResource SidebarForegroundColor}"
+                                       Margin="0, 4,0,0"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        
+                    </RadioButton>
+                    
                     
                 </StackPanel>
                 
