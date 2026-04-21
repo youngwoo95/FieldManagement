@@ -2,11 +2,15 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using FieldManagement.Commands;
 using FieldManagement.Models;
+using FieldManagement.Services;
 
 namespace FieldManagement.ViewModels;
 
 public class InputViewModel : BaseViewModel
 {
+    private const string DefaultFloorText = "선택해주세요";
+    private readonly FloorManagementService _floorManagementService = FloorManagementService.Instance;
+
     public ObservableCollection<MarkerPosition> Markers { get; } = new();
     public ObservableCollection<string> Logs { get; } = new();
 
@@ -16,17 +20,15 @@ public class InputViewModel : BaseViewModel
         get => _selectedFloor;
         set
         {
+            if (_selectedFloor == value)
+                return;
+
             _selectedFloor = value;
             OnPropertyChanged();
         }
     }
 
-    public ObservableCollection<string> Floors { get; } = new()
-    {
-        "선택해주세요",
-        "1층",
-        "2층"
-    };
+    public ObservableCollection<string> Floors { get; } = new();
 
     public ICommand SaveCommand { get; }
     public ICommand EditCommand { get; }
@@ -36,7 +38,8 @@ public class InputViewModel : BaseViewModel
         SaveCommand = new RelayCommand(_ => Save());
         EditCommand = new RelayCommand(_ => OpenEdit());
 
-        SelectedFloor = "선택해주세요";
+        RefreshFloors();
+        SelectedFloor = DefaultFloorText;
 
         Markers.Add(new MarkerPosition { Id = 1, Text = "1", X = 120, Y = 80 });
         Markers.Add(new MarkerPosition { Id = 2, Text = "2", X = 260, Y = 150 });
@@ -52,6 +55,24 @@ public class InputViewModel : BaseViewModel
         Logs.Add("2026-06-01 13:03:00 [5번] 생산완료");
         Logs.Add("2026-06-01 13:03:00 [5번] 생산완료");
         Logs.Add("2026-06-01 13:03:00 [5번] 생산완료");
+    }
+
+    public void RefreshFloors(string? preferredFloorName = null)
+    {
+        Floors.Clear();
+        Floors.Add(DefaultFloorText);
+
+        foreach (var floorName in _floorManagementService.GetFloorNames())
+            Floors.Add(floorName);
+
+        if (!string.IsNullOrWhiteSpace(preferredFloorName) && Floors.Contains(preferredFloorName))
+        {
+            SelectedFloor = preferredFloorName;
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(SelectedFloor) || !Floors.Contains(SelectedFloor))
+            SelectedFloor = DefaultFloorText;
     }
 
     private void Save()

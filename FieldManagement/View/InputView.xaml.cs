@@ -111,10 +111,15 @@ public partial class InputView : UserControl
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        var popup = new EditWindows
+        if (DataContext is not InputViewModel vm)
+            return;
+
+        var popup = new EditWindows(vm.SelectedFloor)
         {
             Owner = Window.GetWindow(this)
         };
+
         popup.ShowDialog();
+        vm.RefreshFloors(popup.SelectedFloorName ?? vm.SelectedFloor);
     }
 }

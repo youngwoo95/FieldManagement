@@ -39,24 +39,32 @@
                     <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
                 
                 <TextBlock Text="고객사" Margin="0, 0, 8, 0" VerticalAlignment="Center" Foreground="{DynamicResource ViewBodyTextBrush}"/>
                 <TextBox Grid.Column="1" Style="{StaticResource RoundedTextBox}"/>
-                <Button Grid.Column="2" Content="등록"
-                        Margin="8,0,0,0"
-                        Padding="14,8"
-                        Background="{DynamicResource PrimarySaveBrush}"
-                        Foreground="{DynamicResource PrimaryActionTextBrush}"
-                        BorderBrush="{DynamicResource PrimarySaveBrush}"
-                        Command="{Binding AddCommand}"/>
-                <Button Grid.Column="3" Content="삭제"
+                <Button Grid.Column="2" Content="조회"
                         Margin="8,0,0,0"
                         Padding="14,8"
                         Background="{DynamicResource PrimaryActionBrush}"
                         Foreground="{DynamicResource PrimaryActionTextBrush}"
                         BorderBrush="{DynamicResource PrimaryActionBrush}"
-                        Command="{Binding AddCommand}"/>
+                        Command="{Binding SearchCommand}"/>
+                <Button Grid.Column="3" Content="등록"
+                        Margin="8,0,0,0"
+                        Padding="14,8"
+                        Background="{DynamicResource PrimarySaveBrush}"
+                        Foreground="{DynamicResource PrimaryActionTextBrush}"
+                        BorderBrush="{DynamicResource PrimarySaveBrush}"
+                        Click="AddButton_Click"/>
+                <Button Grid.Column="4" Content="삭제"
+                        Margin="8,0,0,0"
+                        Padding="14,8"
+                        Background="{DynamicResource SecondaryActionBrush}"
+                        Foreground="{DynamicResource SecondaryActionTextBrush}"
+                        BorderBrush="{DynamicResource SecondaryActionBrush}"
+                        Command="{Binding RemoveCommand}"/>
             </Grid>
         </Border>
         
@@ -149,6 +157,11 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="고객사명" Binding="{Binding Name}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="담당자명" Binding="{Binding Manager}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="고객구분" Binding="{Binding Gubun}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="전화번호" Binding="{Binding Tel}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        
+                        <DataGridTextColumn Header="주소" Binding="{Binding Address}" IsReadOnly="True" Width="*" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                     </DataGrid.Columns>
                 </DataGrid>
         </Border>

@@ -174,7 +174,7 @@
                         <!-- 제조사 -->
                         <DataGridTextColumn Header="제조사" Binding="{Binding Maker}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                         <!-- 용도 -->
-                        <DataGridTextColumn Header="용도" Binding="{Binding Purpose}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="용도" Binding="{Binding Purpose}" IsReadOnly="True" Width="*" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                     </DataGrid.Columns>
                     
                 

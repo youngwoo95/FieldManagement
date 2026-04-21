@@ -33,11 +33,9 @@ D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\FieldManagement.csproj.AssemblyReference.cache
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\Themes\DarkTheme.baml
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\Themes\LightTheme.baml
-D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\DataView.baml
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\InputView.baml
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\MainBoardView.baml
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\Windows\EditWindows.baml
-D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\DataView.g.cs
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\InputView.g.cs
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\MainBoardView.g.cs
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\MainWindow.g.cs
@@ -138,3 +136,7 @@ D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\CustomerView.g.cs
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\OrderView.baml
 D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\OrderView.g.cs
+D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\WorkStatusView.baml
+D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\View\WorkStatusView.g.cs
+D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\Windows\AddCustomerWindow.g.cs
+D:\Users\kyw\Documents\FieldManagement\FieldManagement\obj\Debug\net10.0-windows\Windows\AddCustomerWindow.baml

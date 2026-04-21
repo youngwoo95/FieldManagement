@@ -30,12 +30,20 @@ public class CustomerViewModel : BaseViewModel
             new CustomerModel
             {
                 IsChecked = true,
-                Name = "삼성 SDS"
+                Name = "삼성 SDS",
+                Manager = "A담당자",
+                Address = "서울시 강남구 개포로619",
+                Gubun = "일반",
+                Tel = "02-1234-5678",
             },
             new CustomerModel
             {
                 IsChecked = true,
-                Name = "현대자동차"
+                Name = "현대자동차",
+                Manager = "B담당자",
+                Address = "경기도 하남시 미사대로",
+                Gubun = "협력사",
+                Tel = "02-8765-4321",
             }
         };
     }

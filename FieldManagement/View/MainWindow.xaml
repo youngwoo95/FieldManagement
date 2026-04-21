@@ -28,8 +28,8 @@
             <views:OrderView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vm:DataViewModel}">
-            <views:DataView />
+        <DataTemplate DataType="{x:Type vm:WorkStatusViewModel}">
+            <views:WorkStatusView />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm:FacilityViewModel}">

@@ -1,5 +1,8 @@
 namespace FieldManagement.Models;
 
+/// <summary>
+/// 작업현황 모델
+/// </summary>
 public class WorkerModel
 {
     public string WorkOrderNo { get; init; } = string.Empty;
