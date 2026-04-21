@@ -1,5 +1,5 @@
 {
-  "NextFloorId": 5,
+  "NextFloorId": 3,
   "Floors": [
     {
       "Id": 1,
@@ -8,14 +8,6 @@
     {
       "Id": 2,
       "Name": "2\uCE35"
-    },
-    {
-      "Id": 3,
-      "Name": "3\uCE35"
-    },
-    {
-      "Id": 4,
-      "Name": "4\uCE35"
     }
   ],
   "Equipments": [
@@ -29,15 +21,6 @@
     "1": [
       "D\uC7A5\uBE44"
     ],
-    "2": [
-      "A\uC7A5\uBE44"
-    ],
-    "3": [
-      "C\uC7A5\uBE44",
-      "E\uC7A5\uBE44"
-    ],
-    "4": [
-      "B\uC7A5\uBE44"
-    ]
+    "2": []
   }
 }

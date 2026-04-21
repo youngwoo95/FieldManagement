@@ -1,3 +1,2 @@
-2026/04/21-15:56:03.848 4418 Reusing MANIFEST D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\shared_proto_db/MANIFEST-000001
-2026/04/21-15:56:03.852 4418 Recovering log #3
-2026/04/21-15:56:03.852 4418 Reusing old log D:\Users\kyw\Documents\FieldManagement\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\shared_proto_db/000003.log 
+2026/04/21-16:56:54.930 7748 Creating DB D:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\shared_proto_db since it was missing.
+2026/04/21-16:56:55.304 7748 Reusing MANIFEST D:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\shared_proto_db/MANIFEST-000001

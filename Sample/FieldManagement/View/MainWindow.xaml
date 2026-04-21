@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FieldManagement"
         xmlns:views="clr-namespace:FieldManagement.View"
         xmlns:vm="clr-namespace:FieldManagement.ViewModels"
         mc:Ignorable="d"
@@ -198,7 +197,7 @@
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="24"
-                                       Foreground="{DynamicResource SidebarAccentBrush}"
+                                       Foreground="{DynamicResource SidebarForegroundBrush}"
                                        HorizontalAlignment="Center"/>
                             <TextBlock Text="대시보드"
                                        FontSize="11"

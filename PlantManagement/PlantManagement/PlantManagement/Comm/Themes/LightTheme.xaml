@@ -1,0 +1,16 @@
+<!-- 화이트모드 -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- 윈도우 배경화면 -->
+    <SolidColorBrush x:Key="WindowBackgroundColor" Color="#F3F6FB"/>
+    
+    <!-- 왼쪽 사이드바 스타일 -->
+    <SolidColorBrush x:Key="SidebarBackgroundColor" Color="#FFFFFF"/> <!-- 사이드바 배경색상 -->
+    <SolidColorBrush x:Key="SidebarForegroundColor" Color="#1F2937"/> <!-- 사이드바 폰트색상 -->
+    <SolidColorBrush x:Key="SidebarHoverColor" Color="#E5E7EB" /> <!-- 사이드바 Hover 색상 -->
+    <SolidColorBrush x:Key="SidebarPressedColor" Color="#BFDBFE" /> <!-- 사이드바 눌림상태 색상 -->
+    <SolidColorBrush x:Key="SidebarSelectedColor" Color="#DBEAFE" />
+    <SolidColorBrush x:Key="SidebarIndicatorColor" Color="#2563EB" /> <!-- 선택시 왼쪽 막대기 -->
+    
+</ResourceDictionary>

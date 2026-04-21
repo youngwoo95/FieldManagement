@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EGyC0ZZItoM=",
+  "dgSpecHash": "RYH343xXzPs=",
   "success": true,
-  "projectFilePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+  "projectFilePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kyw\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\harfbuzzsharp\\8.3.1.1\\harfbuzzsharp.8.3.1.1.nupkg.sha512",
@@ -49,21 +49,28 @@
     "C:\\Users\\kyw\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.119.0\\skiasharp.nativeassets.win32.3.119.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\skiasharp.views.desktop.common\\3.119.0\\skiasharp.views.desktop.common.3.119.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\skiasharp.views.wpf\\3.119.0\\skiasharp.views.wpf.3.119.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\system.composition.attributedmodel\\7.0.0\\system.composition.attributedmodel.7.0.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\system.composition.convention\\7.0.0\\system.composition.convention.7.0.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\system.composition.hosting\\7.0.0\\system.composition.hosting.7.0.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\system.composition.runtime\\7.0.0\\system.composition.runtime.7.0.0.nupkg.sha512",
-    "C:\\Users\\kyw\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512"
+    "C:\\Users\\kyw\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.text.json\\9.0.15\\system.text.json.9.0.15.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'OpenTK 3.3.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "libraryId": "OpenTK",
       "targetGraphs": [
         "net10.0-windows7.0"
@@ -73,9 +80,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'OpenTK.GLWpfControl 3.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "libraryId": "OpenTK.GLWpfControl",
       "targetGraphs": [
         "net10.0-windows7.0"
@@ -85,9 +92,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'SkiaSharp.Views.WPF 3.119.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\FieldManagement\\FieldManagement.csproj",
+      "filePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\Sample\\FieldManagement\\FieldManagement.csproj",
       "libraryId": "SkiaSharp.Views.WPF",
       "targetGraphs": [
         "net10.0-windows7.0"
