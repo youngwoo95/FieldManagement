@@ -13,4 +13,37 @@
     <SolidColorBrush x:Key="SidebarSelectedColor" Color="#241F38" />
     <SolidColorBrush x:Key="SidebarIndicatorColor" Color="#3BA3FF" /> <!-- 선택시 왼쪽 막대기 -->
     
+    <!-- 헤더 스타일 -->
+    <SolidColorBrush x:Key="ViewHeaderBackgroundColor" Color="#111827" />
+    <SolidColorBrush x:Key="ViewHeaderBorderColor" Color="#1F2937" />
+    <SolidColorBrush x:Key="ViewTitleForegroundColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ViewSubtitleForegroundColor" Color="#94A3B8" />
+    
+    <!-- 바디 스타일 -->
+    <SolidColorBrush x:Key="ViewPanelBackgroundColor" Color="#1F2937" />
+    <SolidColorBrush x:Key="ViewPanelBorderColor" Color="#374151" />
+    
+    <!-- 리스트뷰 스타일 -->
+    <SolidColorBrush x:Key="ListViewCardBackgroundColor" Color="#374151"/>
+    <SolidColorBrush x:Key="ListViewCardForegroundColor" Color="#4B5563" />
+    
+    <!-- 컬러 색상 -->
+    <SolidColorBrush x:Key="PrimarySaveBackgroundColor" Color="#eb4034" />
+    <SolidColorBrush x:Key="PrimaryActionBackgroundColor" Color="#2563EB" />
+    <SolidColorBrush x:Key="PrimaryActionForegroundColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SecondaryActionColor" Color="#374151" />
+    
+    <SolidColorBrush x:Key="ViewBodyForegroundColor" Color="#111827"/>
+    <SolidColorBrush x:Key="ViewBodyForegroundColor2" Color="#9CA3AF" />
+    <SolidColorBrush x:Key="ViewBodyForegroundColor3" Color="#D1D5DB" />
+    
+    <SolidColorBrush x:Key="ViewBodyTextColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ViewTertiaryTextColor" Color="#D1D5DB" />
+    
+    <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxForegroundColor" Color="#111827" />
+    <SolidColorBrush x:Key="ComboBoxBorderColor" Color="#D1D5DB" />
+    <SolidColorBrush x:Key="ComboBoxArrowColor" Color="#64748B" />
+    
+    
 </ResourceDictionary>

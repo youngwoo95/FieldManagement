@@ -35,14 +35,18 @@
     <SolidColorBrush x:Key="ComboBoxForegroundBrush" Color="#111827" />
     <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#D1D5DB" />
     <SolidColorBrush x:Key="ComboBoxArrowBrush" Color="#64748B" />
+    
     <SolidColorBrush x:Key="ComboBoxHoverBackgroundBrush" Color="#F8FAFC" />
     <SolidColorBrush x:Key="ComboBoxHoverBorderBrush" Color="#93C5FD" />
+    
     <SolidColorBrush x:Key="ComboBoxOpenBackgroundBrush" Color="#EFF6FF" />
     <SolidColorBrush x:Key="ComboBoxOpenBorderBrush" Color="#60A5FA" />
     <SolidColorBrush x:Key="ComboBoxOpenArrowBrush" Color="#2563EB" />
+    
     <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#F3F4F6" />
     <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#E5E7EB" />
     <SolidColorBrush x:Key="ComboBoxDisabledArrowBrush" Color="#9CA3AF" />
+    
     <SolidColorBrush x:Key="ComboBoxItemForegroundBrush" Color="#111827" />
     <SolidColorBrush x:Key="ComboBoxItemHoverBackgroundBrush" Color="#EFF6FF" />
     <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundBrush" Color="#DBEAFE" />

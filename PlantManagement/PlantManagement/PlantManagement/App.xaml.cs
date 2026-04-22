@@ -2,6 +2,10 @@
 using System.Data;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using PlantManagement.Views;
+using PlantManagement.Views.ViewModels.CustomerModel;
+using PlantManagement.Views.ViewModels.DashBoardModel;
+using PlantManagement.Views.ViewModels.MainWindowModel;
 
 namespace PlantManagement;
 
@@ -23,8 +27,12 @@ public partial class App : Application
 
         /* ================== DI ====================== */
         serviceCollection.AddSingleton<MainWindow>();
-
+        serviceCollection.AddSingleton<ThemeService>();
+        
         /* ================== DI ====================== */
+        serviceCollection.AddSingleton<MainWindowViewModel>();
+        serviceCollection.AddSingleton<DashBoardViewModel>();
+        serviceCollection.AddSingleton<CustomerViewModel>();
         
         Services = serviceCollection.BuildServiceProvider();
         
@@ -32,8 +40,9 @@ public partial class App : Application
          * 시작 윈도우 설정
          */
         var mainWindow = Services.GetRequiredService<MainWindow>();
-        
+        mainWindow.DataContext = Services.GetRequiredService<MainWindowViewModel>();
         mainWindow.Show();
+        
     }
 
     /// <summary>

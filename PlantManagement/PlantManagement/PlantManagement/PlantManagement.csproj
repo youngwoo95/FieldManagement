@@ -9,12 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.1.0-dev-292" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0-preview.3.26207.106" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Views\DialogViews\" />
-      <Folder Include="Views\ViewModels\" />
     </ItemGroup>
 
 </Project>
