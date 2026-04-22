@@ -36,17 +36,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="Padding" Value="8,0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundBrush}"/>
-            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
         <ControlTemplate x:Key="RoundedComboBoxToggleButton" TargetType="ToggleButton">
             <Border x:Name="ToggleBorder"
                     CornerRadius="8"

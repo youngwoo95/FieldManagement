@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\
+C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\
 PlantManagement
 none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\App.xaml
+C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\App.xaml
 71971908489
 
 221669093135
-218803706844
+218738599445
 Comm\Themes\DarkTheme.xaml;Comm\Themes\LightTheme.xaml;MainWindow.xaml;Views\Views\CustomerView.xaml;Views\Views\DashBoardView.xaml;Views\Views\Dialogs\AddCustomerWindow.xaml;Views\Views\EquipmentStatusView.xaml;
 
 True

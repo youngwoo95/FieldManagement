@@ -44,6 +44,21 @@
     <SolidColorBrush x:Key="ComboBoxForegroundColor" Color="#111827" />
     <SolidColorBrush x:Key="ComboBoxBorderColor" Color="#D1D5DB" />
     <SolidColorBrush x:Key="ComboBoxArrowColor" Color="#64748B" />
+    <SolidColorBrush x:Key="ComboBoxHoverBackgroundColor" Color="#F8FAFC" />
+    <SolidColorBrush x:Key="ComboBoxHoverBorderColor" Color="#93C5FD" />
+    <SolidColorBrush x:Key="ComboBoxOpenBackgroundColor" Color="#EFF6FF" />
+    <SolidColorBrush x:Key="ComboBoxOpenBorderColor" Color="#60A5FA" />
+    <SolidColorBrush x:Key="ComboBoxOpenArrowColor" Color="#2563EB" />
     
+    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundColor" Color="#F3F4F6" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBorderColor" Color="#E5E7EB" />
+    <SolidColorBrush x:Key="ComboBoxDisabledArrowColor" Color="#9CA3AF" />
+    
+    <SolidColorBrush x:Key="ComboBoxItemForegroundColor" Color="#111827" />
+    <SolidColorBrush x:Key="ComboBoxItemHoverBackgroundColor" Color="#EFF6FF" />
+    <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundColor" Color="#DBEAFE" />
+    <SolidColorBrush x:Key="ComboBoxItemDisabledForegroundColor" Color="#9CA3AF" />
+    <SolidColorBrush x:Key="ComboBoxPopupBorderColor" Color="#BFDBFE" />
+    <SolidColorBrush x:Key="ComboBoxFocusBorderColor" Color="#3B82F6" />
     
 </ResourceDictionary>

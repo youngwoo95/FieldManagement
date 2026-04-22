@@ -18,10 +18,195 @@
             <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style x:Key="HintStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ViewSubtitleForegroundColor}" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10, 4"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <ControlTemplate x:Key="RoundedComboBoxToggleButton" TargetType="ToggleButton">
+            <Border x:Name="ToggleBorder"
+                    CornerRadius="8"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="32"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ContentPresenter Grid.Column="0"
+                                      Margin="12,0,8,0"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"
+                                      RecognizesAccessKey="True"/>
+                    <Path x:Name="Arrow"
+                          Grid.Column="1"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Data="M 0 0 L 4 4 L 8 0"
+                          Stroke="{DynamicResource ComboBoxArrowColor}"
+                          StrokeThickness="2"
+                          SnapsToDevicePixels="True" /> <!-- 값을 True로 두면 1px 선/테두리가 반픽셀에 걸려서 흐릿해지는 걸 줄여줍니다. -->
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxHoverBorderColor}"/>
+                </Trigger>
+                
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxOpenBackgroundColor}"/>
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxOpenBorderColor}"/>
+                    <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource ComboBoxOpenArrowColor}"/>
+                </Trigger>
+                
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource ComboBoxDisabledBackgroundColor}"/>
+                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource ComboBoxDisabledBorderColor}" />
+                    <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource ComboBoxDisabledArrowColor}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+       <Style x:Key="RoundedComboBoxItem" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemForegroundColor}" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="ItemBorder"
+                                Margin="4,2"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="6"
+                                Background="Transparent">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource ComboBoxItemHoverBackgroundColor}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{DynamicResource ComboBoxItemSelectedBackgroundColor}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemDisabledForegroundColor}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RoundedComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="MaxDropDownHeight" Value="280" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource RoundedComboBoxItem}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          Template="{StaticResource RoundedComboBoxToggleButton}">
+                                <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </ToggleButton>
+
+                            <Popup x:Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Fade">
+                                <Border x:Name="DropDownBorder"
+                                        Margin="0,6,0,0"
+                                        MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Background="{DynamicResource ComboBoxBackgroundColor}"
+                                        BorderBrush="{DynamicResource ComboBoxPopupBorderColor}"
+                                        BorderThickness="1"
+                                        CornerRadius="8">
+                                    <ScrollViewer Margin="0,2"
+                                                  SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="{DynamicResource ComboBoxFocusBorderColor}" />
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="40" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemDisabledForegroundColor}" />
+                                <Setter TargetName="ToggleButton" Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
     
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0"
+                Padding="16,12"
+                CornerRadius="12"
+                Background="{DynamicResource ViewHeaderBackgroundColor}"
+                BorderBrush="{DynamicResource ViewHeaderBorderColor}"
+                BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="고객사 등록"
+                           Foreground="{DynamicResource ViewTitleForegroundColor}"
+                           FontSize="20"
+                           FontWeight="SemiBold"/>
+                <TextBlock Text="고객사 기본 정보와 담당자 정보를 입력해주세요."
+                           Margin="0,4,0,0"
+                           Style="{StaticResource HintStyle}"/>
+            </StackPanel>
+        </Border>
         
     </Grid>
 </Window>
