@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PlantManagement.Views.Views.Dialogs"
         mc:Ignorable="d"
         Title="고객사 등록" 
-        Height="620" 
+        Height="700" 
         Width="820"
         MinHeight="620"
-        MaxHeight="820"
+        MaxHeight="900"
         WindowStartupLocation="CenterOwner"
         Background="{DynamicResource WindowBackgroundColor}">
     
@@ -208,5 +208,104 @@
             </StackPanel>
         </Border>
         
+        <Border Grid.Row="2"
+                Padding="16"
+                CornerRadius="12"
+                Background="{DynamicResource ViewPanelBackgroundColor}"
+                BorderBrush="{DynamicResource ViewPanelBorderColor}"
+                BorderThickness="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="고객사명 *" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerNameTextBox" Style="{StaticResource RoundedTextBox}" Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="고객구분" Style="{StaticResource InputLabelStyle}"/>
+                    <ComboBox Grid.Row="0" Grid.Column="4" x:Name="CustomerTypeComboBox" Style="{StaticResource RoundedComboBox}" SelectedItem="{Binding CustomerGubun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Content="일반"/>
+                        <ComboBoxItem Content="협력사"/>
+                        <ComboBoxItem Content="주요고객"/>
+                    </ComboBox>
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="담당자명" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="ManagerNameTextBox" Style="{StaticResource RoundedTextBox}" Text="{Binding ManagerName, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="부서" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="2" Grid.Column="4" x:Name="DepartmentTextBox" Style="{StaticResource RoundedTextBox}" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="연락처" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="PhoneTextBox" Style="{StaticResource RoundedTextBox}" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="4" Grid.Column="3" Text="이메일" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="4" Grid.Column="4" x:Name="EmailTextBox" Style="{StaticResource RoundedTextBox}" />
+
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="주소" Style="{StaticResource InputLabelStyle}"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AddressTextBox" Style="{StaticResource RoundedTextBox}" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="비고" Style="{StaticResource InputLabelStyle}" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"
+                             x:Name="MemoTextBox"
+                             Height="120"
+                             VerticalContentAlignment="Top"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Padding="10,8"
+                             FontSize="14"
+                             Foreground="{DynamicResource ComboBoxForegroundColor}"
+                             Background="{DynamicResource ComboBoxBackgroundColor}"
+                             BorderBrush="{DynamicResource ComboBoxBorderColor}"
+                             BorderThickness="1"/>
+                    
+                    <TextBlock Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4"
+                               x:Name="ValidationText"
+                               Style="{StaticResource HintStyle}"
+                               Text="{Binding ValidationMessage}"/>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- 여기에 Save Command 들어가야함. -->
+            <Button Content="저장"
+                    Width="110"
+                    Height="38"
+                    Cursor="Hand"
+                    Margin="0,0,8,0"
+                    Background="{DynamicResource PrimarySaveBackgroundColor}"
+                    Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                    BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"
+                    Command="{Binding SaveCommand}"/>
+            
+            <!-- 여기에 Cancel Command 들어가야함. -->
+            <Button Content="취소"
+                    Width="110"
+                    Height="38"
+                    Cursor="Hand"
+                    Background="{DynamicResource SecondaryActionColor}"
+                    Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                    BorderBrush="{DynamicResource SecondaryActionColor}"
+                    Command="{Binding CancelCommand}"/>
+        </StackPanel>
     </Grid>
 </Window>

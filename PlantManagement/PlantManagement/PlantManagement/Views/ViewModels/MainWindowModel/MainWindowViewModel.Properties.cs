@@ -112,6 +112,17 @@ public partial class MainWindowViewModel
         {
             _isFacilityManagement = value; 
             OnPropertyChanged();
+            
+            if (!value) return;
+
+            if (_isDashBoardSelected)
+            {
+                _isDashBoardSelected = false;
+                OnPropertyChanged(nameof(IsDashBoardSelected));
+            }
+
+            SelectMenu = MenuType.FacilityManagement;
+            ChangeView(MenuType.FacilityManagement);
         }
     }
 

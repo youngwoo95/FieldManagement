@@ -85,8 +85,7 @@
                 BorderBrush="{DynamicResource ViewPanelBorderColor}"
                 BorderThickness="1"
                 CornerRadius="12">
-            <DataGrid x:Name="CustomerGrid"
-                      AutoGenerateColumns="False"
+            <DataGrid AutoGenerateColumns="False"
                       HeadersVisibility="Column"
                       CanUserAddRows="False"
                       IsReadOnly="False"

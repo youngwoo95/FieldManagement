@@ -69,25 +69,7 @@ public partial class CustomerViewModel : BaseViewModel
 
     private void AddCustomer()
     {
-        // _customers.Add(new CustomerViewItems
-        // {
-        //     Name = "신규 고객",
-        //     Manager = "담당자",
-        //     Gubun = "일반",
-        //     Tel = "02-0000-0000",
-        //     Address = "주소 입력"
-        // });
-        
-        // Dialog 열어야함
-        var newCustomer = _customerDialogService.ShowAddCustomerDialog();
-        if (newCustomer is null)
-            return;
-
-        // if (_allCustomers.Any(x => string.Equals(x.Name, newCustomer.Name, StringComparison.CurrentCultureIgnoreCase)))
-        //     return;
-
-        //_allCustomers.Add(newCustomer);
-        //ApplyCustomerFilter(); 
+        _customerDialogService.ShowAddCustomerDialog();
     }
 
     private void RemoveCustomers()

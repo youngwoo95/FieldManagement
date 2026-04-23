@@ -8,7 +8,8 @@ public class CustomerDialogService : ICustomerDialogService
 {
     public CustomerViewItems? ShowAddCustomerDialog()
     {
-        var addWindow = new AddCustomerWindow
+        var addCustomerViewModel = new AddCustomerViewModel();
+        var addWindow = new AddCustomerWindow(addCustomerViewModel)
         {
             Owner = Application.Current?.MainWindow
         };
@@ -17,7 +18,7 @@ public class CustomerDialogService : ICustomerDialogService
         if (result != true)
             return null;
 
-        var customerName = addWindow.CustomerName;
+        var customerName = addCustomerViewModel.CustomerName;
         if (string.IsNullOrWhiteSpace(customerName))
             return null;
 
@@ -25,10 +26,10 @@ public class CustomerDialogService : ICustomerDialogService
         {
             IsChecked = false,
             Name = customerName,
-            Manager = addWindow.ManagerName,
-            Gubun = addWindow.CustomerGubun,
-            Tel = addWindow.PhoneNumber,
-            Address = addWindow.Address
+            Manager = addCustomerViewModel.ManagerName,
+            Gubun = addCustomerViewModel.CustomerGubun,
+            Tel = addCustomerViewModel.PhoneNumber,
+            Address = addCustomerViewModel.Address
         };
     }
 }

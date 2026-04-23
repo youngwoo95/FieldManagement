@@ -68,3 +68,9 @@ C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantMana
 C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\PlantManagement.dll
 C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\refint\PlantManagement.dll
 C:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\PlantManagement.pdb
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\Dialogs\AddCustomerWindow.g.cs
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\Dialogs\AddCustomerWindow.baml
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\FacilityView.baml
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\FacilityView.g.cs
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\Dialogs\AddFacilityWindow.baml
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\Dialogs\AddFacilityWindow.g.cs

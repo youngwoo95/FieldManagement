@@ -4,7 +4,10 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using PlantManagement.Views;
 using PlantManagement.Views.ViewModels.CustomerModel;
+using PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
 using PlantManagement.Views.ViewModels.DashBoardModel;
+using PlantManagement.Views.ViewModels.FacilityModel;
+using PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 using PlantManagement.Views.ViewModels.MainWindowModel;
 
 namespace PlantManagement;
@@ -33,6 +36,13 @@ public partial class App : Application
         serviceCollection.AddSingleton<MainWindowViewModel>();
         serviceCollection.AddSingleton<DashBoardViewModel>();
         serviceCollection.AddSingleton<CustomerViewModel>();
+        serviceCollection.AddSingleton<FacilityViewModel>();
+        
+        serviceCollection.AddSingleton<AddCustomerViewModel>();
+        serviceCollection.AddSingleton<AddFacilityViewModel>();        
+        
+        serviceCollection.AddSingleton<ICustomerDialogService, CustomerDialogService>();
+        serviceCollection.AddSingleton<IFacilityDialogService, FacilityDialogService>();
         
         Services = serviceCollection.BuildServiceProvider();
         

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PlantManagement.Comm;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.DashBoardModel;
+using PlantManagement.Views.ViewModels.FacilityModel;
 
 namespace PlantManagement.Views.ViewModels.MainWindowModel;
 
@@ -36,7 +37,9 @@ public partial class MainWindowViewModel : BaseViewModel
         CurrentViewModel = menuType switch
         {
             MenuType.DashBoard => _serviceProvider.GetRequiredService<DashBoardViewModel>(),
-            MenuType.CustomerManagement => _serviceProvider.GetRequiredService<CustomerViewModel>()
+            MenuType.CustomerManagement => _serviceProvider.GetRequiredService<CustomerViewModel>(),
+            MenuType.FacilityManagement => _serviceProvider.GetRequiredService<FacilityViewModel>()
+            
         };
     }
 
