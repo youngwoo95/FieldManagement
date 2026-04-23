@@ -1,5 +1,3 @@
-2026/04/22-21:07:58.790 65dc Log #3: 1 ops saved to Table #4 OK
-2026/04/22-21:07:58.797 65dc Archiving C:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Site Characteristics Database/000003.log: OK
-2026/04/22-21:07:58.798 65dc Table #4: 1 entries OK
-2026/04/22-21:07:58.802 65dc Archiving C:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Site Characteristics Database/MANIFEST-000001: OK
-2026/04/22-21:07:58.818 65dc **** Repaired leveldb C:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Site Characteristics Database; recovered 1 files; 130 bytes. Some data may have been lost. ****
+2026/04/23-18:30:22.533 8964 Reusing MANIFEST D:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
+2026/04/23-18:30:22.535 8964 Recovering log #6
+2026/04/23-18:30:22.535 8964 Reusing old log D:\Users\kyw\Documents\FieldManagement\Sample\FieldManagement\bin\Debug\net10.0-windows\FieldManagement.exe.WebView2\EBWebView\Default\Site Characteristics Database/000006.log 

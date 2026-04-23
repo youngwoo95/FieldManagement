@@ -90,3 +90,5 @@ D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantMana
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\OrderView.g.cs
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Comm\Pdfs\pdf1.pdf
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Comm\Pdfs\pdf2.pdf
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\WorkStatusView.g.cs
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\obj\Debug\net10.0-windows\Views\Views\WorkStatusView.baml
