@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5ON2omjYJDk=",
+  "dgSpecHash": "9ZgOzkV0txA=",
   "success": true,
   "projectFilePath": "D:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\PlantManagement.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\kyw\\.nuget\\packages\\livechartscore.skiasharpview.wpf\\2.1.0-dev-292\\livechartscore.skiasharpview.wpf.2.1.0-dev-292.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\11.0.0-preview.3.26207.106\\microsoft.extensions.dependencyinjection.11.0.0-preview.3.26207.106.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\11.0.0-preview.3.26207.106\\microsoft.extensions.dependencyinjection.abstractions.11.0.0-preview.3.26207.106.nupkg.sha512",
+    "C:\\Users\\kyw\\.nuget\\packages\\microsoft.web.webview2\\1.0.3965-prerelease\\microsoft.web.webview2.1.0.3965-prerelease.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\opentk\\3.3.1\\opentk.3.3.1.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\opentk.glwpfcontrol\\3.3.0\\opentk.glwpfcontrol.3.3.0.nupkg.sha512",
     "C:\\Users\\kyw\\.nuget\\packages\\skiasharp\\3.119.0\\skiasharp.3.119.0.nupkg.sha512",

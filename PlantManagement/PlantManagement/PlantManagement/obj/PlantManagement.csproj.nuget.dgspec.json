@@ -58,6 +58,10 @@
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0-preview.3.26207.106, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.3965-prerelease, )"
             }
           },
           "imports": [

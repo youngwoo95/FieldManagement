@@ -4,6 +4,7 @@ using PlantManagement.Comm;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.DashBoardModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
+using PlantManagement.Views.ViewModels.OrderModel;
 
 namespace PlantManagement.Views.ViewModels.MainWindowModel;
 
@@ -12,9 +13,7 @@ public partial class MainWindowViewModel : BaseViewModel
     private readonly ThemeService _themeService;
     private readonly IServiceProvider _serviceProvider;
 
-    
     public ICommand ToggleThemeCommand { get; }
-
     
     public MainWindowViewModel(ThemeService themeService, 
         IServiceProvider serviceProvider)
@@ -38,8 +37,8 @@ public partial class MainWindowViewModel : BaseViewModel
         {
             MenuType.DashBoard => _serviceProvider.GetRequiredService<DashBoardViewModel>(),
             MenuType.CustomerManagement => _serviceProvider.GetRequiredService<CustomerViewModel>(),
-            MenuType.FacilityManagement => _serviceProvider.GetRequiredService<FacilityViewModel>()
-            
+            MenuType.FacilityManagement => _serviceProvider.GetRequiredService<FacilityViewModel>(),
+            MenuType.OrderManagement => _serviceProvider.GetRequiredService<OrderViewModel>()
         };
     }
 

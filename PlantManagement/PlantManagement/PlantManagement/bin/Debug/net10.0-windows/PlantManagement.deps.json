@@ -9,7 +9,11 @@
       "PlantManagement/1.0.0": {
         "dependencies": {
           "LiveChartsCore.SkiaSharpView.WPF": "2.1.0-dev-292",
-          "Microsoft.Extensions.DependencyInjection": "11.0.0-preview.3.26207.106"
+          "Microsoft.Extensions.DependencyInjection": "11.0.0-preview.3.26207.106",
+          "Microsoft.Web.WebView2": "1.0.3965-prerelease",
+          "Microsoft.Web.WebView2.Core": "1.0.3965.0",
+          "Microsoft.Web.WebView2.WinForms": "1.0.3965.0",
+          "Microsoft.Web.WebView2.Wpf": "1.0.3965.0"
         },
         "runtime": {
           "PlantManagement.dll": {}
@@ -108,6 +112,25 @@
           }
         }
       },
+      "Microsoft.Web.WebView2/1.0.3965-prerelease": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.3965.0"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.3965.0"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.3965.0"
+          }
+        }
+      },
       "OpenTK/3.3.1": {
         "runtime": {
           "lib/net20/OpenTK.dll": {
@@ -203,6 +226,30 @@
             "fileVersion": "3.119.0.0"
           }
         }
+      },
+      "Microsoft.Web.WebView2.Core/1.0.3965.0": {
+        "runtime": {
+          "Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.3965.0",
+            "fileVersion": "1.0.3965.0"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2.WinForms/1.0.3965.0": {
+        "runtime": {
+          "Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.3965.0",
+            "fileVersion": "1.0.3965.0"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2.Wpf/1.0.3965.0": {
+        "runtime": {
+          "Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.3965.0",
+            "fileVersion": "1.0.3965.0"
+          }
+        }
       }
     }
   },
@@ -268,6 +315,13 @@
       "path": "microsoft.extensions.dependencyinjection.abstractions/11.0.0-preview.3.26207.106",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.11.0.0-preview.3.26207.106.nupkg.sha512"
     },
+    "Microsoft.Web.WebView2/1.0.3965-prerelease": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ch5w1cxjw8s7lEo8Am1De8UDn+ftoZRFUUMofHA+t6kz/c1wBgEs50HMbwWlwKU9zA8/WHHzesFqyttPq99RFA==",
+      "path": "microsoft.web.webview2/1.0.3965-prerelease",
+      "hashPath": "microsoft.web.webview2.1.0.3965-prerelease.nupkg.sha512"
+    },
     "OpenTK/3.3.1": {
       "type": "package",
       "serviceable": true,
@@ -323,6 +377,21 @@
       "sha512": "sha512-1Dmj9RlBW/gvmJwSUER+N9plA/kcWOgiL5g3q2DB+USVQav8rQtfOZIQZ1Wt/AqhwepOacv1M6pZKDWtXmwDAg==",
       "path": "skiasharp.views.wpf/3.119.0",
       "hashPath": "skiasharp.views.wpf.3.119.0.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2.Core/1.0.3965.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Web.WebView2.WinForms/1.0.3965.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Web.WebView2.Wpf/1.0.3965.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

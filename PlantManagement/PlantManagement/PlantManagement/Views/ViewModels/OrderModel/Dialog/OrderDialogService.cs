@@ -1,0 +1,30 @@
+using System.Windows;
+using PlantManagement.ViewItems;
+using PlantManagement.Views.ViewModels.CustomerModel;
+using PlantManagement.Views.Views.Dialogs;
+
+namespace PlantManagement.Views.ViewModels.OrderModel.Dialog;
+
+public class OrderDialogService : IOrderDialogService
+{
+    public OrderViewItems? ShowAddOrderDialog()
+    {
+        var addOrderViewModel = new AddOrderViewModel();
+        var addWindow = new AddOrderWindow(addOrderViewModel)
+        {
+            Owner = Application.Current?.MainWindow
+        };
+
+        var result = addWindow.ShowDialog();
+        if (result != true)
+            return null;
+
+        return new OrderViewItems()
+        {
+            Customer = addOrderViewModel.CustomerName,
+            OrderQty = addOrderViewModel.OrderQty,
+            StartDt = addOrderViewModel.StartDt,
+            EndDt = addOrderViewModel.EndDt
+        };
+    }
+}

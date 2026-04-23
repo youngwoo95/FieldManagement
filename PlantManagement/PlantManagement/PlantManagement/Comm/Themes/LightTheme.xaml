@@ -61,4 +61,6 @@
     <SolidColorBrush x:Key="ComboBoxItemDisabledForegroundColor" Color="#9CA3AF" />
     <SolidColorBrush x:Key="ComboBoxPopupBorderColor" Color="#BFDBFE" />
     <SolidColorBrush x:Key="ComboBoxFocusBorderColor" Color="#3B82F6" />
+    
+    <SolidColorBrush x:Key="ViewCanvasBackgroundColor" Color="#EEF2F7" />
 </ResourceDictionary>

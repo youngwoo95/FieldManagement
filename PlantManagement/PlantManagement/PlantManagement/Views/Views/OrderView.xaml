@@ -1,0 +1,269 @@
+<UserControl x:Class="PlantManagement.Views.Views.OrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:PlantManagement.Comm.Converters"
+             xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             Background="Transparent">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
+        <converters:SafeUriConverter x:Key="SafeUriConverter"/>
+
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Padding="16"
+                Margin="0,0,0,12"
+                Background="{DynamicResource ViewPanelBackgroundColor}"
+                BorderBrush="{DynamicResource ViewPanelBorderColor}"
+                BorderThickness="1"
+                CornerRadius="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="고객사"
+                               VerticalAlignment="Center"
+                               Margin="0,0,8,0"
+                               Foreground="{DynamicResource ViewBodyTextColor}"/>
+                    <TextBox Style="{StaticResource RoundedTextBox}"
+                             Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="시작일자"
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"
+                               Foreground="{DynamicResource ViewBodyTextColor}"/>
+                    <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="8,0,8,0" VerticalAlignment="Center"/>
+
+                    <TextBlock Text="종료일자"
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"
+                               Foreground="{DynamicResource ViewBodyTextColor}"/>
+                    <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="8,0,8,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="조회"
+                            Margin="0,0,8,0"
+                            Padding="14,8"
+                            Background="{DynamicResource PrimaryActionBackgroundColor}"
+                            Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                            BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"
+                            Command="{Binding SearchCommand}"/>
+
+                    <Button Content="초기화"
+                            Margin="0,0,8,0"
+                            Padding="14,8"
+                            Background="{DynamicResource SecondaryActionColor}"
+                            Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                            BorderBrush="{DynamicResource SecondaryActionColor}"
+                            Command="{Binding ResetCommand}"/>
+
+                    <Button Content="등록"
+                            Margin="0,0,8,0"
+                            Padding="14,8"
+                            Background="{DynamicResource PrimarySaveBackgroundColor}"
+                            Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                            BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"
+                            Command="{Binding AddCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="{Binding PdfPanelWidth, Converter={StaticResource DoubleToGridLengthConverter}, Mode=TwoWay}"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Margin="0"
+                    Padding="12"
+                    Background="{DynamicResource ViewHeaderBackgroundColor}"
+                    BorderBrush="{DynamicResource ViewPanelBorderColor}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+                <DataGrid AutoGenerateColumns="False"
+                          HeadersVisibility="Column"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding FilteredOrders}"
+                          SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
+                          Background="{DynamicResource ViewHeaderBackgroundColor}"
+                          Foreground="{DynamicResource ViewBodyTextColor}"
+                          BorderThickness="0"
+                          RowHeaderWidth="0"
+                          RowHeight="40"
+                          MinRowHeight="40"
+                          ColumnHeaderHeight="42"
+                          GridLinesVisibility="Horizontal"
+                          HorizontalGridLinesBrush="{DynamicResource ViewPanelBorderColor}"
+                          VerticalGridLinesBrush="{DynamicResource ViewPanelBorderColor}"
+                          RowBackground="{DynamicResource ViewPanelBackgroundColor}"
+                          AlternatingRowBackground="{DynamicResource ListViewCardBackgroundColor}">
+                    <DataGrid.Resources>
+                        <Style x:Key="CenteredDataGridTextStyle" TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource ViewPanelBackgroundColor}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryActionForegroundColor}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ViewPanelBackgroundColor}"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Height" Value="42"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
+                            <Setter Property="Padding" Value="10,6"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryActionBackgroundColor}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource PrimaryActionForegroundColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="MinHeight" Value="40"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="고객사"
+                                            Binding="{Binding Customer}"
+                                            Width="150"
+                                            ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="요청수량"
+                                            Binding="{Binding OrderQty}"
+                                            Width="150"
+                                            ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="작업시작일"
+                                            Binding="{Binding StartDt}"
+                                            Width="140"
+                                            ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                        <DataGridTextColumn Header="작업종료일"
+                                            Binding="{Binding EndDt}"
+                                            Width="*"
+                                            ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+            
+            <!-- PDF 미리보기 -->
+            <GridSplitter Grid.Column="1"
+                          Width="6"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch"
+                          ResizeBehavior="PreviousAndNext"
+                          ResizeDirection="Columns"
+                          ShowsPreview="True"
+                          Visibility="{Binding IsPdfPanelOpen, Converter={StaticResource BoolToVisibilityConverter}}"
+                          Background="{DynamicResource ViewPanelBorderColor}"/>
+
+            <Border Grid.Column="2"
+                    Visibility="{Binding IsPdfPanelOpen, Converter={StaticResource BoolToVisibilityConverter}}"
+                    MinWidth="360"
+                    Padding="12"
+                    Background="{DynamicResource ViewPanelBackgroundColor}"
+                    BorderBrush="{DynamicResource ViewPanelBorderColor}"
+                    BorderThickness="1"
+                    CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="PDF 미리보기"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource ViewBodyTextColor}"/>
+                        <Button Grid.Column="1"
+                                Content="닫기"
+                                Width="70"
+                                Height="32"
+                                HorizontalAlignment="Right"
+                                Background="{DynamicResource SecondaryActionColor}"
+                                Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                                BorderBrush="{DynamicResource SecondaryActionColor}"
+                                Command="{Binding ClosePdfPanelCommand}"/>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1">
+                        <Border Background="{DynamicResource ViewPanelBackgroundColor}" CornerRadius="8"/>
+                        <wpf:WebView2 Margin="1"
+                                      Source="{Binding SelectedPdfUri, Converter={StaticResource SafeUriConverter}, FallbackValue=about:blank, TargetNullValue=about:blank}"/>
+                        <TextBlock
+                            Text="{Binding PdfFallbackMessage}"
+                            Foreground="{DynamicResource ViewBodyTextColor}"
+                            FontSize="14"
+                            Visibility="{Binding IsPdfFallbackVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                </Grid>
+            </Border>
+            
+        </Grid>
+    </Grid>
+</UserControl>

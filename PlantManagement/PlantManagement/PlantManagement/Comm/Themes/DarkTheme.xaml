@@ -61,4 +61,6 @@
     <SolidColorBrush x:Key="ComboBoxPopupBorderColor" Color="#BFDBFE" />
     <SolidColorBrush x:Key="ComboBoxFocusBorderColor" Color="#3B82F6" />
     
+    <SolidColorBrush x:Key="ViewCanvasBackgroundColor" Color="#0B1220" />
+    
 </ResourceDictionary>

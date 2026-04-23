@@ -7,6 +7,7 @@
         xmlns:dashboard="clr-namespace:PlantManagement.Views.ViewModels.DashBoardModel"
         xmlns:customer="clr-namespace:PlantManagement.Views.ViewModels.CustomerModel"
         xmlns:facility="clr-namespace:PlantManagement.Views.ViewModels.FacilityModel"
+        xmlns:order="clr-namespace:PlantManagement.Views.ViewModels.OrderModel"
         mc:Ignorable="d"
         Title="생산관리 시스템"
         Height="720" 
@@ -26,6 +27,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type facility:FacilityViewModel}">
             <views:FacilityView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type order:OrderViewModel}">
+            <views:OrderView/>
         </DataTemplate>
         
         
@@ -171,7 +175,7 @@
                     </RadioButton>
                     
                     <!-- 수주관리 -->
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}" IsChecked="{Binding IsOrderManagement, Mode=TwoWay}">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"

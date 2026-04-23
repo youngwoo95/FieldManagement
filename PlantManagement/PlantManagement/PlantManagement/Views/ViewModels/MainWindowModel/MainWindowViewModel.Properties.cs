@@ -97,9 +97,21 @@ public partial class MainWindowViewModel
         get => _isOrderManagement;
         set
         {
-            _isOrderManagement = value;  
+            if (_isOrderManagement == value) return;
+            _isOrderManagement = value;
             OnPropertyChanged();
-        } 
+
+            if (!value) return;
+
+            if (_isDashBoardSelected)
+            {
+                _isDashBoardSelected = false;
+                OnPropertyChanged(nameof(IsDashBoardSelected));
+            }
+
+            SelectMenu = MenuType.OrderManagement;
+            ChangeView(MenuType.OrderManagement);
+        }
     }
 
     /// <summary>

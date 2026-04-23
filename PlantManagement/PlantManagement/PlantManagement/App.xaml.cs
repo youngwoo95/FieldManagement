@@ -9,6 +9,8 @@ using PlantManagement.Views.ViewModels.DashBoardModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 using PlantManagement.Views.ViewModels.MainWindowModel;
+using PlantManagement.Views.ViewModels.OrderModel;
+using PlantManagement.Views.ViewModels.OrderModel.Dialog;
 
 namespace PlantManagement;
 
@@ -37,12 +39,15 @@ public partial class App : Application
         serviceCollection.AddSingleton<DashBoardViewModel>();
         serviceCollection.AddSingleton<CustomerViewModel>();
         serviceCollection.AddSingleton<FacilityViewModel>();
+        serviceCollection.AddSingleton<OrderViewModel>();
         
         serviceCollection.AddSingleton<AddCustomerViewModel>();
         serviceCollection.AddSingleton<AddFacilityViewModel>();        
+        serviceCollection.AddSingleton<AddOrderViewModel>();
         
         serviceCollection.AddSingleton<ICustomerDialogService, CustomerDialogService>();
         serviceCollection.AddSingleton<IFacilityDialogService, FacilityDialogService>();
+        serviceCollection.AddSingleton<IOrderDialogService, OrderDialogService>();
         
         Services = serviceCollection.BuildServiceProvider();
         

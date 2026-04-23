@@ -11,6 +11,18 @@
     <ItemGroup>
       <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.1.0-dev-292" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0-preview.3.26207.106" />
+      <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3965-prerelease" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Comm\Pdfs\pdf1.pdf" />
+      <Content Include="Comm\Pdfs\pdf1.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Comm\Pdfs\pdf2.pdf" />
+      <Content Include="Comm\Pdfs\pdf2.pdf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
