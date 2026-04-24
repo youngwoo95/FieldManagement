@@ -8,6 +8,7 @@
         xmlns:customer="clr-namespace:PlantManagement.Views.ViewModels.CustomerModel"
         xmlns:facility="clr-namespace:PlantManagement.Views.ViewModels.FacilityModel"
         xmlns:order="clr-namespace:PlantManagement.Views.ViewModels.OrderModel"
+        xmlns:works="clr-namespace:PlantManagement.Views.ViewModels.WorkStatusModel"
         mc:Ignorable="d"
         Title="생산관리 시스템"
         Height="720" 
@@ -30,6 +31,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type order:OrderViewModel}">
             <views:OrderView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type works:WorkStatusViewModel}">
+            <views:WorkStatusView/>
         </DataTemplate>
         
         
@@ -159,7 +163,7 @@
                     </RadioButton>
                     
                     <!-- 작업관리 -->
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}" IsChecked="{Binding IsWorkManagement, Mode=TwoWay}">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"

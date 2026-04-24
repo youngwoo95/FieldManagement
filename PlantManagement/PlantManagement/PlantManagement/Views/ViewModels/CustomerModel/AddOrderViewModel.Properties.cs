@@ -7,11 +7,15 @@ namespace PlantManagement.Views.ViewModels.CustomerModel;
 
 public partial class AddOrderViewModel
 {
+    private readonly ObservableCollection<string> _customerNames = new();
     private string _customerName = string.Empty;
     private int _orderQty;
     private string _startDt = string.Empty;
     private string _endDt = string.Empty;
+    private string _attachmentFilePath = string.Empty;
     private string _validationMessage = string.Empty;
+
+    public ObservableCollection<string> CustomerNames => _customerNames;
 
     public string CustomerName
     {
@@ -35,6 +39,12 @@ public partial class AddOrderViewModel
     {
         get => _endDt;
         set => SetField(ref _endDt, value);
+    }
+
+    public string AttachmentFilePath
+    {
+        get => _attachmentFilePath;
+        set => SetField(ref _attachmentFilePath, value);
     }
 
     public string ValidationMessage

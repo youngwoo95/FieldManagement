@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Windows;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.ViewModels.CustomerModel;
@@ -7,9 +8,23 @@ namespace PlantManagement.Views.ViewModels.OrderModel.Dialog;
 
 public class OrderDialogService : IOrderDialogService
 {
+    private readonly CustomerViewModel _customerViewModel;
+
+    public OrderDialogService(CustomerViewModel customerViewModel)
+    {
+        _customerViewModel = customerViewModel;
+    }
+
     public OrderViewItems? ShowAddOrderDialog()
     {
         var addOrderViewModel = new AddOrderViewModel();
+        var customerNames = _customerViewModel.Customers
+            .Select(x => x.Name)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
+        addOrderViewModel.SetCustomerNames(customerNames);
+
         var addWindow = new AddOrderWindow(addOrderViewModel)
         {
             Owner = Application.Current?.MainWindow
@@ -24,7 +39,8 @@ public class OrderDialogService : IOrderDialogService
             Customer = addOrderViewModel.CustomerName,
             OrderQty = addOrderViewModel.OrderQty,
             StartDt = addOrderViewModel.StartDt,
-            EndDt = addOrderViewModel.EndDt
+            EndDt = addOrderViewModel.EndDt,
+            PdfFileName = addOrderViewModel.AttachmentFilePath
         };
     }
 }

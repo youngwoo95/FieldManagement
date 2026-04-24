@@ -69,7 +69,12 @@ public partial class CustomerViewModel : BaseViewModel
 
     private void AddCustomer()
     {
-        _customerDialogService.ShowAddCustomerDialog();
+        var customer = _customerDialogService.ShowAddCustomerDialog();
+        if (customer is null)
+            return;
+
+        _customers.Add(customer);
+        _filteredCustomers.Refresh();
     }
 
     private void RemoveCustomers()

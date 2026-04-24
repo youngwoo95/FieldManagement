@@ -7,4 +7,6 @@ public class WorkStatusViewItems
     public string CustomerName { get; init; } = string.Empty;
     public string Status { get; init; } = string.Empty;
     public string WorkDate { get; init; } = string.Empty;
+    
+    public string PdfFileName { get; set; } = string.Empty;
 }

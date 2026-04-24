@@ -84,8 +84,22 @@ public partial class MainWindowViewModel
         get => _isWorkManagement;
         set
         {
-            _isWorkManagement = value; 
+            if (_isWorkManagement == value)
+                return;
+
+            _isWorkManagement = value;
             OnPropertyChanged();
+
+            if (!value) return;
+
+            if (_isDashBoardSelected)
+            {
+                _isDashBoardSelected = false;
+                OnPropertyChanged(nameof(IsDashBoardSelected));
+            }
+
+            SelectMenu = MenuType.WorkManagement;
+            ChangeView(MenuType.WorkManagement);
         }
     }
 

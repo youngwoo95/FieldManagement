@@ -15,7 +15,7 @@ public partial class WorkStatusViewModel
 
     public ICollectionView FilteredWorkStatus => _filteredWorkStatus;
 
-    private OrderViewItems? _selectedWorkStatus;
+    private WorkStatusViewItems? _selectedWorkStatus;
     private string? _selectedPdfPath;
     private Uri _selectedPdfUri = BlankPdfUri;
 
@@ -49,7 +49,7 @@ public partial class WorkStatusViewModel
         }
     }
     
-    public OrderViewItems? SelectedWorkStatus
+    public WorkStatusViewItems? SelectedWorkStatus
     {
         get => _selectedWorkStatus;
         set

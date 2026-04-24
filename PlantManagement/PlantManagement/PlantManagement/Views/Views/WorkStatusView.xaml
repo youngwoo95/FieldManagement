@@ -159,6 +159,7 @@
             <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBackgroundColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="220"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
@@ -170,6 +171,7 @@
             <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBackgroundColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="140"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         
@@ -208,7 +210,7 @@
                     <!-- 설비명 -->
                     <TextBlock Text="설비명"
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0"
+                               Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <TextBox Style="{StaticResource RoundedTextBox}"
                              />
@@ -216,28 +218,28 @@
                     <!-- 고객명 -->
                     <TextBlock Text="고객명"
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0"
+                               Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <TextBox Style="{StaticResource RoundedTextBox}"/>
                     
                     <!-- 시작날짜 DatePicker -->
                     <TextBlock Text="시작일자"
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0"
+                               Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="0,0,8,0" VerticalAlignment="Center"/>
                     
                     <!-- 종료일자 DatePicker -->
                     <TextBlock Text="종료일자"
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0"
+                               Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="0,0,8,0" VerticalAlignment="Center"/>
                     
                     <!-- 상태 ComboBox -->
                     <TextBlock Text="상태" 
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0" 
+                               Margin="20,0,8,0" 
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <ComboBox Style="{StaticResource RoundedComboBox}" Margin="0,0,8,0">
                         <ComboBoxItem IsSelected="True">전체</ComboBoxItem>
@@ -252,21 +254,24 @@
                             Padding="14,8"
                             Background="{DynamicResource PrimaryActionBackgroundColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
-                            BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"/>
+                            BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"
+                            Command="{Binding SearchCommand}"/>
                     
                     <Button Content="초기화"
                             Margin="0,0,8,0"
                             Padding="14,8"
                             Background="{DynamicResource SecondaryActionColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
-                            BorderBrush="{DynamicResource SecondaryActionColor}"/>
+                            BorderBrush="{DynamicResource SecondaryActionColor}"
+                            Command="{Binding ResetCommand}"/>
                             
                     <Button Content="등록"
                             Margin="0,0,8,0"
                             Padding="14,8"
                             Background="{DynamicResource PrimarySaveBackgroundColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
-                            BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"/>
+                            BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"
+                            Command="{Binding AddCommand}"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -358,7 +363,7 @@
                         
                         <DataGridTextColumn Header="고객명" 
                                             Binding="{Binding CustomerName}" 
-                                            Width="*" 
+                                            Width="150" 
                                             ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                         
                         <DataGridTextColumn Header="상태" 

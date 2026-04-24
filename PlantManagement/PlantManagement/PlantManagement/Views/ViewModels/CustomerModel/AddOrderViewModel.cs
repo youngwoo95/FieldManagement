@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Views.ViewModels.OrderModel.Dialog;
@@ -32,6 +33,15 @@ public partial class AddOrderViewModel : BaseViewModel
    private void Cancel()
    {
       RequestClose?.Invoke(false);  
+   }
+
+   public void SetCustomerNames(IEnumerable<string> customerNames)
+   {
+      CustomerNames.Clear();
+      foreach (var customerName in customerNames)
+      {
+         CustomerNames.Add(customerName);
+      }
    }
    
 }

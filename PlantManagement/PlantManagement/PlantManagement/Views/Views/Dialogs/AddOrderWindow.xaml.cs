@@ -1,4 +1,6 @@
+using Microsoft.Win32;
 using System.Windows;
+using System.Windows.Input;
 using PlantManagement.Views.ViewModels.CustomerModel;
 
 namespace PlantManagement.Views.Views.Dialogs;
@@ -14,6 +16,7 @@ public partial class AddOrderWindow : Window
         _viewModel = viewModel;
         DataContext = _viewModel;
         _viewModel.RequestClose += OnRequestClose;
+        Closed += OnClosed;
     }
 
     private void OnRequestClose(bool? dialogResult)
@@ -26,6 +29,23 @@ public partial class AddOrderWindow : Window
         _viewModel.RequestClose -= OnRequestClose;
         Closed -= OnClosed;
     }
-    
-    
+
+    private void AttachmentFileTextBox_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        e.Handled = true;
+
+        var openFileDialog = new OpenFileDialog
+        {
+            Title = "Select attachment",
+            Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*",
+            CheckFileExists = true,
+            Multiselect = false
+        };
+
+        var result = openFileDialog.ShowDialog(this);
+        if (result != true)
+            return;
+
+        _viewModel.AttachmentFilePath = openFileDialog.FileName;
+    }
 }

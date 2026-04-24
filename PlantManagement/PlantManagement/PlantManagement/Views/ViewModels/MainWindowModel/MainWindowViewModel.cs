@@ -5,6 +5,7 @@ using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.DashBoardModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.ViewModels.OrderModel;
+using PlantManagement.Views.ViewModels.WorkStatusModel;
 
 namespace PlantManagement.Views.ViewModels.MainWindowModel;
 
@@ -38,7 +39,9 @@ public partial class MainWindowViewModel : BaseViewModel
             MenuType.DashBoard => _serviceProvider.GetRequiredService<DashBoardViewModel>(),
             MenuType.CustomerManagement => _serviceProvider.GetRequiredService<CustomerViewModel>(),
             MenuType.FacilityManagement => _serviceProvider.GetRequiredService<FacilityViewModel>(),
-            MenuType.OrderManagement => _serviceProvider.GetRequiredService<OrderViewModel>()
+            MenuType.OrderManagement => _serviceProvider.GetRequiredService<OrderViewModel>(),
+            MenuType.WorkManagement => _serviceProvider.GetRequiredService<WorkStatusViewModel>(),
+            _ => _serviceProvider.GetRequiredService<DashBoardViewModel>()
         };
     }
 

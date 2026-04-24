@@ -11,6 +11,9 @@ using PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 using PlantManagement.Views.ViewModels.MainWindowModel;
 using PlantManagement.Views.ViewModels.OrderModel;
 using PlantManagement.Views.ViewModels.OrderModel.Dialog;
+using PlantManagement.Views.ViewModels.WorkStatusModel;
+using PlantManagement.Views.ViewModels.WorkStatusModel.Dialog;
+using PlantManagement.Views.Views;
 
 namespace PlantManagement;
 
@@ -40,14 +43,17 @@ public partial class App : Application
         serviceCollection.AddSingleton<CustomerViewModel>();
         serviceCollection.AddSingleton<FacilityViewModel>();
         serviceCollection.AddSingleton<OrderViewModel>();
+        serviceCollection.AddSingleton<WorkStatusViewModel>();
         
         serviceCollection.AddSingleton<AddCustomerViewModel>();
         serviceCollection.AddSingleton<AddFacilityViewModel>();        
         serviceCollection.AddSingleton<AddOrderViewModel>();
+        serviceCollection.AddSingleton<AddWorkStatusViewModel>();
         
         serviceCollection.AddSingleton<ICustomerDialogService, CustomerDialogService>();
         serviceCollection.AddSingleton<IFacilityDialogService, FacilityDialogService>();
         serviceCollection.AddSingleton<IOrderDialogService, OrderDialogService>();
+        serviceCollection.AddSingleton<IWorkDialogService, WorkDialogService>();
         
         Services = serviceCollection.BuildServiceProvider();
         

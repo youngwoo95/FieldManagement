@@ -26,6 +26,17 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+
+        <Style x:Key="RoundedComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
         
         <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
             <Setter Property="Height" Value="38"/>
@@ -87,6 +98,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="12"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
@@ -96,7 +109,13 @@
                 
                 <!-- 고객명 -->
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="고객명 *" Style="{StaticResource InputLabelStyle}"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedTextBox}" Text="{Binding Customer, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Row="0"
+                          Grid.Column="1"
+                          Style="{StaticResource RoundedComboBox}"
+                          ItemsSource="{Binding CustomerNames}"
+                          SelectedItem="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="False"
+                          IsTextSearchEnabled="True"/>
                 
                 <!-- 요청수량 -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="요청수량 *" Style="{StaticResource InputLabelStyle}"/>
@@ -110,7 +129,16 @@
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="종료일자" Style="{StaticResource InputLabelStyle}"/>
                 <DatePicker Grid.Row="6" Grid.Column="1" Style="{StaticResource RoundedDatePicker}" Text="{Binding EndDt, UpdateSourceTrigger=PropertyChanged}"/>
                 
-                <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="첨부파일" Style="{StaticResource InputLabelStyle}"/>
+                <TextBox Grid.Row="8"
+                         Grid.Column="1"
+                         Style="{StaticResource RoundedTextBox}"
+                         Text="{Binding AttachmentFilePath, UpdateSourceTrigger=PropertyChanged}"
+                         IsReadOnly="True"
+                         Cursor="Hand"
+                         PreviewMouseLeftButtonDown="AttachmentFileTextBox_OnPreviewMouseLeftButtonDown"/>
+                
+                <TextBlock Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"
                            Style="{StaticResource HintStyle}"
                            Text="{Binding ValidationMessage}"/>
             </Grid>

@@ -80,7 +80,12 @@ public partial class FacilityViewModel : BaseViewModel
     
     private void AddFacility()
     {
-        _facilityDialogService.ShowAddFacilityDialog();
+        var facility = _facilityDialogService.ShowAddFacilityDialog();
+        if (facility is null)
+            return;
+
+        _facilitys.Add(facility);
+        _filteredFacilitys.Refresh();
     }
 
     private void RemoveFacilitys()
