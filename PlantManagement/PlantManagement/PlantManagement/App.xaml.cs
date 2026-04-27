@@ -6,6 +6,7 @@ using PlantManagement.Views;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
 using PlantManagement.Views.ViewModels.DashBoardModel;
+using PlantManagement.Views.ViewModels.EquipmentStatusModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 using PlantManagement.Views.ViewModels.MainWindowModel;
@@ -44,11 +45,13 @@ public partial class App : Application
         serviceCollection.AddSingleton<FacilityViewModel>();
         serviceCollection.AddSingleton<OrderViewModel>();
         serviceCollection.AddSingleton<WorkStatusViewModel>();
+        serviceCollection.AddSingleton<EquipmentStatusViewModel>();
         
         serviceCollection.AddSingleton<AddCustomerViewModel>();
         serviceCollection.AddSingleton<AddFacilityViewModel>();        
         serviceCollection.AddSingleton<AddOrderViewModel>();
         serviceCollection.AddSingleton<AddWorkStatusViewModel>();
+        
         
         serviceCollection.AddSingleton<ICustomerDialogService, CustomerDialogService>();
         serviceCollection.AddSingleton<IFacilityDialogService, FacilityDialogService>();

@@ -71,8 +71,23 @@ public partial class MainWindowViewModel
         get => _isEquipmentStatusSelected;
         set
         {
+            if (_isEquipmentStatusSelected == value) return;
+            
             _isEquipmentStatusSelected = value;
             OnPropertyChanged();
+
+            if (!value) return;
+            
+            if (_isDashBoardSelected)
+            {
+                _isDashBoardSelected = false;
+                OnPropertyChanged(nameof(IsDashBoardSelected));
+            }
+
+            SelectMenu = MenuType.EquipmentStatus;
+            ChangeView(MenuType.EquipmentStatus);
+            
+
         }
     }
 

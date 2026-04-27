@@ -9,6 +9,7 @@
         xmlns:facility="clr-namespace:PlantManagement.Views.ViewModels.FacilityModel"
         xmlns:order="clr-namespace:PlantManagement.Views.ViewModels.OrderModel"
         xmlns:works="clr-namespace:PlantManagement.Views.ViewModels.WorkStatusModel"
+        xmlns:equipments="clr-namespace:PlantManagement.Views.ViewModels.EquipmentStatusModel"
         mc:Ignorable="d"
         Title="생산관리 시스템"
         Height="720" 
@@ -22,6 +23,9 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type dashboard:DashBoardViewModel}">
             <views:DashBoardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type equipments:EquipmentStatusViewModel}">
+            <views:EquipmentStatusView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type customer:CustomerViewModel}">
             <views:CustomerView/>
@@ -147,7 +151,7 @@
                     </RadioButton>
                     
                     <!-- 설비 현황판 -->
-                    <RadioButton Style="{StaticResource SidebarRadioStyle}">
+                    <RadioButton Style="{StaticResource SidebarRadioStyle}" IsChecked="{Binding IsEquipmentStatusSelected, Mode=TwoWay}">
                         <StackPanel HorizontalAlignment="Center">
                             <TextBlock Text=""
                                        FontFamily="Segoe MDL2 Assets"

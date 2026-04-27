@@ -25,4 +25,11 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Comm\images\room1.jpg" />
+      <Resource Include="Comm\images\room1.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
 </Project>

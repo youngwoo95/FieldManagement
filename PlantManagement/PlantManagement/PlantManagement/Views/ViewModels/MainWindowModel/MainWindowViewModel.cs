@@ -1,11 +1,14 @@
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using PlantManagement.Comm;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.DashBoardModel;
+using PlantManagement.Views.ViewModels.EquipmentStatusModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.ViewModels.OrderModel;
 using PlantManagement.Views.ViewModels.WorkStatusModel;
+using PlantManagement.Views.Views;
 
 namespace PlantManagement.Views.ViewModels.MainWindowModel;
 
@@ -41,6 +44,7 @@ public partial class MainWindowViewModel : BaseViewModel
             MenuType.FacilityManagement => _serviceProvider.GetRequiredService<FacilityViewModel>(),
             MenuType.OrderManagement => _serviceProvider.GetRequiredService<OrderViewModel>(),
             MenuType.WorkManagement => _serviceProvider.GetRequiredService<WorkStatusViewModel>(),
+            MenuType.EquipmentStatus => _serviceProvider.GetRequiredService<EquipmentStatusViewModel>(),
             _ => _serviceProvider.GetRequiredService<DashBoardViewModel>()
         };
     }
