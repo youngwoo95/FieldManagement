@@ -824,25 +824,22 @@
   },
   "packageFolders": {
     "C:\\Users\\kyw\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\PlantManagement.csproj",
+      "projectUniqueName": "D:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\PlantManagement.csproj",
       "projectName": "PlantManagement",
-      "projectPath": "C:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\PlantManagement.csproj",
+      "projectPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\PlantManagement.csproj",
       "packagesPath": "C:\\Users\\kyw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\obj\\",
+      "outputPath": "D:\\Users\\kyw\\Documents\\FieldManagement\\PlantManagement\\PlantManagement\\PlantManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\kyw\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -851,7 +848,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 24.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -909,7 +905,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

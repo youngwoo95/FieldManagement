@@ -1,32 +1,81 @@
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Comm.Behaviors;
+using PlantManagement.Views.ViewModels.EquipmentStatusModel.Dialog;
 
 namespace PlantManagement.Views.ViewModels.EquipmentStatusModel;
 
 public partial class EquipmentStatusViewModel : BaseViewModel
 {
+    private readonly IEquipmentDataService _equipmentDataService;
+    private readonly IEquipmentEditDialogService _equipmentEditDialogService;
+
+    public ICommand AddFloorCommand { get; }
     public ICommand EditCommand { get; }
     public ICommand SaveCommand { get; }
 
-    public EquipmentStatusViewModel()
+    public EquipmentStatusViewModel(
+        IEquipmentDataService equipmentDataService,
+        IEquipmentEditDialogService equipmentEditDialogService)
     {
-        Floors = new ObservableCollection<string> { "1F", "2F", "3F" };
-        Markers = new ObservableCollection<MarkerPosition>();
-        Logs = new ObservableCollection<string>();
+        _equipmentDataService = equipmentDataService;
+        _equipmentEditDialogService = equipmentEditDialogService;
 
+        _equipmentDataService.DataChanged += OnEquipmentDataChanged;
+
+        AddFloorCommand = new RelayCommand(_ => OpenFloorEditor());
         EditCommand = new RelayCommand(_ => SetEditMode(true));
         SaveCommand = new RelayCommand(_ => SetEditMode(false));
 
-        SelectedFloor = Floors[0];
-        AddLog("설비 현황판을 불러왔습니다.");
+        RefreshFloors();
+        AddLog("Equipment status board loaded.");
     }
 
     private void SetEditMode(bool enabled)
     {
         IsEditMode = enabled;
-        AddLog(enabled ? "편집 모드로 전환했습니다." : "저장 후 조회 모드로 전환했습니다.");
+        AddLog(enabled ? "Switched to edit mode." : "Switched to view mode.");
+    }
+
+    private void OpenFloorEditor()
+    {
+        var result = _equipmentEditDialogService.ShowFloorEditorDialog();
+        if (result == true)
+        {
+            RefreshFloors();
+            AddLog("Floor equipment assignment updated.");
+        }
+    }
+
+    private void OnEquipmentDataChanged(object? sender, EventArgs e)
+    {
+        RefreshFloors();
+    }
+
+    private void RefreshFloors()
+    {
+        var previousFloor = _selectedFloor;
+
+        Floors.Clear();
+        foreach (var floor in _equipmentDataService.Floors)
+        {
+            Floors.Add(floor);
+        }
+
+        if (Floors.Count == 0)
+        {
+            SelectedFloor = string.Empty;
+            Markers.Clear();
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(previousFloor) && Floors.Contains(previousFloor))
+        {
+            SelectedFloor = previousFloor;
+            return;
+        }
+
+        SelectedFloor = Floors[0];
     }
 
     private void AddLog(string message)
@@ -37,34 +86,32 @@ public partial class EquipmentStatusViewModel : BaseViewModel
     private void LoadMarkersForFloor(string floor)
     {
         Markers.Clear();
-
-        var floorMarkers = floor switch
+        if (string.IsNullOrWhiteSpace(floor))
         {
-            "2F" => new[]
-            {
-                new MarkerPosition { Id = 201, Text = "M-201", X = 120, Y = 110 },
-                new MarkerPosition { Id = 202, Text = "M-202", X = 310, Y = 170 },
-                new MarkerPosition { Id = 203, Text = "M-203", X = 500, Y = 220 }
-            },
-            "3F" => new[]
-            {
-                new MarkerPosition { Id = 301, Text = "M-301", X = 150, Y = 120 },
-                new MarkerPosition { Id = 302, Text = "M-302", X = 360, Y = 200 },
-                new MarkerPosition { Id = 303, Text = "M-303", X = 560, Y = 250 }
-            },
-            _ => new[]
-            {
-                new MarkerPosition { Id = 101, Text = "M-101", X = 100, Y = 100 },
-                new MarkerPosition { Id = 102, Text = "M-102", X = 280, Y = 160 },
-                new MarkerPosition { Id = 103, Text = "M-103", X = 470, Y = 210 }
-            }
-        };
-
-        foreach (var marker in floorMarkers)
-        {
-            Markers.Add(marker);
+            return;
         }
 
-        AddLog($"{floor} 배치도를 표시했습니다.");
+        var floorEquipments = _equipmentDataService.GetFloorEquipments(floor);
+
+        const double originX = 90;
+        const double originY = 90;
+        const double xStep = 130;
+        const double yStep = 160;
+        const int maxPerRow = 4;
+
+        for (var index = 0; index < floorEquipments.Count; index++)
+        {
+            var equipment = floorEquipments[index];
+
+            Markers.Add(new MarkerPosition
+            {
+                Id = equipment.Id,
+                Text = equipment.Name,
+                X = originX + (index % maxPerRow) * xStep,
+                Y = originY + (index / maxPerRow) * yStep
+            });
+        }
+
+        AddLog($"Displayed {floor} layout.");
     }
 }
