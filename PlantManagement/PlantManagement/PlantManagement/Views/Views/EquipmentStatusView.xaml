@@ -315,7 +315,7 @@
                     BorderThickness="1"
                     Padding="10">
                 <Grid>
-                    <Image Source="Comm/images/room1.jpg" Stretch="Uniform" />
+                    <Image Source="/Comm/images/room1.jpg" Stretch="Uniform" />
 
                     <ItemsControl ItemsSource="{Binding Markers}">
                         <ItemsControl.ItemsPanel>
