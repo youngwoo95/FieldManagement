@@ -8,7 +8,7 @@ namespace PlantManagement.Views.Views.Dialogs;
 public partial class AddOrderWindow : Window
 {
     private readonly AddOrderViewModel _viewModel;
-    
+
     public AddOrderWindow(AddOrderViewModel viewModel)
     {
         InitializeComponent();
@@ -30,6 +30,11 @@ public partial class AddOrderWindow : Window
         Closed -= OnClosed;
     }
 
+    private async void CustomerComboBox_OnDropDownOpened(object sender, EventArgs e)
+    {
+        await _viewModel.LoadCustomerNamesAsync();
+    }
+
     private void AttachmentFileTextBox_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         e.Handled = true;
@@ -44,7 +49,9 @@ public partial class AddOrderWindow : Window
 
         var result = openFileDialog.ShowDialog(this);
         if (result != true)
+        {
             return;
+        }
 
         _viewModel.AttachmentFilePath = openFileDialog.FileName;
     }

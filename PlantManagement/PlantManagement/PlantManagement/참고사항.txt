@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=100.127.26.53;Port=3306;Database=PlantManagement;User=rladyddn258;Password=rladyddn!!95;" Pomelo.EntityFrameworkCore.MySql --output-dir Commons/DBModels --context-dir Commons/Repository --context PlantContext --force --project .\PlantManagement\PlantManagement.csproj

@@ -5,9 +5,30 @@ public partial class AddCustomerViewModel
     private string _customerName = string.Empty;
     private string _managerName = string.Empty;
     private string _customerGubun = string.Empty;
+    private string _departmentName = string.Empty;
     private string _phoneNumber = string.Empty;
+    private string _email = string.Empty;
     private string _address = string.Empty;
+    private string _memo = string.Empty;
     private string _validationMessage = string.Empty;
+
+    public string DepartmentName
+    {
+        get => _departmentName;
+        set => SetField(ref _departmentName, value);
+    }
+
+    public string Email
+    {
+        get => _email;
+        set => SetField(ref _email, value);
+    }
+
+    public string Memo
+    {
+        get => _memo;
+        set => SetField(ref _memo, value);
+    }
 
     public string CustomerName
     {

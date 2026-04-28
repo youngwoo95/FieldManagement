@@ -2,6 +2,8 @@ namespace PlantManagement.ViewItems;
 
 public class FacilityViewItems
 {
+    public int Seq { get; set; }
+    
     /// <summary>
     /// 체크여부
     /// </summary>

@@ -5,4 +5,5 @@ namespace PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 public interface IFacilityDialogService
 {
     FacilityViewItems? ShowAddFacilityDialog();
+    FacilityViewItems? ShowEditFacilityDialog(FacilityViewItems target);
 }

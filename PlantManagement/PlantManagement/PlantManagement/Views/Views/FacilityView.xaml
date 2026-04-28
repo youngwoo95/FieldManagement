@@ -4,29 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
              Background="Transparent">
-    
+
     <UserControl.Resources>
         <Style x:Key="RoundedTextBox" TargetType="TextBox">
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="Padding" Value="10, 4"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}"/>
-            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Width" Value="220"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundColor}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxBackgroundColor}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ComboBoxBorderColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Width" Value="220" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Border Grid.Row="0"
                 Padding="16"
                 Margin="0,0,0,12"
@@ -36,48 +37,47 @@
                 CornerRadius="12">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="검색조건"
                                VerticalAlignment="Center"
                                Margin="0,0,8,0"
-                               Foreground="{DynamicResource ViewBodyTextColor}"/>
+                               Foreground="{DynamicResource ViewBodyTextColor}" />
                     <TextBox Style="{StaticResource RoundedTextBox}"
-                             Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"/>
-                    
+                             Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="조회"
-                            Margin="0,0,8,0" 
-                            Padding="14,8" 
-                            Background="{DynamicResource PrimaryActionBackgroundColor}" 
+                    <Button Content="편집"
+                            Margin="0,0,8,0"
+                            Padding="14,8"
+                            Background="{DynamicResource PrimaryActionBackgroundColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
                             BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"
-                            Command="{Binding SearchCommand}"/>
-                    
-                    <Button Content="등록" 
+                            Command="{Binding EditCommand}" />
+
+                    <Button Content="등록"
                             Margin="0,0,8,0"
-                            Padding="14, 8"
+                            Padding="14,8"
                             Background="{DynamicResource PrimarySaveBackgroundColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
                             BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"
-                            Command="{Binding AddCommand}"/>
-                    
+                            Command="{Binding AddCommand}" />
+
                     <Button Content="삭제"
                             Margin="0,0,8,0"
-                            Padding="14, 8"
+                            Padding="14,8"
                             Background="{DynamicResource SecondaryActionColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
                             BorderBrush="{DynamicResource SecondaryActionColor}"
-                            Command="{Binding RemoveCommand}"/>
+                            Command="{Binding RemoveCommand}" />
                 </StackPanel>
             </Grid>
         </Border>
-        
+
         <Border Grid.Row="1"
                 Margin="0,0,12,0"
                 Padding="12"
@@ -104,54 +104,54 @@
                       VerticalGridLinesBrush="{DynamicResource ViewPanelBorderColor}"
                       RowBackground="{DynamicResource ViewPanelBackgroundColor}"
                       AlternatingRowBackground="{DynamicResource ListViewCardBackgroundColor}">
-                   <DataGrid.Resources>
+                <DataGrid.Resources>
                     <Style x:Key="CenteredDataGridTextStyle" TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="TextAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="TextAlignment" Value="Center" />
                     </Style>
                     <Style x:Key="LargeCheckBoxStyle" TargetType="CheckBox">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="LayoutTransform">
                             <Setter.Value>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                             </Setter.Value>
                         </Setter>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="{DynamicResource ViewHeaderBorderColor}"/>
-                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
-                        <Setter Property="BorderBrush" Value="{DynamicResource ViewPanelBorderColor}"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="Height" Value="42"/>
+                        <Setter Property="Background" Value="{DynamicResource ViewHeaderBorderColor}" />
+                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource ViewPanelBorderColor}" />
+                        <Setter Property="BorderThickness" Value="0,0,0,1" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="SemiBold" />
+                        <Setter Property="Height" Value="42" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
-                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
-                        <Setter Property="Padding" Value="10,6"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}" />
+                        <Setter Property="Padding" Value="10,6" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="MinHeight" Value="40"/>
-                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}"/>
+                        <Setter Property="Height" Value="40" />
+                        <Setter Property="MinHeight" Value="40" />
+                        <Setter Property="Foreground" Value="{DynamicResource ViewBodyTextColor}" />
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
@@ -159,7 +159,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          Style="{StaticResource LargeCheckBoxStyle}"/>
+                                          Style="{StaticResource LargeCheckBoxStyle}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -167,10 +167,7 @@
                     <DataGridTextColumn Header="제조사" Binding="{Binding Maker}" IsReadOnly="True" Width="100" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                     <DataGridTextColumn Header="용도" Binding="{Binding Purpose}" IsReadOnly="True" Width="*" ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                 </DataGrid.Columns>
-                
             </DataGrid>
         </Border>
-        
-        
     </Grid>
 </UserControl>

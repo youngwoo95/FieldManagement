@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using PlantManagement.Service.v1.Notice;
 using PlantManagement.ViewItems;
 using SkiaSharp;
 
@@ -9,6 +10,8 @@ namespace PlantManagement.Views.ViewModels.DashBoardModel;
 
 public partial class DashBoardViewModel : BaseViewModel
 {
+    private readonly INoticeService _noticeService;
+    
     public ISeries[] StackSeries { get; set; } // 스택 막대 그래프
     public Axis[] XAxes { get; set; } // X축
     public Axis[] YAxes { get; set; } // Y축
@@ -30,13 +33,28 @@ public partial class DashBoardViewModel : BaseViewModel
     
     public ObservableCollection<NoticeViewItems> NoticeItems { get; set; } = new();
     
-    public DashBoardViewModel()
+    public DashBoardViewModel(INoticeService noticeService)
     {
-        SetNotice();
+        this._noticeService = noticeService;
+        
         SetStackSeries();
         SetTargetSeries();
         SetEquipmentProductSeries();
         SetDefectRateSeries();
+        
+        _ = InitializeAsync(); // 비동기 초기 로딩
+    }
+    
+    private async Task InitializeAsync()
+    {
+        try
+        {
+            await SetNotice();
+        }
+        catch
+        {
+            // Avoid crashing startup on first dashboard load.
+        }
     }
 
     public void SetDefectRateSeries()
@@ -130,35 +148,21 @@ public partial class DashBoardViewModel : BaseViewModel
     /// <summary>
     /// 공지사항 데이터
     /// </summary>
-    public void SetNotice()
+    public async Task SetNotice()
     {
-        NoticeItems = new ObservableCollection<NoticeViewItems>
+        var notices = await _noticeService.GetNoticeService();
+      
+        foreach (var noticeItem in notices)
         {
-            new NoticeViewItems
+            NoticeItems.Add(new NoticeViewItems
             {
-                No = 1,
-                Title = "1번 공지사항",
-                Description = "1번 공지사항에 대한 내용입니다.",
-                CreateUser = "시스템 관리자",
-                CreateDt = "2026-04-24 00:00:00"
-            },
-            new NoticeViewItems
-            {
-                No = 2,
-                Title = "2번 공지사항",
-                Description = "2번 공지사항에 대한 내용입니다.",
-                CreateUser = "시스템 관리자",
-                CreateDt = "2026-04-24 00:00:00"
-            },
-            new NoticeViewItems
-            {
-                No = 3,
-                Title = "3번 공지사항",
-                Description = "3번 공지사항에 대한 내용입니다.",
-                CreateUser = "시스템 관리자",
-                CreateDt = "2026-04-24 00:00:00"
-            }
-        };
+                No = noticeItem.noticeSeq,
+                Title = noticeItem.title ?? string.Empty,
+                Description = noticeItem.description ?? string.Empty,
+                CreateUser = noticeItem.createUser ?? string.Empty,
+                CreateDt = noticeItem.createDt.ToString("yyyy-MM-dd HH:mm:ss")
+            });
+        }
     }
 
     public void SetStackSeries()

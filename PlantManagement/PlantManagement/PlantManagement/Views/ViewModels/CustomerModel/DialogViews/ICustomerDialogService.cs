@@ -5,4 +5,6 @@ namespace PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
 public interface ICustomerDialogService
 {
     CustomerViewItems? ShowAddCustomerDialog();
+
+    CustomerViewItems? ShowEditCustomerDialog(CustomerViewItems target);
 }

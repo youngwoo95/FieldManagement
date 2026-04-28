@@ -81,13 +81,13 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="조회"
+                    <Button Content="편집"
                             Margin="0,0,8,0"
                             Padding="14,8"
                             Background="{DynamicResource PrimaryActionBackgroundColor}"
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
                             BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"
-                            Command="{Binding SearchCommand}"/>
+                            Command="{Binding EditCommand}"/>
 
                     <Button Content="초기화"
                             Margin="0,0,8,0"

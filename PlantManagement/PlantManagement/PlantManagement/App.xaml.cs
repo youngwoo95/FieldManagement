@@ -1,7 +1,18 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantManagement.Comm.Logger;
+using PlantManagement.Commons.Repository;
+using PlantManagement.Repository.v1.Customer;
+using PlantManagement.Repository.v1.Facility;
+using PlantManagement.Repository.v1.Notice;
+using PlantManagement.Repository.v1.Orders;
+using PlantManagement.Service.v1.Customer;
+using PlantManagement.Service.v1.Facility;
+using PlantManagement.Service.v1.Notice;
+using PlantManagement.Service.v1.Orders;
 using PlantManagement.Views;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
@@ -41,25 +52,40 @@ public partial class App : Application
         
         /* ================== DI ====================== */
         serviceCollection.AddSingleton<MainWindowViewModel>();
-        serviceCollection.AddSingleton<DashBoardViewModel>();
-        serviceCollection.AddSingleton<CustomerViewModel>();
-        serviceCollection.AddSingleton<FacilityViewModel>();
+        serviceCollection.AddTransient<DashBoardViewModel>();
+        serviceCollection.AddTransient<CustomerViewModel>();
+        serviceCollection.AddTransient<FacilityViewModel>();
         serviceCollection.AddSingleton<OrderViewModel>();
         serviceCollection.AddSingleton<WorkStatusViewModel>();
         serviceCollection.AddSingleton<IEquipmentDataService, EquipmentDataService>();
         serviceCollection.AddSingleton<IEquipmentEditDialogService, EquipmentEditDialogService>();
         serviceCollection.AddSingleton<EquipmentStatusViewModel>();
+        serviceCollection.AddSingleton<ILogService, LogService>();
         
-        serviceCollection.AddSingleton<AddCustomerViewModel>();
-        serviceCollection.AddSingleton<AddFacilityViewModel>();        
-        serviceCollection.AddSingleton<AddOrderViewModel>();
+        serviceCollection.AddTransient<AddCustomerViewModel>();
+        serviceCollection.AddTransient<AddFacilityViewModel>();        
+        serviceCollection.AddTransient<AddOrderViewModel>();
         serviceCollection.AddSingleton<AddWorkStatusViewModel>();
         
         
-        serviceCollection.AddSingleton<ICustomerDialogService, CustomerDialogService>();
-        serviceCollection.AddSingleton<IFacilityDialogService, FacilityDialogService>();
-        serviceCollection.AddSingleton<IOrderDialogService, OrderDialogService>();
+        serviceCollection.AddTransient<ICustomerDialogService, CustomerDialogService>();
+        serviceCollection.AddTransient<IFacilityDialogService, FacilityDialogService>();
+        serviceCollection.AddTransient<IOrderDialogService, OrderDialogService>();
         serviceCollection.AddSingleton<IWorkDialogService, WorkDialogService>();
+        
+        serviceCollection.AddTransient<PlantContext>();
+        serviceCollection.AddTransient<INoticeRepository, NoticeRepository>();
+        serviceCollection.AddTransient<ICustomerRepository, CustomerRepository>();
+        serviceCollection.AddTransient<IFacilityRepository, FacilityRepository>();
+        serviceCollection.AddTransient<IOrderRepository, OrderRepository>();
+        
+        serviceCollection.AddTransient<INoticeService, NoticeService>();
+        serviceCollection.AddTransient<ICustomerService, CustomerService>();
+        serviceCollection.AddTransient<IFacilityService, FacilityService>();
+        serviceCollection.AddTransient<IOrderService, OrderService>();
+        
+        serviceCollection.AddTransient<IDbConnection>(sp =>
+            sp.GetRequiredService<PlantContext>().Database.GetDbConnection());
         
         Services = serviceCollection.BuildServiceProvider();
         

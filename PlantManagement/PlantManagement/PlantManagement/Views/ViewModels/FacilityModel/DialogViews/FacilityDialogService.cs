@@ -1,31 +1,39 @@
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.Views.Dialogs;
 
 namespace PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 
-public class FacilityDialogService : IFacilityDialogService
+public class FacilityDialogService(IServiceProvider serviceProvider) : IFacilityDialogService
 {
     public FacilityViewItems? ShowAddFacilityDialog()
     {
-        var addFacilityViewModel = new AddFacilityViewModel();
-        var addWindow = new AddFacilityWindow(addFacilityViewModel)
+        var viewModel = serviceProvider.GetRequiredService<AddFacilityViewModel>();
+        viewModel.PrepareForAdd();
+        return ShowDialog(viewModel);
+    }
+
+    public FacilityViewItems? ShowEditFacilityDialog(FacilityViewItems target)
+    {
+        var viewModel = serviceProvider.GetRequiredService<AddFacilityViewModel>();
+        viewModel.PrepareForEdit(target);
+        return ShowDialog(viewModel);
+    }
+
+    private static FacilityViewItems? ShowDialog(AddFacilityViewModel viewModel)
+    {
+        var addWindow = new AddFacilityWindow(viewModel)
         {
             Owner = Application.Current?.MainWindow
         };
 
         var result = addWindow.ShowDialog();
         if (result != true)
-            return null;
-
-        return new FacilityViewItems()
         {
-            IsChecked = false,
-            Name = addFacilityViewModel.FacilityName,
-            Maker = addFacilityViewModel.Maker,
-            Purpose = addFacilityViewModel.Purpose
-        };
+            return null;
+        }
 
-
+        return viewModel.BuildFacilityViewItem();
     }
 }

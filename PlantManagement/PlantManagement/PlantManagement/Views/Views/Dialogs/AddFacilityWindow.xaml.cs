@@ -14,6 +14,7 @@ public partial class AddFacilityWindow : Window
         _viewModel = viewModel;
         DataContext = _viewModel;
         _viewModel.RequestClose += OnRequestClose;
+        Closed += OnClosed;
     }
 
     private void OnRequestClose(bool? dialogResult)

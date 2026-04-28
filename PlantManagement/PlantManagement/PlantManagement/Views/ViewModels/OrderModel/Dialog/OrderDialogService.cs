@@ -1,46 +1,40 @@
-using System.Linq;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.Views.Dialogs;
 
 namespace PlantManagement.Views.ViewModels.OrderModel.Dialog;
 
-public class OrderDialogService : IOrderDialogService
+public class OrderDialogService(IServiceProvider serviceProvider) : IOrderDialogService
 {
-    private readonly CustomerViewModel _customerViewModel;
-
-    public OrderDialogService(CustomerViewModel customerViewModel)
-    {
-        _customerViewModel = customerViewModel;
-    }
-
     public OrderViewItems? ShowAddOrderDialog()
     {
-        var addOrderViewModel = new AddOrderViewModel();
-        var customerNames = _customerViewModel.Customers
-            .Select(x => x.Name)
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
-        addOrderViewModel.SetCustomerNames(customerNames);
+        var addOrderViewModel = serviceProvider.GetRequiredService<AddOrderViewModel>();
+        addOrderViewModel.PrepareForAdd();
+        return ShowDialog(addOrderViewModel);
+    }
 
-        var addWindow = new AddOrderWindow(addOrderViewModel)
+    public OrderViewItems? ShowEditOrderDialog(OrderViewItems target)
+    {
+        var addOrderViewModel = serviceProvider.GetRequiredService<AddOrderViewModel>();
+        addOrderViewModel.PrepareForEdit(target);
+        return ShowDialog(addOrderViewModel);
+    }
+
+    private static OrderViewItems? ShowDialog(AddOrderViewModel viewModel)
+    {
+        var addWindow = new AddOrderWindow(viewModel)
         {
             Owner = Application.Current?.MainWindow
         };
 
         var result = addWindow.ShowDialog();
         if (result != true)
-            return null;
-
-        return new OrderViewItems()
         {
-            Customer = addOrderViewModel.CustomerName,
-            OrderQty = addOrderViewModel.OrderQty,
-            StartDt = addOrderViewModel.StartDt,
-            EndDt = addOrderViewModel.EndDt,
-            PdfFileName = addOrderViewModel.AttachmentFilePath
-        };
+            return null;
+        }
+
+        return viewModel.BuildOrderViewItem();
     }
 }

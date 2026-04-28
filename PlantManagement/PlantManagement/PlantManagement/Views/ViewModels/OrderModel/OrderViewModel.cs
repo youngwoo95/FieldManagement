@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows.Data;
 using System.Windows.Input;
 using PlantManagement.Comm;
+using PlantManagement.Service.v1.Orders;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.ViewModels.OrderModel.Dialog;
 
@@ -10,48 +11,58 @@ namespace PlantManagement.Views.ViewModels.OrderModel;
 public partial class OrderViewModel : BaseViewModel
 {
     private readonly IOrderDialogService _orderDialogService;
-
+    private readonly IOrderService _orderService;
+    
     private static readonly Uri BlankPdfUri = new("about:blank");
     public ICommand ClosePdfPanelCommand { get; }
-    public ICommand SearchCommand { get; }
+    public ICommand EditCommand { get; }
     public ICommand ResetCommand { get; }
     public ICommand AddCommand { get; }
 
-    public OrderViewModel(IOrderDialogService orderDialogService)
+    public OrderViewModel(IOrderDialogService orderDialogService,
+        IOrderService orderService)
     {
         _orderDialogService = orderDialogService;
-
+        _orderService = orderService;
+        
         ClosePdfPanelCommand = new RelayCommand(_ => ClosePdfPanel());
-        SearchCommand = new RelayCommand(_ => Search());
+        EditCommand = new RelayCommand(_ => _ = EditAsync());
         ResetCommand = new RelayCommand(_ => Reset());
-        AddCommand = new RelayCommand(_ => Add());
+        AddCommand = new RelayCommand(_ => _ = AddAsync());
 
         _filteredOrders = CollectionViewSource.GetDefaultView(_orders);
         _filteredOrders.Filter = FilterOrder;
 
-        LoadOrders();
+        _ = ReloadAsync();
+        
+        _filteredOrders.Refresh();
+    }
+    
+    public async Task ReloadAsync()
+    {
+        await LoadOrders();
         _filteredOrders.Refresh();
     }
 
-    private void LoadOrders()
+    private async Task LoadOrders()
     {
+        var model = await _orderService.GetOrderService();
+        var rows = model ?? [];
+        
         _orders.Clear();
-        _orders.Add(new OrderViewItems
+        foreach (var item in rows)
         {
-            Customer = "Hanwha Systems",
-            OrderQty = 20,
-            StartDt = "2026-04-01",
-            EndDt = "2026-04-30",
-            PdfFileName = "pdf1.pdf"
-        });
-        _orders.Add(new OrderViewItems
-        {
-            Customer = "SK Interfaces",
-            OrderQty = 50,
-            StartDt = "2026-03-01",
-            EndDt = "2026-03-30",
-            PdfFileName = "pdf2.pdf"
-        });
+            _orders.Add(new OrderViewItems
+            {
+                orderSeq = item.orderSeq,
+                CustomerSeq = item.customerSeq,
+                Customer = item.name,
+                StartDt = item.startDt,
+                EndDt = item.endDt,
+                OrderQty = item.orderQty,
+                PdfFileName = item.attach
+            });
+        }
     }
 
     private bool FilterOrder(object item)
@@ -92,26 +103,48 @@ public partial class OrderViewModel : BaseViewModel
         PdfPanelWidth = 0;
     }
 
-    private void Add()
+    private async Task AddAsync()
     {
         var newOrder = _orderDialogService.ShowAddOrderDialog();
         if (newOrder is null)
+        {
             return;
+        }
 
-        if (string.IsNullOrWhiteSpace(newOrder.PdfFileName))
-            newOrder.PdfFileName = "pdf1.pdf";
+        await ReloadAsync();
+    }
 
-        _orders.Add(newOrder);
-        _filteredOrders.Refresh();
+    private async Task EditAsync()
+    {
+        if (SelectedOrder is null)
+        {
+            return;
+        }
+
+        var edited = _orderDialogService.ShowEditOrderDialog(SelectedOrder);
+        if (edited is null)
+        {
+            return;
+        }
+
+        await ReloadAsync();
     }
 
     private void UpdatePdfPreviewState(string? pdfPath)
     {
-        if (string.IsNullOrWhiteSpace(pdfPath))
+        if (pdfPath is null)
         {
             SelectedPdfUri = BlankPdfUri;
             IsPdfFallbackVisible = true;
             PdfFallbackMessage = "Select an order to preview PDF.";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(pdfPath))
+        {
+            SelectedPdfUri = BlankPdfUri;
+            IsPdfFallbackVisible = true;
+            PdfFallbackMessage = "첨부파일이 없습니다.";
             return;
         }
 
@@ -131,7 +164,12 @@ public partial class OrderViewModel : BaseViewModel
 
     private static string ResolvePdfPath(string pdfFileName)
     {
-        var fileName = string.IsNullOrWhiteSpace(pdfFileName) ? "pdf1.pdf" : pdfFileName.Trim();
+        if (string.IsNullOrWhiteSpace(pdfFileName))
+        {
+            return string.Empty;
+        }
+
+        var fileName = pdfFileName.Trim();
 
         var candidates = new[]
         {

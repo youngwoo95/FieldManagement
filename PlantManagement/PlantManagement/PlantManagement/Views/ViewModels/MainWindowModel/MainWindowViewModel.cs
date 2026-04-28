@@ -47,6 +47,16 @@ public partial class MainWindowViewModel : BaseViewModel
             MenuType.EquipmentStatus => _serviceProvider.GetRequiredService<EquipmentStatusViewModel>(),
             _ => _serviceProvider.GetRequiredService<DashBoardViewModel>()
         };
+
+        if (CurrentViewModel is CustomerViewModel customerViewModel)
+        {
+            _ = customerViewModel.ReloadAsync();
+        }
+
+        if (CurrentViewModel is FacilityViewModel facilityViewModel)
+        {
+            _ = facilityViewModel.ReloadAsync();
+        }
     }
 
 }
