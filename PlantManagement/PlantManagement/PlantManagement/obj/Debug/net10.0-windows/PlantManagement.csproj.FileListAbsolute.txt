@@ -173,14 +173,7 @@ D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantMana
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Caching.Memory.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.DependencyModel.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Options.dll
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Extensions.Primitives.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Identity.Client.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\Microsoft.IdentityModel.Abstractions.dll

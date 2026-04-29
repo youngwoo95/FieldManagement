@@ -23,7 +23,13 @@ public partial class PlantContext : DbContext
 
     public virtual DbSet<FacilityTb> FacilityTbs { get; set; }
 
+    public virtual DbSet<FloorFacilityTb> FloorFacilityTbs { get; set; }
+
+    public virtual DbSet<FloorLampTb> FloorLampTbs { get; set; }
+
     public virtual DbSet<FloorTb> FloorTbs { get; set; }
+
+    public virtual DbSet<LampTb> LampTbs { get; set; }
 
     public virtual DbSet<NoticeTb> NoticeTbs { get; set; }
 
@@ -164,13 +170,56 @@ public partial class PlantContext : DbContext
                 .HasColumnName("purpose");
         });
 
+        modelBuilder.Entity<FloorFacilityTb>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("FloorFacilityTb");
+
+            entity.HasIndex(e => e.FacilitySeq, "FK__FacilityTb");
+
+            entity.HasIndex(e => e.FloorSeq, "FK__FloorTb");
+
+            entity.HasOne(d => d.FacilitySeqNavigation).WithMany()
+                .HasForeignKey(d => d.FacilitySeq)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__FacilityTb");
+
+            entity.HasOne(d => d.FloorSeqNavigation).WithMany()
+                .HasForeignKey(d => d.FloorSeq)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__FloorTb");
+        });
+
+        modelBuilder.Entity<FloorLampTb>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("FloorLampTb");
+
+            entity.HasIndex(e => e.FloorSeq, "FK_FloorLampTb_FloorTb");
+
+            entity.HasIndex(e => e.LampSeq, "FK_FloorLampTb_LampTb");
+
+            entity.HasOne(d => d.FloorSeqNavigation).WithMany()
+                .HasForeignKey(d => d.FloorSeq)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_FloorLampTb_FloorTb");
+
+            entity.HasOne(d => d.LampSeqNavigation).WithMany()
+                .HasForeignKey(d => d.LampSeq)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_FloorLampTb_LampTb");
+
+            entity.Property(e => e.PositionX).HasColumnName("PositionX").HasDefaultValue(0.0);
+            entity.Property(e => e.PositionY).HasColumnName("PositionY").HasDefaultValue(0.0);
+        });
+
         modelBuilder.Entity<FloorTb>(entity =>
         {
             entity.HasKey(e => e.FloorSeq).HasName("PRIMARY");
 
             entity.ToTable("FloorTb", tb => tb.HasComment("층정보 테이블"));
-
-            entity.HasIndex(e => e.FacilitySeq, "FK__FacilityTb");
 
             entity.HasIndex(e => e.Name, "uk_floorName").IsUnique();
 
@@ -181,17 +230,18 @@ public partial class PlantContext : DbContext
                 .HasMaxLength(255)
                 .HasComment("첨부파일")
                 .HasColumnName("attach");
-            entity.Property(e => e.FacilitySeq)
-                .HasComment("FK")
-                .HasColumnName("facilitySeq");
             entity.Property(e => e.Name)
                 .HasComment("층이름")
                 .HasColumnName("name");
+        });
 
-            entity.HasOne(d => d.FacilitySeqNavigation).WithMany(p => p.FloorTbs)
-                .HasForeignKey(d => d.FacilitySeq)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__FacilityTb");
+        modelBuilder.Entity<LampTb>(entity =>
+        {
+            entity.HasKey(e => e.LampSeq).HasName("PRIMARY");
+
+            entity.ToTable("LampTb");
+
+            entity.Property(e => e.LampName).HasMaxLength(255);
         });
 
         modelBuilder.Entity<NoticeTb>(entity =>

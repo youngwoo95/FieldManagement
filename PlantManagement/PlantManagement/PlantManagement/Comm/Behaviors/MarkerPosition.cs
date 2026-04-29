@@ -3,12 +3,16 @@ using System.Runtime.CompilerServices;
 
 namespace PlantManagement.Comm.Behaviors;
 
+/// <summary>
+/// LampState 값: "red" | "amber" | "green" | "off" (기본값)
+/// </summary>
 public class MarkerPosition : INotifyPropertyChanged
 {
     private int _id;
     private string _text = string.Empty;
     private double _x;
     private double _y;
+    private string _lampState = "off";
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -36,12 +40,18 @@ public class MarkerPosition : INotifyPropertyChanged
         set => SetField(ref _y, value);
     }
 
+    /// <summary>
+    /// 표시등 상태: "red" | "amber" | "green" | "off"
+    /// </summary>
+    public string LampState
+    {
+        get => _lampState;
+        set => SetField(ref _lampState, value);
+    }
+
     public override string ToString()
     {
-        return $"id: {Id} " +
-               $"Text: {Text} " +
-               $"X : {X} " +
-               $"Y : {Y}";
+        return $"id: {Id} Text: {Text} X: {X} Y: {Y}";
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

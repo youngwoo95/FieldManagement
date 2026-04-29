@@ -19,14 +19,7 @@ public partial class FloorTb
     public string Name { get; set; } = null!;
 
     /// <summary>
-    /// FK
-    /// </summary>
-    public int FacilitySeq { get; set; }
-
-    /// <summary>
     /// 첨부파일
     /// </summary>
     public string? Attach { get; set; }
-
-    public virtual FacilityTb FacilitySeqNavigation { get; set; } = null!;
 }

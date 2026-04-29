@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Win32;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.ViewModels.EquipmentStatusModel;
 
@@ -27,8 +28,17 @@ public partial class EditWindows : Window
         AllEquipmentListBox.ItemsSource = _allEquipmentItems;
         FloorEquipmentListBox.ItemsSource = _floorEquipmentItems;
 
+        Loaded += OnLoadedAsync;
+        FloorMessageText.Text = "Loading equipment list...";
+    }
+
+    private async void OnLoadedAsync(object sender, RoutedEventArgs e)
+    {
+        Loaded -= OnLoadedAsync;
+        await _equipmentDataService.InitializeAsync();
+        RefreshFacilityComboBox();
         RefreshFloorComboBox();
-        FloorMessageText.Text = "층을 선택해서 장비를 배치해 주세요.";
+        FloorMessageText.Text = "층을 선택해서 설비를 배치해 주세요.";
     }
 
     private void SearchFloorButton_Click(object sender, RoutedEventArgs e)
@@ -53,15 +63,48 @@ public partial class EditWindows : Window
         FloorMessageText.Text = $"조회 완료: {targetFloor}";
     }
 
-    private void CreateFloorButton_Click(object sender, RoutedEventArgs e)
+    private async void CreateFloorButton_Click(object sender, RoutedEventArgs e)
     {
         var inputFloor = FloorNameTextBox.Text.Trim();
-        if (_equipmentDataService.TryAddFloor(inputFloor, out var message))
+        if (FacilityComboBox.SelectedValue is not int facilitySeq)
         {
-            RefreshFloorComboBox(inputFloor);
+            FloorMessageText.Text = "Select facility first.";
+            return;
         }
 
-        FloorMessageText.Text = message;
+        CreateFloorButton.IsEnabled = false;
+        try
+        {
+            var attach = string.IsNullOrWhiteSpace(AttachTextBox.Text)
+                ? null
+                : AttachTextBox.Text.Trim();
+
+            var result = await _equipmentDataService.TryAddFloorAsync(inputFloor, facilitySeq, attach);
+            if (result.IsSuccess)
+            {
+                RefreshFloorComboBox(inputFloor);
+            }
+
+            FloorMessageText.Text = result.Message;
+        }
+        finally
+        {
+            CreateFloorButton.IsEnabled = true;
+        }
+    }
+
+    private void BrowseAttachButton_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Filter = "All Files (*.*)|*.*|PDF Files (*.pdf)|*.pdf|Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg",
+            Multiselect = false
+        };
+
+        if (dialog.ShowDialog(this) == true)
+        {
+            AttachTextBox.Text = dialog.FileName;
+        }
     }
 
     private void FloorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -74,7 +117,7 @@ public partial class EditWindows : Window
         LoadFloorEquipment(floorName);
     }
 
-    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         if (string.IsNullOrWhiteSpace(_selectedFloor))
         {
@@ -82,15 +125,23 @@ public partial class EditWindows : Window
             return;
         }
 
-        if (_equipmentDataService.UpdateFloorEquipments(_selectedFloor, _floorEquipmentItems, out var message))
+        var saveButton = (Button)sender;
+        saveButton.IsEnabled = false;
+        FloorMessageText.Text = "저장 중...";
+        try
         {
-            FloorMessageText.Text = message;
-            DialogResult = true;
-            Close();
-            return;
+            var result = await _equipmentDataService.UpdateFloorEquipmentsAsync(_selectedFloor, _floorEquipmentItems);
+            FloorMessageText.Text = result.Message;
+            if (result.IsSuccess)
+            {
+                DialogResult = true;
+                Close();
+            }
         }
-
-        FloorMessageText.Text = message;
+        finally
+        {
+            saveButton.IsEnabled = true;
+        }
     }
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -201,10 +252,23 @@ public partial class EditWindows : Window
         FloorComboBox.SelectedItem = targetFloor;
     }
 
+    private void RefreshFacilityComboBox()
+    {
+        var facilities = _equipmentDataService.GetFacilities().ToList();
+        FacilityComboBox.ItemsSource = facilities;
+
+        if (facilities.Count > 0)
+        {
+            FacilityComboBox.SelectedValue = facilities[0].Seq;
+        }
+    }
+
     private void LoadFloorEquipment(string floorName)
     {
         _selectedFloor = floorName;
         FloorNameTextBox.Text = floorName;
+        AttachTextBox.Text = string.Empty;
+        FacilityComboBox.SelectedValue = _equipmentDataService.GetFloorFacilitySeq(floorName);
 
         var floorEquipments = _equipmentDataService.GetFloorEquipments(floorName).ToList();
         var assignedIds = floorEquipments.Select(item => item.Id).ToHashSet();

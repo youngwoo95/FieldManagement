@@ -82,3 +82,411 @@
    at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
    at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
    at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 09:46:36.747]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 10:31:33.098]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 10:52:00.422]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 13:02:23.916]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:02:23.931]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:02:23.935]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:02:23.939]	System.NullReferenceException: Object reference not set to an instance of an object.
+   at MySqlConnector.MySqlConnection.FinishQuerying(Boolean hasWarnings) in /_/src/MySqlConnector/MySqlConnection.cs:line 1052
+   at MySqlConnector.MySqlDataReader.DisposeAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 640
+   at MySqlConnector.MySqlDataReader.Dispose(Boolean disposing) in /_/src/MySqlConnector/MySqlDataReader.cs:line 442
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 506
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:06:14.857]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:06:14.869]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:06:14.872]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:06:14.875]	System.NullReferenceException: Object reference not set to an instance of an object.
+   at MySqlConnector.MySqlConnection.FinishQuerying(Boolean hasWarnings) in /_/src/MySqlConnector/MySqlConnection.cs:line 1052
+   at MySqlConnector.MySqlDataReader.DisposeAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 640
+   at MySqlConnector.MySqlDataReader.Dispose(Boolean disposing) in /_/src/MySqlConnector/MySqlDataReader.cs:line 442
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 506
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 53
+[2026-04-29 13:06:20.967]	System.InvalidOperationException: Unable to track an instance of type 'FloorLampTb' because it does not have a primary key. Only entity types with a primary key may be tracked.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Add(TEntity entity)
+   at PlantManagement.Repository.v1.Lamp.LampRepository.UpdateFloorLampsAsync(Int32 floorSeq, List`1 lampSeqs) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.EF.cs:line 24
+[2026-04-29 13:06:35.148]	System.InvalidOperationException: Unable to track an instance of type 'FloorLampTb' because it does not have a primary key. Only entity types with a primary key may be tracked.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Add(TEntity entity)
+   at PlantManagement.Repository.v1.Lamp.LampRepository.UpdateFloorLampsAsync(Int32 floorSeq, List`1 lampSeqs) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.EF.cs:line 24
+[2026-04-29 13:07:35.455]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:07:35.470]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:07:35.471]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:17:56.824]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:17:56.839]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:17:56.840]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 81
+[2026-04-29 13:26:32.446]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:26:32.460]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:26:32.461]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:26:55.047]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:26:55.060]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:26:55.061]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:29:59.791]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:29:59.805]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:29:59.806]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:30:18.987]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:30:18.999]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:30:19.000]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:49:46.751]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:49:46.776]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:49:46.777]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:54:31.091]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:54:31.111]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 13:54:31.112]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:01:35.961]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:01:35.974]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:01:35.975]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:03:55.361]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:03:55.377]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:03:55.379]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:06:17.772]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 14:07:26.581]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:07:26.594]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:07:26.595]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:14:54.845]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 14:14:56.074]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:14:56.077]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:14:56.078]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:15:37.593]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:15:37.608]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:15:37.609]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:16:27.685]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:16:27.704]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:16:27.705]	System.InvalidOperationException: This MySqlConnection is already in use. See https://mysqlconnector.net/conn-reuse
+   at MySqlConnector.Core.ServerSession.StartQuerying(ICancellableCommand command) in /_/src/MySqlConnector/Core/ServerSession.cs:line 285
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 51
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Lamp.LampRepository.GetFloorLampAsync(Int32 floorSeq) in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Lamp\LampRepository.SQL.cs:line 83
+[2026-04-29 14:21:26.148]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85

@@ -191,31 +191,37 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-                                        <Border Grid.Row="0"
+                                        <!-- Red indicator (기본: 꺼진 상태) -->
+                                        <Border x:Name="RedBorder"
+                                                Grid.Row="0"
                                                 Margin="0,0,0,5"
                                                 CornerRadius="999"
-                                                Background="#2B1116"
-                                                BorderBrush="#7F1D1D"
+                                                Background="#0F0808"
+                                                BorderBrush="#3D0D0D"
                                                 BorderThickness="1.2">
-                                            <Ellipse Fill="#B91C1C" Margin="4" />
+                                            <Ellipse x:Name="RedEllipse" Fill="#4B1010" Margin="4" />
                                         </Border>
 
-                                        <Border Grid.Row="1"
+                                        <!-- Amber indicator (기본: 꺼진 상태) -->
+                                        <Border x:Name="AmberBorder"
+                                                Grid.Row="1"
                                                 Margin="0,0,0,5"
                                                 CornerRadius="999"
-                                                Background="#2A1D0F"
-                                                BorderBrush="#92400E"
+                                                Background="#0F0C00"
+                                                BorderBrush="#3D1A00"
                                                 BorderThickness="1.2">
-                                            <Ellipse Fill="#F59E0B" Margin="4" />
+                                            <Ellipse x:Name="AmberEllipse" Fill="#4B2500" Margin="4" />
                                         </Border>
 
-                                        <Border Grid.Row="2"
+                                        <!-- Green indicator (기본: 꺼진 상태) -->
+                                        <Border x:Name="GreenBorder"
+                                                Grid.Row="2"
                                                 Margin="0,0,0,5"
                                                 CornerRadius="999"
-                                                Background="#11281B"
-                                                BorderBrush="#166534"
+                                                Background="#080F0A"
+                                                BorderBrush="#0A2D12"
                                                 BorderThickness="1.2">
-                                            <Ellipse Fill="#22C55E" Margin="4" />
+                                            <Ellipse x:Name="GreenEllipse" Fill="#0F3D18" Margin="4" />
                                         </Border>
                                     </Grid>
                                 </Border>
@@ -230,6 +236,27 @@
                         </Border>
 
                         <ControlTemplate.Triggers>
+                            <!-- Red 점등 -->
+                            <Trigger Property="Tag" Value="red">
+                                <Setter TargetName="RedBorder" Property="Background" Value="#4A1010" />
+                                <Setter TargetName="RedBorder" Property="BorderBrush" Value="#FF3333" />
+                                <Setter TargetName="RedEllipse" Property="Fill" Value="#FF4444" />
+                            </Trigger>
+
+                            <!-- Amber 점등 -->
+                            <Trigger Property="Tag" Value="amber">
+                                <Setter TargetName="AmberBorder" Property="Background" Value="#4A2800" />
+                                <Setter TargetName="AmberBorder" Property="BorderBrush" Value="#FFB300" />
+                                <Setter TargetName="AmberEllipse" Property="Fill" Value="#FFCC00" />
+                            </Trigger>
+
+                            <!-- Green 점등 -->
+                            <Trigger Property="Tag" Value="green">
+                                <Setter TargetName="GreenBorder" Property="Background" Value="#0A3D18" />
+                                <Setter TargetName="GreenBorder" Property="BorderBrush" Value="#33DD66" />
+                                <Setter TargetName="GreenEllipse" Property="Fill" Value="#44EE88" />
+                            </Trigger>
+
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="OuterBorder" Property="Background" Value="#1F2937" />
                             </Trigger>
@@ -323,13 +350,14 @@
                     BorderBrush="{DynamicResource ViewHeaderBorderColor}"
                     BorderThickness="1"
                     Padding="10">
-                <Grid>
-                    <Image Source="/Comm/images/room1.jpg" Stretch="Uniform" />
+                <Viewbox Stretch="Uniform">
+                    <Grid Width="1000" Height="650">
+                    <Image Source="/Comm/images/room1.jpg" Stretch="Fill" />
 
                     <ItemsControl ItemsSource="{Binding Markers}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <Canvas Background="Transparent" />
+                                <Canvas Width="1000" Height="650" Background="Transparent" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemContainerStyle>
@@ -341,12 +369,14 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Content="{Binding Text}"
+                                        Tag="{Binding LampState}"
                                         Style="{StaticResource OverlayLampButtonStyle}"
                                         behaviors:CanvasDragBehavior.IsEnabled="{Binding DataContext.IsEditMode, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </Grid>
+                    </Grid>
+                </Viewbox>
             </Border>
         </Grid>
 

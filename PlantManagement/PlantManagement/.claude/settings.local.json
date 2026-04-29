@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(cs|xaml\\)$\")",
+      "Bash(xargs grep:*)",
+      "Bash(dotnet build:*)",
+      "Bash(\"/c/Program Files/dotnet/dotnet.exe\" build PlantManagement/PlantManagement.csproj)"
+    ]
+  }
+}

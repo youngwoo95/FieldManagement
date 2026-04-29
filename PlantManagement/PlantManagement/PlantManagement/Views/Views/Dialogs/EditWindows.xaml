@@ -252,19 +252,19 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="8" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="62" />
-                        <ColumnDefinition Width="170" />
+                        <ColumnDefinition Width="220" />
                         <ColumnDefinition Width="8" />
-                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="8" />
-                        <ColumnDefinition Width="75" />
-                        <ColumnDefinition Width="18" />
-                        <ColumnDefinition Width="62" />
+                        <ColumnDefinition Width="80" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
@@ -283,17 +283,58 @@
                             Content="생성"
                             Style="{StaticResource PrimaryButtonStyle}"
                             Click="CreateFloorButton_Click" />
-                    <TextBlock Grid.Column="7"
+                    <TextBlock Grid.Column="0" Visibility="Collapsed"
                                Text="목록"
                                VerticalAlignment="Center"
                                Style="{StaticResource EditorTitleStyle}" />
-                    <ComboBox Grid.Column="8"
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="설비목록"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource EditorTitleStyle}" />
+                    <ComboBox Grid.Column="1"
+                              x:Name="FacilityComboBox"
+                              Style="{StaticResource RoundedComboBox}"
+                              Width="Auto"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Seq" />
+                    <TextBlock Grid.Column="3"
+                               Text="층 목록"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource EditorTitleStyle}" />
+                    <ComboBox Grid.Column="4"
                               x:Name="FloorComboBox"
                               Style="{StaticResource RoundedComboBox}"
                               Width="Auto"
                               SelectionChanged="FloorComboBox_SelectionChanged" />
+                    <TextBlock Grid.Column="6"
+                               Text="첨부파일"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource EditorTitleStyle}" />
+                    <TextBox Grid.Column="7"
+                             x:Name="AttachTextBox"
+                             Margin="10,0,0,0"
+                             Style="{StaticResource EditorTextBoxStyle}" />
+                    <Button Grid.Column="9"
+                            x:Name="BrowseAttachButton"
+                            Content="검색"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Click="BrowseAttachButton_Click" />
                 </Grid>
-                <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="4"
                            x:Name="FloorMessageText"
                            Foreground="{DynamicResource ViewSubtitleForegroundColor}" />
             </Grid>
@@ -314,7 +355,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0"
-                               Text="전체 장비 목록"
+                               Text="전체 램프 목록"
                                Style="{StaticResource EditorTitleStyle}" />
                     <ListBox Grid.Row="2"
                              x:Name="AllEquipmentListBox"
@@ -342,7 +383,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0"
-                               Text="해당 층 장비"
+                               Text="해당 층 램프"
                                Style="{StaticResource EditorTitleStyle}" />
                     <ListBox Grid.Row="2"
                              x:Name="FloorEquipmentListBox"

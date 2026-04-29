@@ -1,3 +1,4 @@
+using System.Windows;
 using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Comm.Behaviors;
@@ -9,6 +10,7 @@ public partial class EquipmentStatusViewModel : BaseViewModel
 {
     private readonly IEquipmentDataService _equipmentDataService;
     private readonly IEquipmentEditDialogService _equipmentEditDialogService;
+    private readonly ILampColorService _lampColorService;
 
     public ICommand AddFloorCommand { get; }
     public ICommand EditCommand { get; }
@@ -16,25 +18,47 @@ public partial class EquipmentStatusViewModel : BaseViewModel
 
     public EquipmentStatusViewModel(
         IEquipmentDataService equipmentDataService,
-        IEquipmentEditDialogService equipmentEditDialogService)
+        IEquipmentEditDialogService equipmentEditDialogService,
+        ILampColorService lampColorService)
     {
         _equipmentDataService = equipmentDataService;
         _equipmentEditDialogService = equipmentEditDialogService;
+        _lampColorService = lampColorService;
 
         _equipmentDataService.DataChanged += OnEquipmentDataChanged;
+        _lampColorService.ColorChanged += OnLampColorChanged;
 
         AddFloorCommand = new RelayCommand(_ => OpenFloorEditor());
         EditCommand = new RelayCommand(_ => SetEditMode(true));
-        SaveCommand = new RelayCommand(_ => SetEditMode(false));
+        SaveCommand = new RelayCommand(async _ => await SavePositionsAsync());
 
-        RefreshFloors();
+        _ = InitializeAsync();
         AddLog("Equipment status board loaded.");
+    }
+
+    private async Task InitializeAsync()
+    {
+        await _equipmentDataService.InitializeAsync();
+        RefreshFloors();
     }
 
     private void SetEditMode(bool enabled)
     {
         IsEditMode = enabled;
         AddLog(enabled ? "Switched to edit mode." : "Switched to view mode.");
+    }
+
+    private async Task SavePositionsAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_selectedFloor))
+        {
+            return;
+        }
+
+        var positions = Markers.Select(m => (m.Id, m.X, m.Y));
+        var saved = await _equipmentDataService.SaveFloorPositionsAsync(_selectedFloor, positions);
+        SetEditMode(false);
+        AddLog(saved ? "위치가 저장되었습니다." : "위치 저장 실패.");
     }
 
     private void OpenFloorEditor()
@@ -50,6 +74,26 @@ public partial class EquipmentStatusViewModel : BaseViewModel
     private void OnEquipmentDataChanged(object? sender, EventArgs e)
     {
         RefreshFloors();
+    }
+
+    private void OnLampColorChanged(object? sender, LampColorChangedEventArgs e)
+    {
+        var dispatcher = Application.Current?.Dispatcher;
+        if (dispatcher is null) return;
+
+        dispatcher.Invoke(() =>
+        {
+            var marker = Markers.FirstOrDefault(m => m.Id == e.LampId);
+            if (marker is not null)
+            {
+                marker.LampState = e.Color.ToLowerInvariant(); // "red" | "amber" | "green" | "off"
+                AddLog($"[{marker.Text}] 상태 변경: {e.Color.ToUpperInvariant()}");
+            }
+            else
+            {
+                AddLog($"[Lamp #{e.LampId}] 상태 변경: {e.Color.ToUpperInvariant()}");
+            }
+        });
     }
 
     private void RefreshFloors()
@@ -92,6 +136,7 @@ public partial class EquipmentStatusViewModel : BaseViewModel
         }
 
         var floorEquipments = _equipmentDataService.GetFloorEquipments(floor);
+        var positions = _equipmentDataService.GetFloorPositions(floor);
 
         const double originX = 90;
         const double originY = 90;
@@ -99,17 +144,32 @@ public partial class EquipmentStatusViewModel : BaseViewModel
         const double yStep = 160;
         const int maxPerRow = 4;
 
-        for (var index = 0; index < floorEquipments.Count; index++)
+        var gridIndex = 0;
+        foreach (var equipment in floorEquipments)
         {
-            var equipment = floorEquipments[index];
+            double x, y;
+            if (positions.TryGetValue(equipment.Id, out var saved) && (saved.X != 0 || saved.Y != 0))
+            {
+                x = saved.X;
+                y = saved.Y;
+            }
+            else
+            {
+                x = originX + (gridIndex % maxPerRow) * xStep;
+                y = originY + (gridIndex / maxPerRow) * yStep;
+            }
 
+            var lampColor = _lampColorService.GetColor(equipment.Id);
             Markers.Add(new MarkerPosition
             {
                 Id = equipment.Id,
                 Text = equipment.Name,
-                X = originX + (index % maxPerRow) * xStep,
-                Y = originY + (index / maxPerRow) * yStep
+                X = x,
+                Y = y,
+                LampState = lampColor ?? "off"
             });
+            _lampColorService.RegisterLampId(equipment.Id);
+            gridIndex++;
         }
 
         AddLog($"Displayed {floor} layout.");

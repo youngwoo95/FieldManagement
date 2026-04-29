@@ -6,13 +6,21 @@ public interface IEquipmentDataService
 {
     event EventHandler? DataChanged;
 
+    Task InitializeAsync();
+
     IReadOnlyList<string> Floors { get; }
 
     IReadOnlyList<EquipmentViewItems> GetAllEquipments();
+    IReadOnlyList<FacilityViewItems> GetFacilities();
 
     IReadOnlyList<EquipmentViewItems> GetFloorEquipments(string floorName);
+    int? GetFloorFacilitySeq(string floorName);
 
-    bool TryAddFloor(string floorName, out string message);
+    Task<(bool IsSuccess, string Message)> TryAddFloorAsync(string floorName, int facilitySeq, string? attach);
 
-    bool UpdateFloorEquipments(string floorName, IEnumerable<EquipmentViewItems> equipments, out string message);
+    Task<(bool IsSuccess, string Message)> UpdateFloorEquipmentsAsync(string floorName, IEnumerable<EquipmentViewItems> equipments);
+
+    Task<bool> SaveFloorPositionsAsync(string floorName, IEnumerable<(int Id, double X, double Y)> positions);
+
+    IReadOnlyDictionary<int, (double X, double Y)> GetFloorPositions(string floorName);
 }

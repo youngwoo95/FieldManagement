@@ -1,17 +1,24 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PlantManagement.Api;
+using PlantManagement.Comm;
 using PlantManagement.Comm.Logger;
 using PlantManagement.Commons.Repository;
 using PlantManagement.Repository.v1.Customer;
 using PlantManagement.Repository.v1.Facility;
+using PlantManagement.Repository.v1.Floor;
+using PlantManagement.Repository.v1.Lamp;
 using PlantManagement.Repository.v1.Notice;
 using PlantManagement.Repository.v1.Orders;
 using PlantManagement.Repository.v1.Works;
 using PlantManagement.Service.v1.Customer;
 using PlantManagement.Service.v1.Facility;
+using PlantManagement.Service.v1.Floor;
+using PlantManagement.Service.v1.Lamp;
 using PlantManagement.Service.v1.Notice;
 using PlantManagement.Service.v1.Orders;
 using PlantManagement.Service.v1.Works;
@@ -46,9 +53,13 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+        var lampColorService = new LampColorService();
+        _ = StartApiAsync(lampColorService);
+
         var serviceCollection = new ServiceCollection();
 
         /* ================== DI ====================== */
+        serviceCollection.AddSingleton<ILampColorService>(lampColorService);
         serviceCollection.AddSingleton<MainWindow>();
         serviceCollection.AddSingleton<ThemeService>();
         
@@ -79,12 +90,16 @@ public partial class App : Application
         serviceCollection.AddTransient<INoticeRepository, NoticeRepository>();
         serviceCollection.AddTransient<ICustomerRepository, CustomerRepository>();
         serviceCollection.AddTransient<IFacilityRepository, FacilityRepository>();
+        serviceCollection.AddTransient<IFloorRepository, FloorRepository>();
+        serviceCollection.AddTransient<ILampRepository, LampRepository>();
         serviceCollection.AddTransient<IOrderRepository, OrderRepository>();
         serviceCollection.AddTransient<IWorkRepository, WorkRepository>();
         
         serviceCollection.AddTransient<INoticeService, NoticeService>();
         serviceCollection.AddTransient<ICustomerService, CustomerService>();
         serviceCollection.AddTransient<IFacilityService, FacilityService>();
+        serviceCollection.AddTransient<IFloorService, FloorService>();
+        serviceCollection.AddTransient<ILampService, LampService>();
         serviceCollection.AddTransient<IOrderService, OrderService>();
         serviceCollection.AddTransient<IWorkService, WorkService>();
         
@@ -100,6 +115,17 @@ public partial class App : Application
         mainWindow.DataContext = Services.GetRequiredService<MainWindowViewModel>();
         mainWindow.Show();
         
+    }
+
+    private static async Task StartApiAsync(LampColorService lampColorService)
+    {
+        var builder = WebApplication.CreateBuilder();
+        builder.Services.AddSingleton<ILampColorService>(lampColorService);
+
+        var app = builder.Build();
+        app.MapLampColorEndpoints();
+
+        await app.RunAsync("http://0.0.0.0:5050");
     }
 
     /// <summary>

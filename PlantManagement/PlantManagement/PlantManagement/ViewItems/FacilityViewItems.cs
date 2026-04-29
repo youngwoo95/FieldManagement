@@ -23,4 +23,9 @@ public class FacilityViewItems
     /// 용도
     /// </summary>
     public string Purpose { get; set; }
+
+    public override string ToString()
+    {
+        return Name ?? string.Empty;
+    }
 }

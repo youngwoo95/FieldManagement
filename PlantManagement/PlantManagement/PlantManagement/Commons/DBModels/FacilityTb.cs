@@ -40,7 +40,5 @@ public partial class FacilityTb
 
     public virtual ICollection<FacilityLogTb> FacilityLogTbs { get; set; } = new List<FacilityLogTb>();
 
-    public virtual ICollection<FloorTb> FloorTbs { get; set; } = new List<FloorTb>();
-
     public virtual ICollection<WorkTb> WorkTbs { get; set; } = new List<WorkTb>();
 }
