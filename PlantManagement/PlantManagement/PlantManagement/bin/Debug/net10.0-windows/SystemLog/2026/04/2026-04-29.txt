@@ -490,3 +490,10 @@
    at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
    at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
    at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
+[2026-04-29 14:25:28.199]	System.InvalidOperationException: Connection must be Open; current state is Connecting
+   at MySqlConnector.MySqlConnection.get_Session() in /_/src/MySqlConnector/MySqlConnection.cs:line 887
+   at MySqlConnector.Core.ICancellableCommandExtensions.ResetCommandTimeout(ICancellableCommand command) in /_/src/MySqlConnector/Core/ICancellableCommand.cs:line 48
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 355
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at PlantManagement.Repository.v1.Works.WorkRepository.GetWorksListAsync() in D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\Repository\v1\Works\WorkRepository.SQL.cs:line 85
