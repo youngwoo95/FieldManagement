@@ -21,7 +21,7 @@
 dotnet restore
 dotnet build
 dotnet run --project PlantManagement
-
+```
 
 <img width="1916" height="1023" alt="캡처1" src="https://github.com/user-attachments/assets/b0cdc942-a19a-42c9-b2cb-28c9b4514740" />
 <img width="1918" height="1021" alt="캡처2" src="https://github.com/user-attachments/assets/7f2b519d-4f1d-4d96-b20e-f8e278b2c6bc" />
