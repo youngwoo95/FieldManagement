@@ -7,6 +7,7 @@ using PlantManagement.Views.ViewModels.DashBoardModel;
 using PlantManagement.Views.ViewModels.EquipmentStatusModel;
 using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.ViewModels.OrderModel;
+using PlantManagement.Views.ViewModels;
 using PlantManagement.Views.ViewModels.WorkStatusModel;
 using PlantManagement.Views.Views;
 
@@ -48,14 +49,9 @@ public partial class MainWindowViewModel : BaseViewModel
             _ => _serviceProvider.GetRequiredService<DashBoardViewModel>()
         };
 
-        if (CurrentViewModel is CustomerViewModel customerViewModel)
+        if (CurrentViewModel is IReloadableViewModel reloadableViewModel)
         {
-            _ = customerViewModel.ReloadAsync();
-        }
-
-        if (CurrentViewModel is FacilityViewModel facilityViewModel)
-        {
-            _ = facilityViewModel.ReloadAsync();
+            _ = reloadableViewModel.ReloadAsync();
         }
     }
 

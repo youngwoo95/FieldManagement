@@ -81,6 +81,19 @@ public class OrderService : IOrderService
         }
     }
 
+    public async Task<bool> RemoveOrderService(List<int> orderSeq)
+    {
+        try
+        {
+            return await _orderRepository.RemoveOrderAsync(orderSeq).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            _logService.LogMessage(ex.ToString());
+            return false;
+        }
+    }
+
     /// <summary>
     /// 수주 정보 조회
     /// </summary>

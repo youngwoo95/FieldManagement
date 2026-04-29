@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlantManagement.Commons.DBModels;
 
 namespace PlantManagement.Repository.v1.Orders;
@@ -40,6 +41,39 @@ public partial class OrderRepository
 
             await _context.SaveChangesAsync().ConfigureAwait(false);
             return true;
+        }
+        catch (Exception ex)
+        {
+            _logService.LogMessage(ex.ToString());
+            return false;
+        }
+    }
+
+    public async Task<bool> RemoveOrderAsync(List<int> orderSeq)
+    {
+        try
+        {
+            if (orderSeq == null || orderSeq.Count == 0)
+            {
+                return false;
+            }
+
+            var targets = await _context.OrderTbs
+                .Where(x => orderSeq.Contains(x.OrderSeq) && !x.DelYn)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (targets.Count == 0)
+            {
+                return false;
+            }
+
+            foreach (var target in targets)
+            {
+                target.DelYn = true;
+            }
+
+            return await _context.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
         catch (Exception ex)
         {

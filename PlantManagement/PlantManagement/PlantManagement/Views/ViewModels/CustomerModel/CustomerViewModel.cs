@@ -3,11 +3,12 @@ using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Service.v1.Customer;
 using PlantManagement.ViewItems;
+using PlantManagement.Views.ViewModels;
 using PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
 
 namespace PlantManagement.Views.ViewModels.CustomerModel;
 
-public partial class CustomerViewModel : BaseViewModel
+public partial class CustomerViewModel : BaseViewModel, IReloadableViewModel
 {
     private readonly ICustomerDialogService _customerDialogService;
     private readonly ICustomerService _customerService;
@@ -25,12 +26,11 @@ public partial class CustomerViewModel : BaseViewModel
 
         EditCommand = new RelayCommand(_ => EditCustomers());
         AddCommand = new RelayCommand(_ => AddCustomer());
-        RemoveCommand = new RelayCommand(_ => RemoveCustomers());
+        RemoveCommand = new RelayCommand(_ => _ = RemoveCustomers());
 
         _filteredCustomers = CollectionViewSource.GetDefaultView(_customers);
         _filteredCustomers.Filter = FilterCustomer;
 
-        _ = InitializeAsync();
         _filteredCustomers.Refresh();
     }
 
@@ -38,11 +38,6 @@ public partial class CustomerViewModel : BaseViewModel
     {
         await LoadCustomers();
         _filteredCustomers.Refresh();
-    }
-
-    private async Task InitializeAsync()
-    {
-        await ReloadAsync();
     }
 
     private bool FilterCustomer(object item)

@@ -1,71 +1,122 @@
 using System.IO;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using PlantManagement.Comm;
+using PlantManagement.Service.v1.Works;
 using PlantManagement.ViewItems;
+using PlantManagement.Views.ViewModels;
 using PlantManagement.Views.ViewModels.WorkStatusModel.Dialog;
 
 namespace PlantManagement.Views.ViewModels.WorkStatusModel;
 
-public partial class WorkStatusViewModel : BaseViewModel
+public partial class WorkStatusViewModel : BaseViewModel, IReloadableViewModel
 {
     private readonly IWorkDialogService _workDialogService;
-    
+    private readonly IWorkService _workService;
+
     private static readonly Uri BlankPdfUri = new("about:blank");
-    
+
     public ICommand ClosePdfPanelCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand ResetCommand { get; }
     public ICommand AddCommand { get; }
 
-    public WorkStatusViewModel(IWorkDialogService workDialogService)
+    public WorkStatusViewModel(
+        IWorkDialogService workDialogService,
+        IWorkService workService)
     {
         _workDialogService = workDialogService;
+        _workService = workService;
 
         ClosePdfPanelCommand = new RelayCommand(_ => ClosePdfPanel());
-        SearchCommand = new RelayCommand(_ => Search());
-        ResetCommand = new RelayCommand(_ => Reset());
-        AddCommand = new RelayCommand(_ => Add());
+        SearchCommand = new RelayCommand(_ => _ = SearchAsync());
+        ResetCommand = new RelayCommand(_ => _ = ResetAsync());
+        AddCommand = new RelayCommand(_ => _ = AddAsync());
 
         _filteredWorkStatus = CollectionViewSource.GetDefaultView(_workstatus);
         _filteredWorkStatus.Filter = FilterWorkStatus;
 
-        LoadWorkStatus();
+        _ = ReloadAsync();
+    }
+
+    public async Task ReloadAsync()
+    {
+        var rows = await _workService.GetWorksListService() ?? [];
+
+        _workstatus.Clear();
+        foreach (var item in rows)
+        {
+            _workstatus.Add(new WorkStatusViewItems
+            {
+                WorkOrderNo = item.workSeq ?? string.Empty,
+                MachineName = item.facilityName ?? string.Empty,
+                CustomerName = item.customerName ?? string.Empty,
+                Status = item.statusName ?? string.Empty,
+                WorkDate = item.startDt.ToString("yyyy-MM-dd"),
+                PdfFileName = item.attach ?? string.Empty
+            });
+        }
+
         _filteredWorkStatus.Refresh();
     }
 
-    private void LoadWorkStatus()
-    {
-        _workstatus.Clear();
-        _workstatus.Add(new WorkStatusViewItems
-        {
-            WorkOrderNo = "WORK_12345",
-            CustomerName = "Hanhw Systems",
-            MachineName = "A설비",
-            Status = "진행중",
-            WorkDate = "2026-04-21",
-            PdfFileName = "pdf1.pdf"
-        });
-    }
-    
-
     private bool FilterWorkStatus(object item)
     {
-        if (item is not WorkStatusViewItems workstatus) return false;
-        var keyword = SearchKeyword?.Trim() ?? string.Empty;
-        
-        var matchesKeyword =
-            string.IsNullOrWhiteSpace(keyword) ||
-            (!string.IsNullOrWhiteSpace(workstatus.CustomerName) &&
-             workstatus.CustomerName.Contains(keyword, StringComparison.OrdinalIgnoreCase));
-        
-        var matchesDate =
-            DateTime.TryParse(workstatus.WorkDate, out var startDate) &&
-            startDate.Date >= DateTime.Today;
+        if (item is not WorkStatusViewItems workstatus)
+        {
+            return false;
+        }
 
-        return matchesKeyword || matchesDate;
+        var workOrderKeyword = SearchKeyword?.Trim() ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(workOrderKeyword) &&
+            !workstatus.WorkOrderNo.Contains(workOrderKeyword, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var machineKeyword = MachineKeyword?.Trim() ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(machineKeyword) &&
+            !workstatus.MachineName.Contains(machineKeyword, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var customerKeyword = CustomerKeyword?.Trim() ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(customerKeyword) &&
+            !workstatus.CustomerName.Contains(customerKeyword, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        if (DateTime.TryParse(workstatus.WorkDate, out var workDate))
+        {
+            if (StartDateFilter.HasValue && workDate.Date < StartDateFilter.Value.Date)
+            {
+                return false;
+            }
+
+            if (EndDateFilter.HasValue && workDate.Date > EndDateFilter.Value.Date)
+            {
+                return false;
+            }
+        }
+
+        var selectedStatus = SelectedStatusFilter?.Trim() ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(selectedStatus))
+        {
+            var hasRealStatus =
+                _workstatus.Any(x => string.Equals(x.Status, selectedStatus, StringComparison.OrdinalIgnoreCase));
+
+            if (hasRealStatus &&
+                !string.Equals(workstatus.Status, selectedStatus, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
-    
 
     private void ClosePdfPanel()
     {
@@ -74,33 +125,39 @@ public partial class WorkStatusViewModel : BaseViewModel
         SelectedWorkStatus = null;
         SelectedPdfPath = null;
     }
-    
-    private void Search()
+
+    private async Task SearchAsync()
     {
+        await ReloadAsync();
         _filteredWorkStatus.Refresh();
     }
-    
-    private void Reset()
+
+    private async Task ResetAsync()
     {
+        SearchKeyword = string.Empty;
+        MachineKeyword = string.Empty;
+        CustomerKeyword = string.Empty;
+        StartDateFilter = null;
+        EndDateFilter = null;
+        SelectedStatusFilter = string.Empty;
+
         SelectedWorkStatus = null;
         SelectedPdfPath = null;
         IsPdfPanelOpen = false;
         PdfPanelWidth = 0;
+
+        await ReloadAsync();
     }
-    
-    private void Add()
+
+    private async Task AddAsync()
     {
-        var newOrder = _workDialogService.ShowAddWorkStatusDialog();
+        var newOrder = await _workDialogService.ShowAddWorkStatusDialogAsync();
         if (newOrder is null)
             return;
 
-        if (string.IsNullOrWhiteSpace(newOrder.PdfFileName))
-            newOrder.PdfFileName = "pdf1.pdf";
-
-        _workstatus.Add(newOrder);
-        _filteredWorkStatus.Refresh();
+        await ReloadAsync();
     }
-    
+
     private void UpdatePdfPreviewState(string? pdfPath)
     {
         if (string.IsNullOrWhiteSpace(pdfPath))
@@ -146,4 +203,5 @@ public partial class WorkStatusViewModel : BaseViewModel
 
         return Path.GetFullPath(candidates[0]);
     }
+
 }

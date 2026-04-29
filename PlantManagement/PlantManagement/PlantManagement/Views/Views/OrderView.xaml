@@ -89,14 +89,6 @@
                             BorderBrush="{DynamicResource PrimaryActionBackgroundColor}"
                             Command="{Binding EditCommand}"/>
 
-                    <Button Content="초기화"
-                            Margin="0,0,8,0"
-                            Padding="14,8"
-                            Background="{DynamicResource SecondaryActionColor}"
-                            Foreground="{DynamicResource PrimaryActionForegroundColor}"
-                            BorderBrush="{DynamicResource SecondaryActionColor}"
-                            Command="{Binding ResetCommand}"/>
-
                     <Button Content="등록"
                             Margin="0,0,8,0"
                             Padding="14,8"
@@ -104,6 +96,14 @@
                             Foreground="{DynamicResource PrimaryActionForegroundColor}"
                             BorderBrush="{DynamicResource PrimarySaveBackgroundColor}"
                             Command="{Binding AddCommand}"/>
+                    
+                    <Button Content="삭제"
+                            Margin="0,0,8,0"
+                            Padding="14,8"
+                            Background="{DynamicResource SecondaryActionColor}"
+                            Foreground="{DynamicResource PrimaryActionForegroundColor}"
+                            BorderBrush="{DynamicResource SecondaryActionColor}"
+                            Command="{Binding RemoveCommand}"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -125,7 +125,7 @@
                 <DataGrid AutoGenerateColumns="False"
                           HeadersVisibility="Column"
                           CanUserAddRows="False"
-                          IsReadOnly="True"
+                          IsReadOnly="False"
                           ItemsSource="{Binding FilteredOrders}"
                           SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
                           Background="{DynamicResource ViewHeaderBackgroundColor}"
@@ -145,6 +145,15 @@
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
                             <Setter Property="TextAlignment" Value="Center"/>
+                        </Style>
+                        <Style x:Key="LargeCheckBoxStyle" TargetType="CheckBox">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.ColumnHeaderStyle>
@@ -182,21 +191,33 @@
                         </Style>
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="" Width="48">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{StaticResource LargeCheckBoxStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="고객사"
                                             Binding="{Binding Customer}"
                                             Width="150"
+                                            IsReadOnly="True"
                                             ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                         <DataGridTextColumn Header="요청수량"
                                             Binding="{Binding OrderQty}"
                                             Width="150"
+                                            IsReadOnly="True"
                                             ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                         <DataGridTextColumn Header="작업시작일"
                                             Binding="{Binding StartDt}"
                                             Width="140"
+                                            IsReadOnly="True"
                                             ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                         <DataGridTextColumn Header="작업종료일"
                                             Binding="{Binding EndDt}"
                                             Width="*"
+                                            IsReadOnly="True"
                                             ElementStyle="{StaticResource CenteredDataGridTextStyle}" />
                     </DataGrid.Columns>
                 </DataGrid>
@@ -224,6 +245,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="0,0,0,12">
@@ -248,7 +270,14 @@
                                 Command="{Binding ClosePdfPanelCommand}"/>
                     </Grid>
                     
-                    <Grid Grid.Row="1">
+                    <TextBlock Grid.Row="1"
+                               Text="{Binding SelectedOrderSummary}"
+                               Margin="0,0,0,8"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource ViewBodyTextColor}"/>
+
+                    <Grid Grid.Row="2">
                         <Border Background="{DynamicResource ViewPanelBackgroundColor}" CornerRadius="8"/>
                         <wpf:WebView2 Margin="1"
                                       Source="{Binding SelectedPdfUri, Converter={StaticResource SafeUriConverter}, FallbackValue=about:blank, TargetNullValue=about:blank}"/>

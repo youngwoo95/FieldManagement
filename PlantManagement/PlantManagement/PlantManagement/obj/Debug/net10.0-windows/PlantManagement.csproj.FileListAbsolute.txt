@@ -1,4 +1,3 @@
-D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\PlantManagement.exe
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\PlantManagement.deps.json
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\PlantManagement.runtimeconfig.json
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\PlantManagement.dll
@@ -277,3 +276,4 @@ D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantMana
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Users\kyw\Documents\FieldManagement\PlantManagement\PlantManagement\PlantManagement\bin\Debug\net10.0-windows\PlantManagement.exe

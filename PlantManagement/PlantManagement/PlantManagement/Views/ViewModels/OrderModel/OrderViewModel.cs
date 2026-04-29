@@ -4,11 +4,12 @@ using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Service.v1.Orders;
 using PlantManagement.ViewItems;
+using PlantManagement.Views.ViewModels;
 using PlantManagement.Views.ViewModels.OrderModel.Dialog;
 
 namespace PlantManagement.Views.ViewModels.OrderModel;
 
-public partial class OrderViewModel : BaseViewModel
+public partial class OrderViewModel : BaseViewModel, IReloadableViewModel
 {
     private readonly IOrderDialogService _orderDialogService;
     private readonly IOrderService _orderService;
@@ -16,7 +17,7 @@ public partial class OrderViewModel : BaseViewModel
     private static readonly Uri BlankPdfUri = new("about:blank");
     public ICommand ClosePdfPanelCommand { get; }
     public ICommand EditCommand { get; }
-    public ICommand ResetCommand { get; }
+    public ICommand RemoveCommand { get; }
     public ICommand AddCommand { get; }
 
     public OrderViewModel(IOrderDialogService orderDialogService,
@@ -27,14 +28,12 @@ public partial class OrderViewModel : BaseViewModel
         
         ClosePdfPanelCommand = new RelayCommand(_ => ClosePdfPanel());
         EditCommand = new RelayCommand(_ => _ = EditAsync());
-        ResetCommand = new RelayCommand(_ => Reset());
+        RemoveCommand = new RelayCommand(_ => _ = RemoveAsync());
         AddCommand = new RelayCommand(_ => _ = AddAsync());
 
         _filteredOrders = CollectionViewSource.GetDefaultView(_orders);
         _filteredOrders.Filter = FilterOrder;
 
-        _ = ReloadAsync();
-        
         _filteredOrders.Refresh();
     }
     
@@ -54,6 +53,7 @@ public partial class OrderViewModel : BaseViewModel
         {
             _orders.Add(new OrderViewItems
             {
+                IsChecked = false,
                 orderSeq = item.orderSeq,
                 CustomerSeq = item.customerSeq,
                 Customer = item.name,
@@ -95,20 +95,40 @@ public partial class OrderViewModel : BaseViewModel
         _filteredOrders.Refresh();
     }
 
-    private void Reset()
-    {
-        SelectedOrder = null;
-        SelectedPdfPath = null;
-        IsPdfPanelOpen = false;
-        PdfPanelWidth = 0;
-    }
-
     private async Task AddAsync()
     {
         var newOrder = _orderDialogService.ShowAddOrderDialog();
         if (newOrder is null)
         {
             return;
+        }
+
+        await ReloadAsync();
+    }
+
+    private async Task RemoveAsync()
+    {
+        var ids = _orders
+            .Where(x => x.IsChecked)
+            .Select(x => x.orderSeq)
+            .Where(x => x > 0)
+            .Distinct()
+            .ToList();
+
+        if (ids.Count == 0)
+        {
+            return;
+        }
+
+        var ok = await _orderService.RemoveOrderService(ids);
+        if (!ok)
+        {
+            return;
+        }
+
+        if (SelectedOrder is not null && ids.Contains(SelectedOrder.orderSeq))
+        {
+            ClosePdfPanel();
         }
 
         await ReloadAsync();

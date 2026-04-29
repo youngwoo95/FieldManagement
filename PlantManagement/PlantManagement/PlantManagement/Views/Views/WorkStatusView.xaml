@@ -213,35 +213,45 @@
                                Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
                     <TextBox Style="{StaticResource RoundedTextBox}"
-                             />
+                             Text="{Binding MachineKeyword, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- 고객명 -->
                     <TextBlock Text="고객명"
                                VerticalAlignment="Center"
                                Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
-                    <TextBox Style="{StaticResource RoundedTextBox}"/>
+                    <TextBox Style="{StaticResource RoundedTextBox}"
+                             Text="{Binding CustomerKeyword, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- 시작날짜 DatePicker -->
                     <TextBlock Text="시작일자"
                                VerticalAlignment="Center"
                                Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
-                    <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <DatePicker Style="{StaticResource RoundedDatePicker}"
+                                Margin="0,0,8,0"
+                                VerticalAlignment="Center"
+                                SelectedDate="{Binding StartDateFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- 종료일자 DatePicker -->
                     <TextBlock Text="종료일자"
                                VerticalAlignment="Center"
                                Margin="20,0,8,0"
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
-                    <DatePicker Style="{StaticResource RoundedDatePicker}" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <DatePicker Style="{StaticResource RoundedDatePicker}"
+                                Margin="0,0,8,0"
+                                VerticalAlignment="Center"
+                                SelectedDate="{Binding EndDateFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- 상태 ComboBox -->
                     <TextBlock Text="상태" 
                                VerticalAlignment="Center"
                                Margin="20,0,8,0" 
                                Foreground="{DynamicResource ViewBodyTextColor}"/>
-                    <ComboBox Style="{StaticResource RoundedComboBox}" Margin="0,0,8,0">
+                    <ComboBox Style="{StaticResource RoundedComboBox}"
+                              Margin="0,0,8,0"
+                              SelectedValuePath="Content"
+                              SelectedValue="{Binding SelectedStatusFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBoxItem IsSelected="True">전체</ComboBoxItem>
                         <ComboBoxItem>진행중</ComboBoxItem>
                         <ComboBoxItem>완료</ComboBoxItem>

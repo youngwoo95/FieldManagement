@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using PlantManagement.Service.v1.Works;
 using PlantManagement.Views.ViewModels.CustomerModel;
-using PlantManagement.Views.ViewModels.FacilityModel;
 
 namespace PlantManagement.Views.Views.Dialogs;
 
@@ -37,29 +37,24 @@ public partial class AddWorkStatusWindow : Window
 
     private static AddWorkStatusViewModel CreateDefaultViewModel()
     {
-        var viewModel = new AddWorkStatusViewModel();
-        var customerViewModel = App.Services?.GetService<CustomerViewModel>();
-        if (customerViewModel is not null)
+        return new AddWorkStatusViewModel();
+    }
+
+    private async void FacilityComboBox_OnDropDownOpened(object sender, EventArgs e)
+    {
+        var workService = App.Services?.GetService<IWorkService>();
+        if (workService is null)
         {
-            var customerNames = customerViewModel.Customers
-                .Select(x => x.Name)
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
-            viewModel.SetCustomerNames(customerNames);
+            return;
         }
 
-        var facilityViewModel = App.Services?.GetService<FacilityViewModel>();
-        if (facilityViewModel is not null)
-        {
-            var facilityNames = facilityViewModel.Facilitys
-                .Select(x => x.Name)
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
-            viewModel.SetFacilityNames(facilityNames);
-        }
+        var rows = await workService.GetWorkFacilitiesService();
+        var facilityNames = (rows ?? [])
+            .Select(x => x.facilityName)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
 
-        return viewModel;
+        _viewModel.SetFacilityNames(facilityNames);
     }
 }

@@ -4,5 +4,5 @@ namespace PlantManagement.Views.ViewModels.WorkStatusModel.Dialog;
 
 public interface IWorkDialogService
 {
-    WorkStatusViewItems? ShowAddWorkStatusDialog();
+    Task<WorkStatusViewItems?> ShowAddWorkStatusDialogAsync();
 }

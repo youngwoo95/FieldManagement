@@ -1,86 +1,145 @@
 using System;
 using System.Linq;
 using System.Windows;
+using PlantManagement.Dto.v1.Works;
+using PlantManagement.Service.v1.Works;
 using PlantManagement.ViewItems;
 using PlantManagement.Views.ViewModels.CustomerModel;
-using PlantManagement.Views.ViewModels.FacilityModel;
 using PlantManagement.Views.Views.Dialogs;
 
 namespace PlantManagement.Views.ViewModels.WorkStatusModel.Dialog;
 
 public class WorkDialogService : IWorkDialogService
 {
-    private readonly CustomerViewModel _customerViewModel;
-    private readonly FacilityViewModel _facilityViewModel;
+    private readonly IWorkService _workService;
 
-    public WorkDialogService(
-        CustomerViewModel customerViewModel,
-        FacilityViewModel facilityViewModel)
+    public WorkDialogService(IWorkService workService)
     {
-        _customerViewModel = customerViewModel;
-        _facilityViewModel = facilityViewModel;
+        _workService = workService;
     }
-    
-    public WorkStatusViewItems? ShowAddWorkStatusDialog()
+
+    public async Task<WorkStatusViewItems?> ShowAddWorkStatusDialogAsync()
     {
-        var addWorkStatusViewModel = new AddWorkStatusViewModel();
-        addWorkStatusViewModel.WorkOrderNo = GenerateWorkOrderNo();
+        var viewModel = new AddWorkStatusViewModel
+        {
+            WorkOrderNo = "자동 생성"
+        };
 
-        var customerNames = _customerViewModel.Customers
-            .Select(x => x.Name)
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
-        addWorkStatusViewModel.SetCustomerNames(customerNames);
+        await BindFacilityOptionsAsync(viewModel);
+        await BindOrderOptionsAsync(viewModel);
 
-        var facilityNames = _facilityViewModel.Facilitys
-            .Select(x => x.Name)
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
-        addWorkStatusViewModel.SetFacilityNames(facilityNames);
-
-        var addWindow = new AddWorkStatusWindow(addWorkStatusViewModel)
+        var dialog = new AddWorkStatusWindow(viewModel)
         {
             Owner = Application.Current?.MainWindow
         };
 
-        var result = addWindow.ShowDialog();
-        if (result != true)
-            return null;
-
-        return new WorkStatusViewItems()
+        if (dialog.ShowDialog() != true)
         {
-            WorkOrderNo = string.IsNullOrWhiteSpace(addWorkStatusViewModel.WorkOrderNo)
-                ? GenerateWorkOrderNo()
-                : addWorkStatusViewModel.WorkOrderNo.Trim(),
-            MachineName = addWorkStatusViewModel.MachineName,
-            CustomerName = addWorkStatusViewModel.CustomerName,
-            Status = string.IsNullOrWhiteSpace(addWorkStatusViewModel.Status)
-                ? "InProgress"
-                : addWorkStatusViewModel.Status,
-            WorkDate = NormalizeWorkDate(addWorkStatusViewModel.WorkDate),
-            PdfFileName = string.IsNullOrWhiteSpace(addWorkStatusViewModel.AttachmentFilePath)
+            return null;
+        }
+
+        if (viewModel.SelectedOrderInfo is null)
+        {
+            return null;
+        }
+
+        var facilitySeq = await ResolveFacilitySeqAsync(viewModel.MachineName);
+        if (facilitySeq is null)
+        {
+            return null;
+        }
+
+        var startWorkDate = ParseWorkDate(viewModel.WorkDate);
+        var dto = BuildAddWorksDto(viewModel, facilitySeq.Value, startWorkDate);
+        var saved = await _workService.AddWorksService(dto);
+        if (!saved)
+        {
+            return null;
+        }
+
+        return new WorkStatusViewItems
+        {
+            WorkOrderNo = dto.workSeq,
+            MachineName = viewModel.MachineName,
+            CustomerName = viewModel.CustomerName,
+            Status = string.IsNullOrWhiteSpace(viewModel.Status) ? "InProgress" : viewModel.Status,
+            WorkDate = startWorkDate.ToString("yyyy-MM-dd"),
+            PdfFileName = string.IsNullOrWhiteSpace(viewModel.AttachmentFilePath)
                 ? "pdf1.pdf"
-                : addWorkStatusViewModel.AttachmentFilePath
+                : viewModel.AttachmentFilePath
         };
     }
 
-    /*
-     * 자동채번
-     */
+    private async Task BindFacilityOptionsAsync(AddWorkStatusViewModel viewModel)
+    {
+        var rows = await _workService.GetWorkFacilitiesService() ?? [];
+        var names = rows
+            .Select(x => x.facilityName)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
+
+        viewModel.SetFacilityNames(names);
+    }
+
+    private async Task BindOrderOptionsAsync(AddWorkStatusViewModel viewModel)
+    {
+        var rows = await _workService.GetWorkOrderInfosService() ?? [];
+        var orderInfos = rows
+            .Select(x => new WorkOrderInfoOption
+            {
+                OrderSeq = x.orderSeq,
+                CustomerSeq = x.customerSeq,
+                CustomerName = x.customerName ?? string.Empty,
+                PdfFileName = x.attach ?? string.Empty
+            })
+            .OrderByDescending(x => x.OrderSeq)
+            .ToList();
+
+        viewModel.SetOrderInfos(orderInfos);
+    }
+
+    private async Task<int?> ResolveFacilitySeqAsync(string facilityName)
+    {
+        var rows = await _workService.GetWorkFacilitiesService() ?? [];
+        var facility = rows.FirstOrDefault(x =>
+            string.Equals(x.facilityName?.Trim(), facilityName?.Trim(), StringComparison.OrdinalIgnoreCase));
+
+        return facility?.facilitySeq;
+    }
+
+    private static AddWorksDto BuildAddWorksDto(
+        AddWorkStatusViewModel viewModel,
+        int facilitySeq,
+        DateTime startWorkDate)
+    {
+        return new AddWorksDto
+        {
+            workSeq = GenerateWorkOrderNo(),
+            orderSeq = viewModel.SelectedOrderInfo!.OrderSeq,
+            facilitySeq = facilitySeq,
+            currentQty = 0,
+            startWorkDt = startWorkDate,
+            endWorkDt = default,
+            status = 0
+        };
+    }
+
     private static string GenerateWorkOrderNo()
     {
         return $"WORK_{DateTime.Now:yyyyMMddHHmmss}";
     }
 
-    private static string NormalizeWorkDate(string workDate)
+    private static DateTime ParseWorkDate(string workDate)
     {
         if (string.IsNullOrWhiteSpace(workDate))
-            return DateTime.Today.ToString("yyyy-MM-dd");
+        {
+            return DateTime.Today;
+        }
 
         return DateTime.TryParse(workDate, out var date)
-            ? date.ToString("yyyy-MM-dd")
-            : workDate.Trim();
+            ? date
+            : DateTime.Today;
     }
+
 }

@@ -21,6 +21,7 @@ public partial class OrderViewModel
 
     private bool _isPdfFallbackVisible;
     private string _pdfFallbackMessage = "PDF preview is unavailable.";
+    private string _selectedOrderSummary = string.Empty;
     private double _pdfPanelWidth;
     
     public string SearchKeyword
@@ -61,6 +62,7 @@ public partial class OrderViewModel
             {
                 IsPdfPanelOpen = false;
                 SelectedPdfPath = null;
+                SelectedOrderSummary = string.Empty;
                 PdfPanelWidth = 0;
                 return;
             }
@@ -70,6 +72,8 @@ public partial class OrderViewModel
             {
                 PdfPanelWidth = 800;
             }
+
+            SelectedOrderSummary = $"수주번호: {value.orderSeq} / 고객사: {value.Customer}";
             SelectedPdfPath = ResolvePdfPath(value.PdfFileName);
             
             
@@ -103,6 +107,16 @@ public partial class OrderViewModel
         private set
         {
             _pdfFallbackMessage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string SelectedOrderSummary
+    {
+        get => _selectedOrderSummary;
+        private set
+        {
+            _selectedOrderSummary = value;
             OnPropertyChanged();
         }
     }

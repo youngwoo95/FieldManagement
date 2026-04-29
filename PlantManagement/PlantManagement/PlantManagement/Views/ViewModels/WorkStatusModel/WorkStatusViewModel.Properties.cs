@@ -10,6 +10,11 @@ public partial class WorkStatusViewModel
     private ICollectionView _filteredWorkStatus = null!;
     
     private string _searchKeyword = string.Empty;
+    private string _machineKeyword = string.Empty;
+    private string _customerKeyword = string.Empty;
+    private DateTime? _startDateFilter;
+    private DateTime? _endDateFilter;
+    private string _selectedStatusFilter = string.Empty;
 
     public ObservableCollection<WorkStatusViewItems> WorkStatus => _workstatus;
 
@@ -35,7 +40,81 @@ public partial class WorkStatusViewModel
 
             _searchKeyword = value;
             OnPropertyChanged();
-            _filteredWorkStatus.Refresh();
+        }
+    }
+
+    public string MachineKeyword
+    {
+        get => _machineKeyword;
+        set
+        {
+            if (_machineKeyword == value)
+            {
+                return;
+            }
+
+            _machineKeyword = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string CustomerKeyword
+    {
+        get => _customerKeyword;
+        set
+        {
+            if (_customerKeyword == value)
+            {
+                return;
+            }
+
+            _customerKeyword = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public DateTime? StartDateFilter
+    {
+        get => _startDateFilter;
+        set
+        {
+            if (_startDateFilter == value)
+            {
+                return;
+            }
+
+            _startDateFilter = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public DateTime? EndDateFilter
+    {
+        get => _endDateFilter;
+        set
+        {
+            if (_endDateFilter == value)
+            {
+                return;
+            }
+
+            _endDateFilter = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string SelectedStatusFilter
+    {
+        get => _selectedStatusFilter;
+        set
+        {
+            if (_selectedStatusFilter == value)
+            {
+                return;
+            }
+
+            _selectedStatusFilter = value;
+            OnPropertyChanged();
         }
     }
 

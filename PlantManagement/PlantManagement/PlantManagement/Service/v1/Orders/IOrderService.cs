@@ -10,5 +10,7 @@ public interface IOrderService
 
     public Task<bool> EditOrderService(EditOrderDto dto);
 
+    public Task<bool> RemoveOrderService(List<int> orderSeq);
+
     public Task<List<GetOrdersDto>?> GetOrderService();
 }

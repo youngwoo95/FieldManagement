@@ -3,11 +3,12 @@ using System.Windows.Input;
 using PlantManagement.Comm;
 using PlantManagement.Service.v1.Facility;
 using PlantManagement.ViewItems;
+using PlantManagement.Views.ViewModels;
 using PlantManagement.Views.ViewModels.FacilityModel.DialogViews;
 
 namespace PlantManagement.Views.ViewModels.FacilityModel;
 
-public partial class FacilityViewModel : BaseViewModel
+public partial class FacilityViewModel : BaseViewModel, IReloadableViewModel
 {
     private readonly IFacilityDialogService _facilityDialogService;
     private readonly IFacilityService _facilityService;
@@ -30,7 +31,6 @@ public partial class FacilityViewModel : BaseViewModel
         _filteredFacilitys = CollectionViewSource.GetDefaultView(_facilitys);
         _filteredFacilitys.Filter = FilterFacility;
 
-        _ = ReloadAsync();
         _filteredFacilitys.Refresh();
     }
 

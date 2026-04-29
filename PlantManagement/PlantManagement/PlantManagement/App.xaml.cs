@@ -9,10 +9,12 @@ using PlantManagement.Repository.v1.Customer;
 using PlantManagement.Repository.v1.Facility;
 using PlantManagement.Repository.v1.Notice;
 using PlantManagement.Repository.v1.Orders;
+using PlantManagement.Repository.v1.Works;
 using PlantManagement.Service.v1.Customer;
 using PlantManagement.Service.v1.Facility;
 using PlantManagement.Service.v1.Notice;
 using PlantManagement.Service.v1.Orders;
+using PlantManagement.Service.v1.Works;
 using PlantManagement.Views;
 using PlantManagement.Views.ViewModels.CustomerModel;
 using PlantManagement.Views.ViewModels.CustomerModel.DialogViews;
@@ -78,11 +80,13 @@ public partial class App : Application
         serviceCollection.AddTransient<ICustomerRepository, CustomerRepository>();
         serviceCollection.AddTransient<IFacilityRepository, FacilityRepository>();
         serviceCollection.AddTransient<IOrderRepository, OrderRepository>();
+        serviceCollection.AddTransient<IWorkRepository, WorkRepository>();
         
         serviceCollection.AddTransient<INoticeService, NoticeService>();
         serviceCollection.AddTransient<ICustomerService, CustomerService>();
         serviceCollection.AddTransient<IFacilityService, FacilityService>();
         serviceCollection.AddTransient<IOrderService, OrderService>();
+        serviceCollection.AddTransient<IWorkService, WorkService>();
         
         serviceCollection.AddTransient<IDbConnection>(sp =>
             sp.GetRequiredService<PlantContext>().Database.GetDbConnection());

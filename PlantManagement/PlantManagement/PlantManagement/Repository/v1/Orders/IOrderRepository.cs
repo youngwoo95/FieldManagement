@@ -15,6 +15,7 @@ public interface IOrderRepository
     /// </summary>
     public Task<bool> AddOrderAsync(OrderTb model);
     public Task<bool> EditOrderAsync(OrderTb model);
+    public Task<bool> RemoveOrderAsync(List<int> orderSeq);
     
     /// <summary>
     /// 수주 리스트 조회 
